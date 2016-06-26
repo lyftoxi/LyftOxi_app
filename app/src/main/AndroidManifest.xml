@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lyftoxi.lyftoxi">
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/geo_api_key" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateVisible" />
+        <activity
+            android:name=".TakeRideActivity"
+            android:label="@string/title_activity_take_ride"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ShareRideActivity"
+            android:label="@string/title_activity_share_ride"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SignupActivity"
+            android:label="@string/title_activity_signup" />
+        <activity
+            android:name=".BaseActivity"
+            android:label="@string/title_activity_base" />
+        <activity
+            android:name=".CarAddEdit"
+            android:label="@string/title_add_edit_car" />
+        <activity
+            android:name=".CreateRouteActivity"
+            android:label="@string/title_create_route" />
+        <activity
+            android:name=".ConfirmRideActivity"
+            android:label="@string/title_confirm_ride" />
+        <activity
+            android:name=".TakeRideDetailsActivity"
+            android:label="@string/title_activity_take_ride_details"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".EditProfileActivity"
+            android:label="@string/title_activity_edit_profile"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".OtherRideDetailsActivity"
+            android:label="@string/title_activity_other_ride_details"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MySharedRides"
+            android:label="@string/title_activity_my_shared_rides"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MyInterestedRides"
+            android:label="@string/title_activity_my_interested_rides"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MySuggestedRidesActivity"
+            android:label="@string/title_activity_my_suggested_rides"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".HelpActivity"
+            android:label="@string/title_activity_help"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ForgotPasswordActivity"></activity>
+    </application>
+
+</manifest>

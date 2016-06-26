@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.lyftoxi.lyftoxi.CarAddEdit">
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/carAddEditMainView"
+        android:padding="30dp"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+      <!--  <EditText
+            android:id="@+id/carAddEditCarBrand"
+            android:layout_width="match_parent"
+            android:hint="@string/car_brand"
+            android:layout_height="wrap_content" />
+-->
+        <Spinner
+            android:id="@+id/carAddEditCarBrand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             />
+
+        <EditText
+            android:id="@+id/carAddEditCarBrandOther"
+            android:layout_width="match_parent"
+            android:hint="@string/car_brand"
+            android:visibility="gone"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <EditText
+            android:id="@+id/carAddEditCarNumber"
+            android:layout_width="match_parent"
+            android:hint="@string/car_number"
+            android:layout_height="wrap_content" />
+
+
+        <EditText
+            android:id="@+id/carAddEditCarModel"
+            android:layout_width="match_parent"
+            android:hint="@string/car_model"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/carAddEditCarColor"
+            android:layout_width="match_parent"
+            android:hint="@string/car_color"
+            android:layout_height="wrap_content" />
+
+
+
+
+            <CheckBox android:id="@+id/carAddEditRadioAc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ac"
+                />
+            <CheckBox android:id="@+id/carAddEditRadioMusic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/music"
+                />
+            <CheckBox android:id="@+id/carAddEditRadioSmoking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/smoking"
+                />
+
+            <CheckBox android:id="@+id/carAddEditRadioAirbag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/air_bag"
+                />
+
+            <CheckBox android:id="@+id/carAddEditRadioLuggage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/luggage"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/carAddEditSave"
+            android:text="@string/save"
+            android:background="@color/primaryButtonBackgroundColor"
+            android:textColor="@color/primaryButtonTextColor"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+
+    </LinearLayout>
+
+
+   <!-- <android.support.design.widget.FloatingActionButton
+        android:id="@+id/carAddEditSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:clickable="true"
+        android:src="@android:drawable/ic_menu_save"
+        app:layout_anchor="@id/carAddEditBannerView"
+        app:layout_anchorGravity="bottom|left|start"
+        app:backgroundTint="@android:color/holo_orange_light"/>-->
+</android.support.design.widget.CoordinatorLayout>

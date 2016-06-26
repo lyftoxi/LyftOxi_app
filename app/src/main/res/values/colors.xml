@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- My Original -->
+<!--    <item name="background" type="color">#A7CCED</item>
+    <item name="primaryDark" type="color">#006064</item>
+    <item name="white" type="color">#ffffff</item>
+    <item name="blueText" type="color">#ff0a67b8</item>
+    <item name="greyText" type="color">#ff6c8a97</item>
+    <item name="ascent" type="color">#E040FB</item>-->
+
+
+    <!-- style dark-->
+<!--    <item name="background" type="color">#A7CCED</item>
+    <item name="primaryDark" type="color">#000000</item>
+    <item name="white" type="color">#ffffff</item>
+    <item name="blueText" type="color">#ff0a67b8</item>
+    <item name="greyText" type="color">#ff6c8a97</item>
+    <item name="accent" type="color">#676958</item>
+    <item name="mainScreenBackground" type="color">#000000</item>
+    <item name="primaryButtonTextColor" type="color">#77ff33</item>-->
+
+    <!-- style light and blue-->
+    <!--<item name="background" type="color">#ffffff</item>
+    <item name="primaryDark" type="color">#0371FC</item>
+    <item name="accent" type="color">#ff6c8a97</item>
+    <item name="primaryButtonTextColor" type="color">#ffffff</item>
+    <item name="mainScreenBackground" type="color">#232b38</item>
+    <item name="primaryTextColor" type="color">#000000</item>
+    <item name="bannerTextColor" type="color">#ffffff</item>-->
+
+
+<!--    <item name="background" type="color">#ffffff</item>
+    <item name="primaryDark" type="color">#4898fc</item>
+    <item name="accent" type="color">#ff6c8a97</item>
+    <item name="primaryButtonTextColor" type="color">#ffffff</item>
+    <item name="mainScreenBackground" type="color">#232b38</item>
+    <item name="primaryTextColor" type="color">#000000</item>
+    <item name="bannerTextColor" type="color">#ffffff</item>-->
+
+    <!-- style dark blue -->
+     <item name="background" type="color">#ffffff</item>
+    <item name="primary" type="color">#2b89ab</item>
+    <item name="primaryDark" type="color">#2b89ab</item>
+    <item name="accent" type="color">#ff6c8a97</item>
+    <item name="primaryButtonBackgroundColor" type="color">#0d1f2d</item>
+    <item name="primaryButtonTextColor" type="color">#2b89ab</item>
+    <item name="mainScreenBackground" type="color">#ffffff</item>
+    <item name="primaryTextColor" type="color">#000000</item>
+    <item name="bannerTextColor" type="color">#ffffff</item>
+</resources>

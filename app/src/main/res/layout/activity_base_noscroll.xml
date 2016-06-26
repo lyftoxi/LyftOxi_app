@@ -1,0 +1,155 @@
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lyftoxi.lyftoxi.BaseActivity">
+    <!-- The main content view -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+<!-- The main content view -->
+
+
+        <ProgressBar android:id="@+id/baseActivityProgress" style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"
+            android:layout_gravity="center"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:id="@+id/noInternetConnection">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_internet_connection"
+                />
+
+        </FrameLayout>
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primaryDark"
+            app:theme="@style/LyftoxiAppBar">
+
+
+        </android.support.v7.widget.Toolbar>
+        <FrameLayout
+            android:id="@+id/content_frame_not_scrollable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+
+
+        </FrameLayout>
+
+
+      <!--  <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@android:drawable/ic_dialog_email"
+            app:layout_anchor="@id/appBarDefault"
+            app:layout_anchorGravity="bottom|end" />
+-->
+    </LinearLayout>
+
+<!-- The navigation drawer -->
+
+    <LinearLayout
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="start">
+
+
+
+
+  <LinearLayout
+        android:id="@+id/navHeaderView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/primaryDark"
+        android:padding="5dp"
+        android:theme="@style/LyftoxiAppBar"
+        android:gravity="center">
+
+      <!-- <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical"
+         android:gravity="end">
+
+         <ImageButton
+             android:layout_width="30dp"
+             android:layout_height="30dp"
+             android:id="@+id/navEditProfile"
+             android:background="#00000000"
+             android:scaleType="fitCenter"
+             android:adjustViewBounds="true"
+             android:src="@android:drawable/ic_menu_edit"
+             />
+     </LinearLayout>
+-->
+
+        <ImageButton
+            android:id="@+id/navProfilePicBtn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="fitCenter"
+            android:background="@color/primaryDark"
+            android:src="@drawable/ic_account_circle_white_48dp"/>
+
+        <TextView
+            android:id="@+id/navUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/no_name"
+            android:textSize="25sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@android:drawable/ic_menu_call"/>
+        <TextView
+            android:id="@+id/navMobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_mobile"
+            android:textSize="15sp"/>
+        </LinearLayout>
+
+
+        </LinearLayout>
+    <ListView android:id="@+id/left_drawer"
+    android:layout_width="240dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+        android:divider="@android:color/white"
+    android:choiceMode="singleChoice"
+        android:background="@android:color/white"
+    />
+
+    </LinearLayout>
+</android.support.v4.widget.DrawerLayout>

@@ -1,0 +1,12 @@
+<animation-list android:id="@+id/selected"
+    android:oneshot="false"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/lyftoxi_anim_1" android:duration="500" />
+    <item android:drawable="@drawable/lyftoxi_anim_2" android:duration="500" />
+    <item android:drawable="@drawable/lyftoxi_anim_3" android:duration="500" />
+    <item android:drawable="@drawable/lyftoxi_anim_4" android:duration="100" />
+    <item android:drawable="@drawable/lyftoxi_anim_5" android:duration="100" />
+    <item android:drawable="@drawable/lyftoxi_anim_6" android:duration="100" />
+    <item android:drawable="@drawable/lyftoxi_anim_7" android:duration="100" />
+    <item android:drawable="@drawable/lyftoxi_anim_8" android:duration="100" />
+</animation-list>

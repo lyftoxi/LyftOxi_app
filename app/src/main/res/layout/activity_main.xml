@@ -1,0 +1,130 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/mainScreenBackground"
+    tools:context=".MainActivity"
+    android:weightSum="1">
+
+    <FrameLayout
+        android:id="@+id/splashScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/mainLyftoxiLogoAnim"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center" />
+
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/welcomeView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@drawable/welcome_image">
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/mainLyftoxiLogo"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/lyftoxi_logo"
+            android:layout_gravity="center"
+            android:layout_margin="20dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/click_call_share"
+            android:textColor="@color/primaryButtonTextColor"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:id="@+id/textViewClickCallShare" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:text="@string/going_somewhere"
+                android:textColor="@color/accent"
+
+                android:layout_marginTop="20dp"
+                android:id="@+id/welcomeTagline"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal|bottom"
+            android:paddingBottom="20dp">
+
+
+            <Button
+                android:id="@+id/buttonNewToLyftoxi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryButtonTextColor"
+                android:background="@android:color/white"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:text="@string/new_to_lyftoxi"
+                android:onClick="help"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="center" />
+
+            <Button
+                android:id="@+id/buttonShare"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryButtonTextColor"
+                android:background="@color/primaryButtonBackgroundColor"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:text="@string/share"
+                android:onClick="shareRide"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
+
+            <Button
+                android:id="@+id/buttonTake"
+                android:textColor="@color/primaryButtonBackgroundColor"
+                android:background="@color/primaryDark"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/take"
+                android:padding="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:onClick="takeRide"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.lyftoxi.lyftoxi.SignupActivity"
+    >
+
+    <LinearLayout
+        android:id="@+id/signupRootLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/mobile"
+        android:inputType="phone"
+        android:id="@+id/signupMobile"
+         />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/password"
+        android:id="@+id/signupPassword" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/retype_password"
+        android:id="@+id/signupConfirmPassword" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/name"
+        android:id="@+id/signupName"
+    />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email"
+        android:id="@+id/signupEmail"
+        />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:hint="@string/dob"
+        android:id="@+id/signupDob"
+        />
+
+            <ImageButton
+                android:id="@+id/signupDatePicker"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:src="@android:drawable/ic_menu_my_calendar"
+                />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/signupSex"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="match_parent" />
+
+        <RadioButton android:id="@+id/signupRadioMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/male"
+           />
+        <RadioButton android:id="@+id/signupRadioFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/female"
+            />
+
+
+    </RadioGroup>
+
+
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonSighup"
+            android:text="@string/save"
+            android:background="@color/primaryButtonBackgroundColor"
+            android:textColor="@color/primaryButtonTextColor"
+            android:textSize="15sp"
+            android:onClick="signUp"
+            />
+ <!--       </ScrollView>-->
+
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/signupProfilePic"
+        android:text="@string/save"
+        android:background="@color/primaryButtonBackgroundColor"
+        android:textColor="@color/primaryButtonTextColor"
+        android:src="@android:drawable/ic_menu_camera"
+        android:layout_margin="20dp"
+        android:onClick="signUp"
+        app:layout_anchor="@id/signupRootLayout"
+        app:layout_anchorGravity="top|right|end"
+        />
+
+</android.support.design.widget.CoordinatorLayout>

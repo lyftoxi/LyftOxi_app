@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/list_horizontal_margin"
+    android:paddingRight="@dimen/list_horizontal_margin"
+    android:paddingTop="@dimen/list_vertical_margin"
+    android:paddingBottom="@dimen/list_vertical_margin"
+    android:gravity="left"
+    android:descendantFocusability="blocksDescendants"
+    android:weightSum="1">
+
+
+    <ImageView
+        android:id="@+id/carListImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_directions_car_black_48dp"
+        android:layout_weight="0.14" />
+
+
+    <Space
+        android:layout_width="10dp"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_weight="0.66">
+
+        <TextView
+            android:id="@+id/carListingBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="@string/car_brand"
+            android:textColor="@color/primaryTextColor"/>
+
+
+
+        <TextView
+            android:id="@+id/carListingModel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/car_model"
+            android:textSize="15sp"
+            />
+
+
+        <TextView
+            android:id="@+id/carListingNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/car_number"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/primaryTextColor"
+            />
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/carListingEditCar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:backgroundTint="@android:color/transparent"
+            android:clickable="true"
+            android:src="@android:drawable/ic_menu_edit" />
+        <ImageButton
+            android:id="@+id/carListingDeleteCar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:backgroundTint="@android:color/transparent"
+            android:clickable="true"
+            android:src="@android:drawable/ic_menu_delete" />
+
+        <ProgressBar android:id="@+id/carListingProgress"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:layout_gravity="right"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

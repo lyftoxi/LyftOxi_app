@@ -1,0 +1,161 @@
+<resources>
+    <string name="app_name">lyftoxi</string>
+
+    <string name="click_call_share">Click... Call... Share</string>
+    <string name="action_settings">Settings</string>
+    <string name="share">Share your Ride</string>
+    <string name="new_to_lyftoxi">New to Lyftoxi?</string>
+    <string name="take">Find a Ride</string>
+    <string name="home">Home</string>
+    <string name="title_activity_take_ride">Take A Ride</string>
+    <string name="title_add_edit_car">Car Details</string>
+    <string name="title_create_route">Route Details</string>
+    <string name="title_confirm_ride">Confirm Your Ride</string>
+
+    <string name="share_your_ride">Share Your Ride</string>
+    <string name="my_suggested_rides">My Suggested Rides</string>
+    <string name="my_shared_rides">My Shared Rides</string>
+    <string name="my_interested_rides">My Interested Rides</string>
+    <string name="take_a_ride">Take A Ride</string>
+    <string name="title_activity_share_ride">Share Your Ride</string>
+    <string name="log_out">Log Out</string>
+    <string name="title_activity_signup">Signup</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="users_message">Comment of Ride Owner</string>
+
+    <string name="male">He</string>
+    <string name="female">She</string>
+    <string name="you_can_also..">You Can join with your existing profile. \n Nothing will be posted.</string>
+    <string name="mobile">Mobile</string>
+    <string name="password">Password</string>
+    <string name="retype_password">Retype password</string>
+    <string name="resetPassword">Reset Password</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="dob">D.O.B</string>
+    <string name="signup">Sign Up</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="dotted_line">|</string>
+    <string name="rupee">Rs.</string>
+    <string name="owner_comment">Comment</string>
+    <string name="phone_number_sample">0000000000</string>
+    <string name="starting_at">Starting @</string>
+    <string name="interested">interested?</string>
+    <string name="not_interested">Not interested?</string>
+    <string name="source">Source</string>
+    <string name="via">Via</string>
+    <string name="destination">Destination</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="luggage">Luggage</string>
+    <string name="seat">Seat</string>
+    <string name="ride_of">Ride of </string>
+    <string name="ac">AC</string>
+    <string name="anything_else">Anything else that you want to mention...</string>
+    <string name="music">Music</string>
+    <string name="smoking">Smoking</string>
+    <string name="air_bag">Air Bag</string>
+    <string name="max_wait">Max wait (mins)</string>
+    <string name="title_activity_navigation">Navigation</string>
+    <string name="address">Address</string>
+    <string name="address_line1">Address Line 1</string>
+    <string name="address_line2">Address Line 2</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="pin">PIN</string>
+    <string name="enter_OTP">Enter OTP</string>
+    <string name="confirm">Confirm</string>
+    <string name="proceed">Proceed</string>
+    <string name="save">Save</string>
+    <string name="add_car">Add a car</string>
+    <string name="going_somewhere">Going somewhere ?</string>
+    <string name="no_internet_connection">No Internet !</string>
+    <string name="no_internet_connection_please_try_again">Please check your Network connectivity</string>
+
+
+    <string name="price_decided_by_user">Price Decided\nby OWNER</string>
+
+    <string name="title_section1">BOOM</string>
+    <string name="title_section2">TICK</string>
+    <string name="title_section3">BLA</string>
+    <string name="title_section4">Take A ride</string>
+
+    <string name="car_delete_message">Do you really want to delete this car ?</string>
+    <string name="cancel_ride">Do you really want to cancel this ride ?</string>
+    <string name="back">Back</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+    <string name="title_activity_base">BaseActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="no_name">Guest</string>
+    <string name="no_mobile">N.A</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="drawer_open">open drawer</string>
+    <string name="drawer_close">close drawer</string>
+    <string name="select_car">Select Car</string>
+    <string name="own_cars">Own Cars</string>
+    <string name="rented_cars">Rented Cars</string>
+    <string name="select_car_type">Select Car Type</string>
+    <string name="car_brand">Car Brand</string>
+    <string name="car_model">Car Model</string>
+    <string name="car_number">WB 02 AB 1234</string>
+    <string name="car_color">Car Color</string>
+    <string name="route_name">Route Name</string>
+    <string name="title_activity_take_ride_details">Take Ride Details</string>
+    <string name="title_activity_my_shared_rides">My Shared Rides</string>
+    <string name="title_activity_my_interested_rides">My Interested Rides</string>
+    <string name="title_activity_my_suggested_rides">My Suggested Rides</string>
+    <string name="title_activity_other_ride_details">Other Ride Details</string>
+    <string name="title_activity_edit_profile">Edit Profile</string>
+    <string name="you_have_shared_no_rides">You have shared no rides! \n Please share a ride now !</string>
+    <string name="no_rides">No rides found! \n Please try with some other places and other filters</string>
+    <string name="you_have_no_interested_rides">You have not shown interest in any rides! \n Please visit take a ride now, to show interest</string>
+    <string name="title_activity_help">Help</string>
+
+
+    <string name="what_is_lyftoxi">What is Lyftoxi</string>
+    <string name="what_is_lyftoxi_desc">
+        "Time is over to look for your co-passengers!!! \n\n"
+        "LyftOxi is here to let you offer or take ride in a flexible and convenient way."
+        "Search, talk and decide your journey with a trusted friend and save money on your travel, "
+        "even at the last minute."
+    </string>
+    <string name="how_lyftoxi_makes_you_happy">How LyftOxi makes you happy</string>
+    <string name="travel_safely">Travel safely</string>
+    <string name="travel_safely_desc">Reliability and confidence are important to us.
+        Therefore all LyftOxi users are registered with an e-mail address and phone number.
+    </string>
+    <string name="drive_from_door_to_door">Drive from door to door</string>
+    <string name="drive_from_door_to_door_desc">Free to choose cars with ac, music, luggage and others.
+        You are free to chat discussing start-end point and travel timing with your co-passengers.
+        Drivers find more suitable passengers due to the section negotiation at LyftOxi.
+    </string>
+    <string name="save_money_and_go_green">Save money and Go Green</string>
+    <string name="save_money_and_go_green_desc">Confused with odd-even rule.
+        Share your own car or just leave it at home.
+        That way you can save several thousand per month, depending on your route.
+        Let’s think something green. Good for you…Good for the planet.
+    </string>
+
+    <string name="easy_ride_negotoation">Easy ride negotiation</string>
+    <string name="easy_ride_negotoation_desc">Passengers request you directly via LyftOxi.
+        You will be notified via text message, phone or push notification.
+        You just press a button to confirm the request with pickup location and time.
+    </string>
+    <string name="flexible">Flexible</string>
+    <string name="flexible_desc">Ride/Share now or later with flexible options. Online hired cab can also be shared to
+        make your budget flexible.
+        You can choose one of the proposed drivers, request the ride with the push of a button. Y
+        ou can also request several drivers at the same time and the first one that accepts your request will be your driver
+    </string>
+    <string name="faq">FAQ</string>
+
+
+
+</resources>

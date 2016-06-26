@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:tools="http://schemas.android.com/tools"
+tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
+
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+
+        <EditText
+            android:id="@+id/createRouteDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="datetime"
+            android:textStyle="bold"
+            android:hint="@string/starting_at"
+            android:textSize="20sp"
+           />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/createRouteDatePicker"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_my_calendar"
+            />
+
+        <ImageButton
+            android:id="@+id/createRouteTimePicker"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_lock_idle_alarm"
+            />
+
+
+    </LinearLayout>
+
+
+        <fragment
+            android:id="@+id/createRouteSource"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+                android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            />
+
+            <fragment
+            android:id="@+id/createRouteDestination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/createRouteSave"
+        android:text="@string/proceed"
+        android:background="@color/primaryButtonBackgroundColor"
+        android:textColor="@color/primaryButtonTextColor"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        />
+
+        </LinearLayout>
+
+  <!--  <fragment
+        android:id="@+id/createRouteMapView"
+        class="com.google.android.gms.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/createRouteBodyView"
+        app:layout_anchorGravity="bottom"/>-->
+
+
+
+
+    </android.support.design.widget.CoordinatorLayout>

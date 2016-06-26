@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/list_horizontal_margin"
+    android:paddingRight="@dimen/list_horizontal_margin"
+    android:paddingTop="@dimen/list_vertical_margin"
+    android:paddingBottom="@dimen/list_vertical_margin"
+    android:descendantFocusability="blocksDescendants"
+    >
+
+        <TextView
+            android:id="@+id/rideListingNoImageFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/from"
+            android:textColor="@color/primaryTextColor"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="17dp"
+            android:layout_marginStart="17dp"
+            />
+
+        <TextView
+            android:id="@+id/rideListingNoImageStartingTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/starting_at"
+            android:textSize="12sp"
+            android:layout_below="@+id/rideListingNoImageFrom"
+            android:layout_alignLeft="@+id/rideListingNoImageFrom"
+            android:layout_alignStart="@+id/rideListingNoImageFrom" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dotted_line"
+            android:id="@+id/textView"
+            android:textSize="15sp"
+            android:layout_below="@+id/rideListingNoImageStartingTime"
+            android:layout_alignLeft="@+id/rideListingNoImageStartingTime"
+            android:layout_alignStart="@+id/rideListingNoImageStartingTime" />
+
+        <TextView
+            android:id="@+id/rideListingNoImageTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/to"
+            android:textColor="@color/primaryTextColor"
+            android:layout_below="@+id/textView"
+            android:layout_alignLeft="@+id/textView"
+            android:layout_alignStart="@+id/textView" />
+
+
+
+    <TextView
+        android:id="@+id/rideListingNoImageFare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rupee"
+        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:textColor="#ff335a50"
+        android:layout_gravity="right"
+        android:paddingRight="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:id="@+id/rideListingNoImageCancel"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:backgroundTint="@android:color/transparent"
+        android:clickable="true"
+        android:src="@android:drawable/ic_menu_delete"
+        android:layout_below="@+id/rideListingNoImageFare"
+        android:layout_alignRight="@+id/rideListingNoImageFare"
+        android:layout_alignEnd="@+id/rideListingNoImageFare" />
+
+
+    <ProgressBar android:id="@+id/rideListingNoImageProgress"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:layout_gravity="right"
+        android:layout_below="@+id/rideListingNoImageFare"
+        android:layout_alignRight="@+id/rideListingNoImageFare"
+        android:layout_alignEnd="@+id/rideListingNoImageFare" />
+
+    <TextView
+        android:id="@+id/rideListingNoImageCancelled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/cancelled"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_below="@+id/rideListingNoImageFare"
+        android:layout_alignRight="@+id/rideListingNoImageFare"
+        android:layout_alignEnd="@+id/rideListingNoImageFare" />
+
+</RelativeLayout>

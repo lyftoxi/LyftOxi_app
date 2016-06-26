@@ -1,0 +1,368 @@
+package com.lyftoxi.lyftoxi;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.util.LruCache;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.lyftoxi.lyftoxi.dao.Location;
+import com.lyftoxi.lyftoxi.dao.Ride;
+import com.lyftoxi.lyftoxi.dao.TakeRide;
+import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
+import com.lyftoxi.lyftoxi.singletons.CurrentUserInterestedRides;
+import com.lyftoxi.lyftoxi.util.HttpRestUtil;
+import com.lyftoxi.lyftoxi.util.RoundImage;
+
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+/**
+ * Created by DhimanZ on 4/16/2016.
+ */
+public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
+
+    List<RideListingInfo> rides;
+
+    SessionManager session;
+
+    private View v;
+
+    private LruCache<String, Bitmap> mMemoryCache;
+
+    public RideListingAdapter(Context context, int textViewResourceId, List<RideListingInfo> rides){
+        super(context, textViewResourceId, rides);
+        this.rides=rides;
+        this.session = new SessionManager(context);
+
+        // Get max available VM memory, exceeding this amount will throw an
+        // OutOfMemory exception. Stored in kilobytes as LruCache takes an
+        // int in its constructor.
+        final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+
+        // Use 1/8th of the available memory for this memory cache.
+        final int cacheSize = maxMemory / 8;
+
+        mMemoryCache = new LruCache<String, Bitmap>(cacheSize) {
+            @Override
+            protected int sizeOf(String key, Bitmap bitmap) {
+                // The cache size will be measured in kilobytes rather than
+                // number of items.
+                return bitmap.getByteCount() / 1024;
+            }
+        };
+    }
+
+    public void addBitmapToMemoryCache(String key, Bitmap bitmap) {
+        if (getBitmapFromMemCache(key) == null) {
+            mMemoryCache.put(key, bitmap);
+        }
+    }
+
+    public Bitmap getBitmapFromMemCache(String key) {
+        return mMemoryCache.get(key);
+    }
+
+    public RideListingInfo getItem(int position){
+
+        return rides.get(position);
+    }
+
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent){
+        v = convertView;
+        if (v == null) {
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            v = inflater.inflate(R.layout.ride_listing, parent,false);
+        }
+
+        final RideListingInfo i = rides.get(position);
+        final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy h:mm a");
+        final DecimalFormat df = new DecimalFormat("##.######");
+
+        if (i != null) {
+
+            ImageView userImage = (ImageView) v.findViewById(R.id.rideListingUserImage);
+            TextView from = (TextView) v.findViewById(R.id.rideListingFrom);
+            TextView to = (TextView) v.findViewById(R.id.rideListingTo);
+            TextView fare = (TextView) v.findViewById(R.id.rideListingFare);
+            TextView startingTime = (TextView) v.findViewById(R.id.rideListingStartingTime);
+            final ImageButton interestedButton = (ImageButton) v.findViewById(R.id.rideListingBtnInterested);
+            TextView cancelled = (TextView)v.findViewById(R.id.rideListingCancelled);
+
+            Bitmap bm = BitmapFactory.decodeResource(v.getResources(),R.drawable.sample_profile_pic);
+            RoundImage roundedImage = new RoundImage(bm);
+            userImage.setImageDrawable(roundedImage);
+            final View progressBar = v.findViewById(R.id.rideListingProgress);
+
+            downloadUserProfilePic(i.getRideOf().getUID(),v);
+
+            Log.d("gog.debug","ride status "+i.getStatus());
+            if("C".equals(i.getStatus()))
+            {
+                cancelled.setVisibility(View.VISIBLE);
+                interestedButton.setVisibility(View.GONE);
+            }
+            else{
+                cancelled.setVisibility(View.GONE);
+                interestedButton.setVisibility(View.VISIBLE);
+            }
+
+
+            if(null!=interestedButton) {
+                if (!session.isLoggedIn() || null == i.isInterested()) {
+                    interestedButton.setVisibility(View.INVISIBLE);
+                } else {
+                    if (i.isInterested()) {
+                        interestedButton.setImageResource(android.R.drawable.btn_star_big_on);
+                    } else {
+                        interestedButton.setImageResource(android.R.drawable.btn_star_big_off);
+                    }
+                }
+
+
+                interestedButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Log.d("gog.debug","interested "+i.isInterested());
+                        if(i.isInterested())
+                        {
+                            RemoveInterestedRide removeInterestedRide = new RemoveInterestedRide();
+                            removeInterestedRide.progressBar = progressBar;
+                            removeInterestedRide.interestedButton = interestedButton;
+                            removeInterestedRide.execute(i.getId(),CurrentUserInfo.getInstance().getId());
+                            return;
+                        }
+
+                        TakeRide interestedRide = new TakeRide();
+                        interestedRide.setOwnerObjId(i.getRideOf().getUID());
+                        interestedRide.setOwnerName(i.getRideOf().getName());
+                        interestedRide.setOwnerMobileNo(i.getRideOf().getPhNo());
+                        interestedRide.setShareRideObjId(i.getId());
+                        interestedRide.setRideTime(i.getStarTime());
+                        interestedRide.setFare(i.getFare());
+                        interestedRide.setInterestedUserObjId(CurrentUserInfo.getInstance().getId());
+                        interestedRide.setInterestedUserName(CurrentUserInfo.getInstance().getName());
+                        interestedRide.setInterestedUserMobileNo(CurrentUserInfo.getInstance().getPhNo());
+                        Location source = new Location();
+                        source.setName(i.getSourceName());
+                        source.setLatitude(Double.valueOf(df.format(i.getSource().latitude)));
+                        source.setLongitude(Double.valueOf(df.format(i.getSource().longitude)));
+                        interestedRide.setSource(source);
+                        Location destination = new Location();
+                        destination.setName(i.getDestinationName());
+                        destination.setLatitude(Double.valueOf(df.format(i.getDestination().latitude)));
+                        destination.setLongitude(Double.valueOf(df.format(i.getDestination().longitude)));
+                        interestedRide.setDestination(destination);
+
+                        AddInterestedRide addInterestedRide  = new AddInterestedRide();
+                        addInterestedRide.progressBar = progressBar;
+                        addInterestedRide.interestedButton = interestedButton;
+                        addInterestedRide.execute(interestedRide);
+                    }
+                });
+            }
+
+            from.setText(i.getSourceName());
+            to.setText(i.getDestinationName());
+
+            String fareStr = "Rs. "+i.getFare();
+            fare.setText(fareStr);
+            startingTime.setText(sdf.format(i.getStarTime().getTime()));
+
+        }
+        return v;
+
+    }
+
+    private void downloadUserProfilePic(String userId, final View v)
+    {
+        if(null==userId || userId.trim().equals(""))
+        {
+            return;
+        }
+        final String profilePicFileName = userId+"_profile_pic.jpg";
+        final ImageView rideListingUserImage = (ImageView)v.findViewById(R.id.rideListingUserImage);
+        Bitmap bm = getBitmapFromMemCache(profilePicFileName);
+        if (bm != null) {
+            RoundImage roundedImage = new RoundImage(bm);
+            rideListingUserImage.setImageDrawable(roundedImage);
+        } else {
+
+            Log.d("gog.debug ","profilePicFileName "+profilePicFileName);
+            StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://lyftoxi-1321.appspot.com");
+            StorageReference profileImageRef = storageRef.child("userProfilePics/"+profilePicFileName);
+
+            // profileImageRef.getDownloadUrl();
+            final long ONE_MEGABYTE = 500 * 500;
+            profileImageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                @Override
+                public void onSuccess(byte[] bytes) {
+
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    bitmap = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
+                    RoundImage roundedImage = new RoundImage(bitmap);
+                    addBitmapToMemoryCache(profilePicFileName, bitmap);
+                    rideListingUserImage.setImageDrawable(roundedImage);
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(Exception exception) {
+                    Log.d("gog.debug","Firebase: profile pic download failed");
+                    Bitmap bm = BitmapFactory.decodeResource(v.getResources(),R.drawable.sample_profile_pic);
+                    RoundImage roundedImage = new RoundImage(bm);
+                    rideListingUserImage.setImageDrawable(roundedImage);
+
+
+                }
+            });
+        }
+
+    }
+
+
+
+    public class AddInterestedRide extends AsyncTask<TakeRide, Void, Boolean> {
+
+        TakeRide  interestedRide;
+        View progressBar;
+        ImageButton interestedButton;
+
+
+        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm").create();
+        @Override
+        protected void onPreExecute() {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Boolean doInBackground(TakeRide... params) {
+            interestedRide = params[0];
+            Object interestedRideInfoJson = gson.toJson(interestedRide);
+
+            try {
+                HttpRestUtil httpRestUtil = new HttpRestUtil(getContext());
+                String response = httpRestUtil.httpPost("takeRideService/ride",interestedRideInfoJson);
+                if(null!=response)
+                {
+                    return true;
+                }
+
+
+            }catch (IOException ioex)
+            {
+                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+            }
+            catch (Exception ex)
+            {
+                Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
+            }
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            progressBar.setVisibility(View.GONE);
+            Toast toast;
+            if (success) {
+                // startMyInterestedRideActivity();
+                interestedButton.setImageResource(android.R.drawable.btn_star_big_on);
+                CurrentUserInterestedRides.getInstance().getRides().add(interestedRide);
+            }
+        }
+        @Override
+        protected void onCancelled() {
+
+        }
+
+    }
+
+    public class RemoveInterestedRide extends AsyncTask<String, Void, Boolean> {
+
+        View progressBar;
+        ImageButton interestedButton;
+        String rideId, userId;
+        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm").create();
+        @Override
+        protected void onPreExecute() {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+            rideId = params[0];
+            userId = params[1];
+
+
+            try {
+                HttpRestUtil httpRestUtil = new HttpRestUtil(getContext());
+                String response = httpRestUtil.httpDelete("takeRideService/ride/rideIdUserId?rideId="+rideId+"&userId="+userId);
+                if(null!=response)
+                {
+                    return true;
+                }
+
+
+            }catch (IOException ioex)
+            {
+                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+            }
+            catch (Exception ex)
+            {
+                Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
+            }
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            progressBar.setVisibility(View.GONE);
+            Toast toast;
+            if (success) {
+                // startMyInterestedRideActivity();
+
+                for(int i=0; i<CurrentUserInterestedRides.getInstance().getRides().size(); i++)
+                {
+                    if(CurrentUserInterestedRides.getInstance().getRides().get(i).equals(rideId))
+                    {
+                        CurrentUserInterestedRides.getInstance().getRides().remove(i);
+                    }
+                }
+                interestedButton.setImageResource(android.R.drawable.btn_star_big_off);
+            }
+        }
+        @Override
+        protected void onCancelled() {
+
+        }
+
+    }
+
+}

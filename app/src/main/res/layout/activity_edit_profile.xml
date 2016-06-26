@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.lyftoxi.lyftoxi.EditProfileActivity"
+    >
+
+    <LinearLayout
+        android:id="@+id/editProfileRootLayout"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editProfileMobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mobile"
+            android:inputType="phone"
+            android:ems="10"
+          />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name"
+            android:inputType="textPersonName"
+            android:textSize="@dimen/abc_text_size_small_material"
+            android:ems="10"
+            android:id="@+id/editProfileName"
+            />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email"
+            android:textSize="@dimen/abc_text_size_small_material"
+            android:ems="10"
+            android:id="@+id/editProfileEmail"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="left|center_horizontal">
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:hint="@string/dob"
+                android:layout_marginRight="10dp"
+                android:id="@+id/editProfileDob"
+                />
+
+            <ImageButton
+                android:id="@+id/editProfileDatePicker"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:src="@android:drawable/ic_menu_my_calendar"
+                />
+
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/editProfileSex"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent" />
+
+                <RadioButton android:id="@+id/editProfileRadioMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/male"
+                    android:checked="false" />
+                <RadioButton android:id="@+id/editProfileRadioFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/female"
+                    />
+
+
+            </RadioGroup>
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:id="@+id/editProfileAddressView"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:text="@string/address"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="@string/address_line1"
+                android:textSize="@dimen/abc_text_size_small_material"
+                android:ems="10"
+                android:id="@+id/editProfileAddressLine1"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="@string/address_line2"
+                android:textSize="@dimen/abc_text_size_small_material"
+                android:ems="10"
+                android:id="@+id/editProfileAddressLine2"
+                />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/city"
+            android:textSize="@dimen/abc_text_size_small_material"
+            android:ems="10"
+            android:id="@+id/editProfileCity"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/state"
+            android:textSize="@dimen/abc_text_size_small_material"
+            android:ems="10"
+            android:id="@+id/editProfileState"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/pin"
+            android:textSize="@dimen/abc_text_size_small_material"
+            android:ems="10"
+            android:id="@+id/editProfilePin"
+            />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editProfileSave"
+            android:text="@string/save"
+            android:background="@color/primaryButtonBackgroundColor"
+            android:textColor="@color/primaryButtonTextColor"
+            android:textSize="15sp"
+            app:layout_anchor="@id/editProfileRootLayout"
+            app:layout_anchorGravity="bottom|center_horizontal"
+            />
+
+
+<!--        </ScrollView>-->
+
+</LinearLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editProfilePic"
+        android:text="@string/save"
+        android:background="@color/primaryButtonBackgroundColor"
+        android:textColor="@color/primaryButtonTextColor"
+        android:src="@android:drawable/ic_menu_camera"
+        android:layout_margin="20dp"
+        app:layout_anchor="@id/editProfileRootLayout"
+        app:layout_anchorGravity="top|right|end"
+        />
+</android.support.design.widget.CoordinatorLayout>
+

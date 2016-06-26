@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.lyftoxi.lyftoxi.TakeRideDetailsActivity">
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rupee"
+                        android:id="@+id/takeRideDetailsCurrency"
+                        android:textSize="20sp"
+                        android:textColor="@color/primaryDark"
+                        android:layout_alignBaseline="@+id/takeRideDetailsPrice"
+                        android:layout_alignBottom="@+id/takeRideDetailsPrice"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+                <TextView
+                    android:id="@+id/takeRideDetailsPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primaryDark"
+                    android:text="10"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/takeRideDetailsCurrency"
+                    android:layout_toEndOf="@+id/takeRideDetailsCurrency" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primaryButtonBackgroundColor"
+                        android:text="@string/price_decided_by_user"
+                       android:layout_below="@id/takeRideDetailsPrice"
+                        android:id="@+id/takeRideDetailsPriceMessage" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="20dp"
+                    android:gravity="center_horizontal">
+
+
+                    <TextView
+                        android:id="@+id/takeRideDetailsSource"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primaryTextColor"
+                        android:textSize="20sp"
+                        android:text="@string/source"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginRight="5dp"
+                            android:src="@android:drawable/ic_menu_my_calendar"/>
+                        <TextView
+                            android:id="@+id/takeRideDetailsStartTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/starting_at"
+                            />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="|"/>
+                    <TextView
+                        android:id="@+id/takeRideDetailsDestination"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primaryTextColor"
+                        android:textSize="20sp"
+                        android:text="@string/destination"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@android:drawable/picture_frame">
+
+                <TextView
+                    android:id="@+id/takeRideDetailsCarBrand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/car_brand"
+                    android:textSize="20sp"
+                    android:paddingRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/takeRideDetailsCarModel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/car_model"
+                    android:textSize="20sp"
+                    android:paddingRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/takeRideDetailsCarNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:text="@string/car_number"
+                    android:textColor="@color/material_blue_grey_800" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+                <CheckBox android:id="@+id/takeRideDetailsRadioAc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ac"
+                    />
+                <CheckBox android:id="@+id/takeRideDetailsRadioMusic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/music"
+                    />
+                <CheckBox android:id="@+id/takeRideDetailsRadioSmoking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/smoking"
+                    />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal">
+
+                <CheckBox android:id="@+id/takeRideDetailsRadioAirbag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/air_bag"
+                    />
+
+                <CheckBox android:id="@+id/takeRideDetailsLuggage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/luggage"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryDark"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:text="@string/users_message"/>
+
+            <TextView
+                android:id="@+id/takeRideDetailsUserMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:singleLine="false"
+                android:textColor="@color/primaryButtonBackgroundColor"
+                android:textSize="20sp"
+                android:textStyle="italic" />
+      
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/takeRideDetailsPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primaryButtonBackgroundColor"
+                    android:text="@string/phone_number_sample"/>
+
+                <ImageButton
+                    android:id="@+id/takeRideDetailSms"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="fitCenter"
+                    android:background="#00000000"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@android:drawable/ic_menu_send"/>
+
+                <ImageButton
+                    android:id="@+id/takeRideDetailsCall"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="#00000000"
+                    android:scaleType="fitCenter"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@android:drawable/ic_menu_call" />
+
+
+            </LinearLayout>
+
+      <!--  <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/takeRideInterested"
+            android:text="@string/interested"
+            android:background="@color/primaryButtonBackgroundColor"
+            android:textColor="@color/primaryButtonTextColor"
+            android:textSize="15sp"
+            android:layout_margin="10dp"
+            />-->
+
+        </LinearLayout>
+
+
+   <!-- <android.support.design.widget.FloatingActionButton
+        android:id="@+id/takeRideInterested"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:clickable="true"
+        android:src="@android:drawable/ic_popup_reminder"
+        app:layout_anchor="@id/takeRideDetailsBannerView"
+        app:layout_anchorGravity="bottom|left|start"
+        app:backgroundTint="@android:color/holo_orange_light"/>-->
+    
+</android.support.design.widget.CoordinatorLayout>
+

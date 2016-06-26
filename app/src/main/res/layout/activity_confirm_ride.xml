@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.lyftoxi.lyftoxi.ConfirmRideActivity">
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rupee"
+                        android:id="@+id/confirmRideDetailsCurrency"
+                        android:textSize="20sp"
+                        android:textColor="@color/primaryDark"
+                        android:layout_alignBaseline="@+id/confirmRideDetailsPrice"
+                        android:layout_alignBottom="@+id/confirmRideDetailsPrice"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+                    <TextView
+                        android:id="@+id/confirmRideDetailsPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/primaryDark"
+                        android:text="10"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@+id/confirmRideDetailsCurrency"
+                        android:layout_toEndOf="@+id/confirmRideDetailsCurrency" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primaryButtonBackgroundColor"
+                        android:text="@string/price_decided_by_user"
+                        android:layout_below="@id/confirmRideDetailsPrice"
+                        android:id="@+id/confirmRideDetailsPriceMessage" />
+
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
+                    android:gravity="center_horizontal">
+
+
+                    <TextView
+                        android:id="@+id/confirmRideDetailsSource"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primaryTextColor"
+                        android:textSize="20sp"
+                        android:text="@string/source"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginRight="5dp"
+                            android:src="@android:drawable/ic_menu_my_calendar"/>
+                        <TextView
+                            android:id="@+id/confirmRideDetailsStartTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/starting_at"
+                            />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="|"/>
+                    <TextView
+                        android:id="@+id/confirmRideDetailsDestination"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primaryTextColor"
+                        android:textSize="20sp"
+                        android:text="@string/destination"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@android:drawable/picture_frame">
+
+                <TextView
+                    android:id="@+id/confirmRideDetailsCarBrand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/car_brand"
+                    android:textSize="20sp"
+                    android:paddingRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/confirmRideDetailsCarModel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/car_model"
+                    android:textSize="20sp"
+                    android:paddingRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/confirmRideDetailsCarNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:text="@string/car_number"
+                    android:textColor="@color/material_blue_grey_800" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+                <CheckBox android:id="@+id/confirmRideDetailsRadioAc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ac"
+                    />
+                <CheckBox android:id="@+id/confirmRideDetailsRadioMusic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/music"
+                    />
+                <CheckBox android:id="@+id/confirmRideDetailsRadioSmoking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/smoking"
+                    />
+
+                </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+                <CheckBox android:id="@+id/confirmRideDetailsRadioAirbag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/air_bag"
+                    />
+
+                <CheckBox android:id="@+id/confirmRideDetailsLuggage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/luggage"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryDark"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:text="@string/users_message"/>
+
+
+            <TextView
+                android:id="@+id/confirmRideDetailsUserMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:singleLine="false"
+                android:textColor="@color/primaryButtonBackgroundColor"
+                android:textSize="20sp"
+                android:textStyle="italic"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/confirmRideDetailsPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/primaryButtonBackgroundColor"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:text="@string/phone_number_sample"/>
+            </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/confirmRideDetailsPublish"
+            android:text="@string/confirm"
+            android:background="@color/primaryButtonBackgroundColor"
+            android:textColor="@color/primaryDark"
+            android:textSize="15sp"
+            android:layout_margin="10dp"
+            />
+        </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
+
