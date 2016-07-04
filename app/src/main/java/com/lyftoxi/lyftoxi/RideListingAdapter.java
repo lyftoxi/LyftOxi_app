@@ -392,7 +392,7 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
                 rides.get(position).setInterested(false);
                 for(int i=0; i<CurrentUserInterestedRides.getInstance().getRides().size(); i++)
                 {
-                    if(CurrentUserInterestedRides.getInstance().getRides().get(i).equals(rideId))
+                    if(CurrentUserInterestedRides.getInstance().getRides().get(i).getShareRideObjId().equals(rideId))
                     {
                         CurrentUserInterestedRides.getInstance().getRides().remove(i);
                     }
