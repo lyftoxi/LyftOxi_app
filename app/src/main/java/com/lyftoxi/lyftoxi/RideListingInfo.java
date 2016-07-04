@@ -8,9 +8,6 @@ import com.lyftoxi.lyftoxi.singletons.RideInfo;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Created by DhimanZ on 4/16/2016.
- */
 public class RideListingInfo {
 
     private UserInfo rideOf;
@@ -21,6 +18,7 @@ public class RideListingInfo {
     private int fare;
     private Boolean interested;
     private String status;
+    private boolean showProgress;
 
     public UserInfo getRideOf() {
         return rideOf;
@@ -143,6 +141,18 @@ public class RideListingInfo {
         this.status = status;
     }
 
+    public boolean isShowProgress() {
+        return showProgress;
+    }
+
+    public void setShowProgress(boolean showProgress) {
+        this.showProgress = showProgress;
+    }
+
+    public Boolean getInterested() {
+        return interested;
+    }
+
     @Override
     public String toString() {
         return "RideListingInfo{" +
@@ -159,8 +169,9 @@ public class RideListingInfo {
                 ", destination=" + destination +
                 ", starTime=" + starTime +
                 ", fare=" + fare +
-                ", status=" + status +
                 ", interested=" + interested +
+                ", status='" + status + '\'' +
+                ", showProgress=" + showProgress +
                 '}';
     }
 }

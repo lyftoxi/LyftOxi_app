@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
+
+import com.lyftoxi.lyftoxi.MainActivity;
 
 public class GPSTracker extends Service implements LocationListener {
 
@@ -150,7 +153,7 @@ public class GPSTracker extends Service implements LocationListener {
      * Function to show settings alert dialog
      * On pressing Settings button will lauch Settings Options
      * */
-    public void showSettingsAlert(){
+    public void showSettingsAlert(final Context context){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
 
         // Setting Dialog Title
@@ -158,7 +161,6 @@ public class GPSTracker extends Service implements LocationListener {
 
         // Setting Dialog Message
         alertDialog.setMessage("GPS is not enabled. Do you want to go to settings menu?");
-
         // On pressing Settings button
         alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog,int which) {

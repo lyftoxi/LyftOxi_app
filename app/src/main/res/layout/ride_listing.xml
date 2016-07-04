@@ -77,7 +77,6 @@
         android:textColor="#ff335a50"
         android:layout_gravity="right"
         android:paddingRight="20dp"
-        android:layout_below="@+id/rideListingProgress"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -98,9 +97,9 @@
         android:layout_height="50dp"
         android:visibility="gone"
         android:layout_gravity="right"
-        android:layout_alignTop="@+id/rideListingStartingTime"
-        android:layout_toLeftOf="@+id/rideListingFare"
-        android:layout_toStartOf="@+id/rideListingFare" />
+        android:layout_below="@+id/rideListingFare"
+        android:layout_alignLeft="@+id/rideListingFare"
+        android:layout_alignStart="@+id/rideListingFare"  />
 
     <TextView
         android:id="@+id/rideListingCancelled"

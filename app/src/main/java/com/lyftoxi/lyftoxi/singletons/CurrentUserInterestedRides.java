@@ -6,9 +6,7 @@ import com.lyftoxi.lyftoxi.dao.TakeRide;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by DhimanZ on 6/4/2016.
- */
+
 public class CurrentUserInterestedRides {
     private static CurrentUserInterestedRides ourInstance = new CurrentUserInterestedRides();
 

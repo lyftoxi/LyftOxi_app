@@ -41,10 +41,9 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-/**
- * Created by DhimanZ on 4/16/2016.
- */
+
 public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
+
 
     List<RideListingInfo> rides;
 
@@ -53,6 +52,18 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
     private View v;
 
     private LruCache<String, Bitmap> mMemoryCache;
+
+    static class ViewHolder {
+        ImageView userImage;
+        TextView from;
+        TextView to;
+        TextView fare;
+        TextView startingTime;
+        ImageButton interestedButton;
+        TextView cancelled ;
+        View progressBar;
+
+    }
 
     public RideListingAdapter(Context context, int textViewResourceId, List<RideListingInfo> rides){
         super(context, textViewResourceId, rides);
@@ -92,71 +103,86 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
         return rides.get(position);
     }
 
-
+    //private  ViewHolder holder;
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(final int position, View convertView, ViewGroup parent){
         v = convertView;
+        ViewHolder holder;
         if (v == null) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inflater.inflate(R.layout.ride_listing, parent,false);
+            holder = new ViewHolder();
+            holder.userImage = (ImageView) v.findViewById(R.id.rideListingUserImage);
+            holder.from = (TextView) v.findViewById(R.id.rideListingFrom);
+            holder.to = (TextView) v.findViewById(R.id.rideListingTo);
+            holder.fare = (TextView) v.findViewById(R.id.rideListingFare);
+            holder.startingTime = (TextView) v.findViewById(R.id.rideListingStartingTime);
+            holder.interestedButton = (ImageButton) v.findViewById(R.id.rideListingBtnInterested);
+            holder.cancelled = (TextView) v.findViewById(R.id.rideListingCancelled);
+            holder.progressBar = v.findViewById(R.id.rideListingProgress);
+            v.setTag(holder);
+        }
+        else{
+            holder = (ViewHolder) v.getTag();
         }
 
         final RideListingInfo i = rides.get(position);
         final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy h:mm a");
         final DecimalFormat df = new DecimalFormat("##.######");
 
+
+        if (i.isShowProgress()) {
+            holder.progressBar.setVisibility(View.VISIBLE);
+            Log.d("gog.debug","show progress..............");
+        } else {
+            holder.progressBar.setVisibility(View.GONE);
+            Log.d("gog.debug","hide progress..............");
+        }
+
         if (i != null) {
 
-            ImageView userImage = (ImageView) v.findViewById(R.id.rideListingUserImage);
-            TextView from = (TextView) v.findViewById(R.id.rideListingFrom);
-            TextView to = (TextView) v.findViewById(R.id.rideListingTo);
-            TextView fare = (TextView) v.findViewById(R.id.rideListingFare);
-            TextView startingTime = (TextView) v.findViewById(R.id.rideListingStartingTime);
-            final ImageButton interestedButton = (ImageButton) v.findViewById(R.id.rideListingBtnInterested);
-            TextView cancelled = (TextView)v.findViewById(R.id.rideListingCancelled);
 
-            Bitmap bm = BitmapFactory.decodeResource(v.getResources(),R.drawable.sample_profile_pic);
+            Bitmap bm = BitmapFactory.decodeResource(v.getResources(), R.drawable.sample_profile_pic);
             RoundImage roundedImage = new RoundImage(bm);
-            userImage.setImageDrawable(roundedImage);
-            final View progressBar = v.findViewById(R.id.rideListingProgress);
+            holder.userImage.setImageDrawable(roundedImage);
 
-            downloadUserProfilePic(i.getRideOf().getUID(),v);
 
-            Log.d("gog.debug","ride status "+i.getStatus());
-            if("C".equals(i.getStatus()))
-            {
-                cancelled.setVisibility(View.VISIBLE);
-                interestedButton.setVisibility(View.GONE);
-            }
-            else{
-                cancelled.setVisibility(View.GONE);
-                interestedButton.setVisibility(View.VISIBLE);
+            downloadUserProfilePic(i.getRideOf().getUID(), v);
+
+            Log.d("gog.debug", "ride status " + i.getStatus());
+            if ("C".equals(i.getStatus())) {
+                holder.cancelled.setVisibility(View.VISIBLE);
+                holder.interestedButton.setVisibility(View.GONE);
+            } else {
+                holder.cancelled.setVisibility(View.GONE);
+                holder.interestedButton.setVisibility(View.VISIBLE);
             }
 
 
-            if(null!=interestedButton) {
+            if (null != holder.interestedButton) {
                 if (!session.isLoggedIn() || null == i.isInterested()) {
-                    interestedButton.setVisibility(View.INVISIBLE);
+                    holder.interestedButton.setVisibility(View.INVISIBLE);
                 } else {
                     if (i.isInterested()) {
-                        interestedButton.setImageResource(android.R.drawable.btn_star_big_on);
+                        holder.interestedButton.setImageResource(android.R.drawable.btn_star_big_on);
                     } else {
-                        interestedButton.setImageResource(android.R.drawable.btn_star_big_off);
+                        holder.interestedButton.setImageResource(android.R.drawable.btn_star_big_off);
                     }
                 }
 
 
-                interestedButton.setOnClickListener(new View.OnClickListener() {
+
+                holder.interestedButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
-                        Log.d("gog.debug","interested "+i.isInterested());
-                        if(i.isInterested())
-                        {
+                        Log.d("gog.debug", "interested " + i.isInterested());
+                        if (i.isInterested()) {
                             RemoveInterestedRide removeInterestedRide = new RemoveInterestedRide();
-                            removeInterestedRide.progressBar = progressBar;
-                            removeInterestedRide.interestedButton = interestedButton;
-                            removeInterestedRide.execute(i.getId(),CurrentUserInfo.getInstance().getId());
+/*                            removeInterestedRide.progressBar = holder.progressBar;
+                            removeInterestedRide.interestedButton = holder.interestedButton;*/
+                            removeInterestedRide.position = position;
+                            removeInterestedRide.execute(i.getId(), CurrentUserInfo.getInstance().getId());
                             return;
                         }
 
@@ -181,25 +207,27 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
                         destination.setLongitude(Double.valueOf(df.format(i.getDestination().longitude)));
                         interestedRide.setDestination(destination);
 
-                        AddInterestedRide addInterestedRide  = new AddInterestedRide();
-                        addInterestedRide.progressBar = progressBar;
-                        addInterestedRide.interestedButton = interestedButton;
+                        AddInterestedRide addInterestedRide = new AddInterestedRide();
+/*                        addInterestedRide.progressBar = holder.progressBar;
+                        addInterestedRide.interestedButton = holder.interestedButton;*/
+                        addInterestedRide.position = position;
                         addInterestedRide.execute(interestedRide);
                     }
                 });
             }
 
-            from.setText(i.getSourceName());
-            to.setText(i.getDestinationName());
+            holder.from.setText(i.getSourceName());
+            holder.to.setText(i.getDestinationName());
 
-            String fareStr = "Rs. "+i.getFare();
-            fare.setText(fareStr);
-            startingTime.setText(sdf.format(i.getStarTime().getTime()));
+            String fareStr = "Rs. " + i.getFare();
+            holder.fare.setText(fareStr);
+            holder.startingTime.setText(sdf.format(i.getStarTime().getTime()));
 
         }
         return v;
 
     }
+
 
     private void downloadUserProfilePic(String userId, final View v)
     {
@@ -230,15 +258,16 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
                     RoundImage roundedImage = new RoundImage(bitmap);
                     addBitmapToMemoryCache(profilePicFileName, bitmap);
                     rideListingUserImage.setImageDrawable(roundedImage);
+                    notifyDataSetChanged();
 
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(Exception exception) {
                     Log.d("gog.debug","Firebase: profile pic download failed");
-                    Bitmap bm = BitmapFactory.decodeResource(v.getResources(),R.drawable.sample_profile_pic);
+                   /* Bitmap bm = BitmapFactory.decodeResource(v.getResources(),R.drawable.sample_profile_pic);
                     RoundImage roundedImage = new RoundImage(bm);
-                    rideListingUserImage.setImageDrawable(roundedImage);
+                    rideListingUserImage.setImageDrawable(roundedImage);*/
 
 
                 }
@@ -252,14 +281,16 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
     public class AddInterestedRide extends AsyncTask<TakeRide, Void, Boolean> {
 
         TakeRide  interestedRide;
-        View progressBar;
-        ImageButton interestedButton;
+        int position;
+
 
 
         Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm").create();
         @Override
         protected void onPreExecute() {
-            progressBar.setVisibility(View.VISIBLE);
+            //progressBar.setVisibility(View.VISIBLE);
+            rides.get(position).setShowProgress(true);
+            notifyDataSetChanged();
         }
 
         @Override
@@ -289,13 +320,20 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
 
         @Override
         protected void onPostExecute(final Boolean success) {
-            progressBar.setVisibility(View.GONE);
+            //progressBar.setVisibility(View.GONE);
+            rides.get(position).setShowProgress(false);
             Toast toast;
             if (success) {
                 // startMyInterestedRideActivity();
-                interestedButton.setImageResource(android.R.drawable.btn_star_big_on);
+                //interestedButton.setImageResource(android.R.drawable.btn_star_big_on);
+                rides.get(position).setInterested(true);
                 CurrentUserInterestedRides.getInstance().getRides().add(interestedRide);
             }
+            else
+            {
+                rides.get(position).setInterested(false);
+            }
+            notifyDataSetChanged();
         }
         @Override
         protected void onCancelled() {
@@ -306,13 +344,16 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
 
     public class RemoveInterestedRide extends AsyncTask<String, Void, Boolean> {
 
-        View progressBar;
+        ////View progressBar;
+        int position;
         ImageButton interestedButton;
         String rideId, userId;
         Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm").create();
         @Override
         protected void onPreExecute() {
-            progressBar.setVisibility(View.VISIBLE);
+            //progressBar.setVisibility(View.VISIBLE);
+            rides.get(position).setShowProgress(true);
+            notifyDataSetChanged();
         }
 
         @Override
@@ -343,11 +384,12 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
 
         @Override
         protected void onPostExecute(final Boolean success) {
-            progressBar.setVisibility(View.GONE);
+            //progressBar.setVisibility(View.GONE);
+            rides.get(position).setShowProgress(false);
             Toast toast;
             if (success) {
                 // startMyInterestedRideActivity();
-
+                rides.get(position).setInterested(false);
                 for(int i=0; i<CurrentUserInterestedRides.getInstance().getRides().size(); i++)
                 {
                     if(CurrentUserInterestedRides.getInstance().getRides().get(i).equals(rideId))
@@ -355,8 +397,13 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
                         CurrentUserInterestedRides.getInstance().getRides().remove(i);
                     }
                 }
-                interestedButton.setImageResource(android.R.drawable.btn_star_big_off);
+                //interestedButton.setImageResource(android.R.drawable.btn_star_big_off);
             }
+            else
+            {
+                rides.get(position).setInterested(true);
+            }
+            notifyDataSetChanged();
         }
         @Override
         protected void onCancelled() {

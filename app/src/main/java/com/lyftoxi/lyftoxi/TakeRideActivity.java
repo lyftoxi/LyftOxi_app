@@ -1,10 +1,13 @@
 package com.lyftoxi.lyftoxi;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -15,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -34,6 +38,7 @@ import com.lyftoxi.lyftoxi.dao.User;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInterestedRides;
 import com.lyftoxi.lyftoxi.singletons.RideInfo;
+import com.lyftoxi.lyftoxi.util.GPSTracker;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.lyftoxi.lyftoxi.util.Util;
 
@@ -67,11 +72,41 @@ public class TakeRideActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         isScrollable=false;
         setContentView(R.layout.activity_take_ride);
-       // session = new SessionManager(getApplicationContext());
+
+        final GetRidesBasedOnLocationTask getRidesBasedOnLocationTask = new GetRidesBasedOnLocationTask();
+        // check if GPS enabled
+        GPSTracker gps = new GPSTracker(this);
+        if(gps.canGetLocation()){
+            currentLocation = new LatLng(gps.getLatitude(),gps.getLongitude());
+        }else{
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+            alertDialog.setTitle("GPS is settings");
+            alertDialog.setMessage("GPS is not enabled. Do you want to go to settings menu?");
+            alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog,int which) {
+                    Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(intent);
+                    //getRidesBasedOnLocationTask.execute();
+                }
+            });
+            alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                    getRidesBasedOnLocationTask.execute();
+                }
+            });
+            alertDialog.show();
+        }
+        if(null!=currentLocation) {
+            Toast locationToast = Toast.makeText(this, "Latitide :" + currentLocation.latitude + " \n Longitude :" + currentLocation.longitude, Toast.LENGTH_LONG);
+            locationToast.show();
+            getRidesBasedOnLocationTask.execute();
+        }
+
         rideListing = (ListView) findViewById(R.id.takeARiderideList);
-       // progressView = (View) findViewById(R.id.takeARide_progress);
         noRidesFound =(TextView) findViewById(R.id.takeRideEmptyList);
-        advancedSearchLayout = (View) findViewById(R.id.takeARideAdvancedSearch);
+        advancedSearchLayout =  findViewById(R.id.takeARideAdvancedSearch);
         toggleAdvancedSearch = (ImageButton) findViewById(R.id.toggleAdvancedSearch);
         takeARideSearch = (ImageButton) findViewById(R.id.takeARideSearch);
 
@@ -139,7 +174,7 @@ public class TakeRideActivity extends BaseActivity {
         });
 
 
-        new GetRidesBasedOnLocationTask().execute();
+
     }
 
     public void displayAdvancedSearch()

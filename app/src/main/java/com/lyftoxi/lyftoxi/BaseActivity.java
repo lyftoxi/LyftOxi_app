@@ -136,20 +136,6 @@ public class BaseActivity extends AppCompatActivity {
         navProfilePicBtn = (ImageButton)findViewById(R.id.navProfilePicBtn);
         refreshProfileImage();
 
-       /* Bitmap bitmap;
-        if(null!=CurrentUserInfo.getInstance().getProfilePicPath())
-        {
-            ImageUtil imageUtil = new ImageUtil();
-            Log.d("gog.debug","profile pic path "+CurrentUserInfo.getInstance().getProfilePicPath());
-            bitmap= imageUtil.loadImageFromStorage(CurrentUserInfo.getInstance().getProfilePicPath());
-        }
-        else
-        {
-            bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sample_profile_pic);
-        }
-        RoundImage roundedImage = new RoundImage(bitmap);
-        profileImage.setImageDrawable(roundedImage);*/
-
         TextView navName = (TextView) findViewById(R.id.navUserName);
         TextView navMobile = (TextView) findViewById(R.id.navMobile);
 
@@ -158,7 +144,7 @@ public class BaseActivity extends AppCompatActivity {
 
         navList.add(new NavDrawerItem(getString(R.string.home),
                 ContextCompat.getDrawable(this, R.drawable.ic_home_18pt)));
-        navList.add(new NavDrawerItem(getString(R.string.take_a_ride),
+        navList.add(new NavDrawerItem(getString(R.string.take),
                 ContextCompat.getDrawable(this, R.drawable.ic_thumbs_up_down_black_18dp)));
         navList.add(new NavDrawerItem(getString(R.string.share_your_ride),
                 ContextCompat.getDrawable(this, R.drawable.ic_share_black_18dp)));

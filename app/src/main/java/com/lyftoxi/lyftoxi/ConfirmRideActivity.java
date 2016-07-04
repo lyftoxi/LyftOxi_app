@@ -97,9 +97,11 @@ public class ConfirmRideActivity extends BaseActivity {
         if (null != ride) {
 
             getSupportActionBar().setTitle(ride.getRideOf().getName());
-
-            Bitmap bm = imageUtil.loadImageFromStorage(CurrentUserInfo.getInstance().getProfilePicPath());
-            collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(), bm));
+            if(null!=CurrentUserInfo.getInstance().getProfilePicPath())
+            {
+                Bitmap bm = imageUtil.loadImageFromStorage(CurrentUserInfo.getInstance().getProfilePicPath());
+                collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(), bm));
+            }
 
             confirmRideDetailsPrice.setText(ride.getFare() + "");
             confirmRideDetailsSource.setText(ride.getSourceName());

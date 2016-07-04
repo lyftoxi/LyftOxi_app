@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">lyftoxi</string>
 
-    <string name="click_call_share">Click... Call... Share</string>
+    <string name="tagline">The ride sharing app</string>
     <string name="action_settings">Settings</string>
     <string name="share">Share your Ride</string>
     <string name="new_to_lyftoxi">New to Lyftoxi?</string>

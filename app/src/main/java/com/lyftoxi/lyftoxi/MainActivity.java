@@ -2,6 +2,7 @@ package com.lyftoxi.lyftoxi;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -68,21 +69,8 @@ public class MainActivity extends BaseActivity {
         session = new SessionManager(this);
         welcomeView = (FrameLayout)findViewById(R.id.welcomeView);
         splashScreen = (FrameLayout)findViewById(R.id.splashScreen);
-        GPSTracker gps = new GPSTracker(this);
 
-        // check if GPS enabled
-        if(gps.canGetLocation()){
 
-            currentLocation = new LatLng(gps.getLatitude(),gps.getLongitude());
-
-            // \n is for new line
-           // Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + currentLocation.latitude + "\nLong: " + currentLocation.longitude, Toast.LENGTH_LONG).show();
-        }else{
-            // can't get location
-            // GPS or Network is not enabled
-            // Ask user to enable GPS/network in settings
-            gps.showSettingsAlert();
-        }
 
         logo = (ImageView)findViewById(R.id.mainLyftoxiLogoAnim);
         logo.setBackgroundResource(R.drawable.lyftoxi_logo_anim);
@@ -137,11 +125,21 @@ public class MainActivity extends BaseActivity {
     }
 
 
-  /*  @Override
+  /* @Override
     public void onWindowFocusChanged (boolean hasFocus)
     {
-        //logoAnimation();
-        new GetMyInterestedRides().execute();
+        GPSTracker gps = new GPSTracker(this);
+
+        // check if GPS enabled
+        if(gps.canGetLocation()){
+            currentLocation = new LatLng(gps.getLatitude(),gps.getLongitude());
+        }else{
+            gps.showSettingsAlert(this);
+        }
+        if(null!=currentLocation) {
+            Toast locationToast = Toast.makeText(this, "Latitide :" + currentLocation.latitude + " \n Longitude :" + currentLocation.longitude, Toast.LENGTH_LONG);
+            locationToast.show();
+        }
 
     }*/
 
