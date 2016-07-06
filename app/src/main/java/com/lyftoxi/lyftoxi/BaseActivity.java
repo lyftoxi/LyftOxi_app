@@ -353,6 +353,9 @@ public class BaseActivity extends AppCompatActivity {
                         break;
                     case 3:
                         contentIntent = new Intent(this.callingActivity, LoginActivity.class);
+                        Bundle b = new Bundle();
+                        b.putString("activityOnSuccess", MainActivity.class.getName());
+                        contentIntent.putExtras(b);
                         break;
                     default:
                         contentIntent = new Intent(this.callingActivity, MainActivity.class);
