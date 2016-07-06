@@ -191,8 +191,46 @@ public class FindRideListActivity extends BaseActivity {
 
         }
 
+
+        private void fetchInterestedRides()
+        {
+            Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm").create();
+            HttpRestUtil httpRestUtil = new HttpRestUtil(getApplicationContext());
+            StringBuffer url = new StringBuffer();
+            url.append("takeRideService/rides/interestedUser");
+            url.append("?id=");
+            url.append(session.getUserDetails().getUID());
+
+            Log.d("gog.debug","URL "+url.toString());
+            try {
+                String response = httpRestUtil.httpGet(url.toString());
+                if(null!=response)
+                {
+                    List<TakeRide> interestedRides = gson.fromJson(response, new TypeToken<List<TakeRide>>() {}.getType());
+                    CurrentUserInterestedRides.reset();
+                    CurrentUserInterestedRides.getInstance().getRides().addAll(interestedRides);
+
+                }
+
+
+            }catch (IOException ioex)
+            {
+                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+            }
+            catch (Exception ex)
+            {
+                Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
+            }
+        }
+
         @Override
         protected Boolean doInBackground(LatLng... params) {
+
+            if(session.isLoggedIn())
+            {
+                fetchInterestedRides();
+            }
+
             Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm").create();
             HttpRestUtil httpRestUtil = new HttpRestUtil(getApplicationContext());
             StringBuffer url = new StringBuffer();
