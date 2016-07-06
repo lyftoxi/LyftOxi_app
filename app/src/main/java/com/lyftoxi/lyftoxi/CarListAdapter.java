@@ -54,13 +54,30 @@ public class CarListAdapter extends ArrayAdapter<CarInfo> {
 
         final CarInfo carInfo = cars.get(position);
         if (carInfo != null) {
-Log.d("gog.debug","car adapter "+carInfo.getCarNo());
+            Log.d("gog.debug","car adapter "+carInfo.getCarNo());
             ImageView carImage = (ImageView) v.findViewById(R.id.carListImage);
             TextView carBrand = (TextView) v.findViewById(R.id.carListingBrand);
             TextView carNumber = (TextView) v.findViewById(R.id.carListingNumber);
             TextView carModel = (TextView) v.findViewById(R.id.carListingModel);
 
-            Bitmap bm = BitmapFactory.decodeResource(v.getResources(),R.drawable.honda);
+            Bitmap bm;
+            String carLogogName = Util.getResourceNameFromDisplayName(carInfo.getCarBrand());
+            if(null!=carLogogName && !carLogogName.trim().equals(""))
+            {
+                int id = v.getResources().getIdentifier(carLogogName, "drawable", v.getContext().getPackageName());
+                bm = BitmapFactory.decodeResource(v.getResources(),id);
+                if(null==bm)
+                {
+                    bm = BitmapFactory.decodeResource(v.getResources(),R.drawable.my_brand);
+                }
+
+            }
+            else
+            {
+                bm = BitmapFactory.decodeResource(v.getResources(),R.drawable.my_brand);
+            }
+
+
             RoundImage roundedImage = new RoundImage(bm);
             carImage.setImageDrawable(roundedImage);
 

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.lyftoxi.lyftoxi.FindRideActivity">
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/findRideDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="datetime"
+                android:textStyle="bold"
+                android:hint="@string/starting_at"
+                android:textSize="20sp"
+                />
+
+            <ImageButton
+                android:id="@+id/findRideDatePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@android:drawable/ic_menu_my_calendar"
+                android:layout_gravity="right" />
+
+
+        </LinearLayout>
+
+
+        <fragment
+            android:id="@+id/findRideSource"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            />
+
+        <fragment
+            android:id="@+id/findRideDestination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            />
+
+        <LinearLayout
+            android:id="@+id/takeARideAdvancedSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:layout_marginLeft="30dp">
+
+
+            <CheckBox android:id="@+id/findRideRadioAc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ac"
+                />
+            <CheckBox android:id="@+id/findRideRadioMusic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/music"
+                />
+            <CheckBox android:id="@+id/findRideRadioSmoking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/smoking"
+                />
+            <CheckBox android:id="@+id/findRideRadioAirbag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/air_bag"
+                />
+            <CheckBox android:id="@+id/findRideRadioLuggage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/luggage"
+                />
+
+        </LinearLayout>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/findRideSubmit"
+            android:text="@string/take"
+            android:background="@color/primaryButtonBackgroundColor"
+            android:textColor="@color/primaryButtonTextColor"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            />
+
+    </LinearLayout>
+
+    <!--  <fragment
+          android:id="@+id/findRideMapView"
+          class="com.google.android.gms.maps.MapFragment"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:layout_anchor="@id/findRideBodyView"
+          app:layout_anchorGravity="bottom"/>-->
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>

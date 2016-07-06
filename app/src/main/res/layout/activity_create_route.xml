@@ -12,21 +12,24 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
     android:padding="10dp">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+
         <EditText
             android:id="@+id/createRouteDate"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="datetime"
             android:textStyle="bold"
             android:hint="@string/starting_at"
             android:textSize="20sp"
-           />
+            />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:gravity="center">
 
         <ImageButton
             android:id="@+id/createRouteDatePicker"

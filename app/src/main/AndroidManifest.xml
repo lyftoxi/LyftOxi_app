@@ -40,10 +40,6 @@
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateVisible" />
         <activity
-            android:name=".TakeRideActivity"
-            android:label="@string/title_activity_take_ride"
-            android:parentActivityName=".MainActivity" />
-        <activity
             android:name=".ShareRideActivity"
             android:label="@string/title_activity_share_ride"
             android:parentActivityName=".MainActivity" />
@@ -90,7 +86,15 @@
             android:name=".HelpActivity"
             android:label="@string/title_activity_help"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ForgotPasswordActivity"></activity>
+        <activity android:name=".ForgotPasswordActivity"
+            android:label="@string/title_activity_forgot_password"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".FindRideActivity"
+            android:label="@string/title_activity_find_ride"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".FindRideListActivity"
+            android:label="@string/title_activity_rides"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

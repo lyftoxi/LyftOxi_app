@@ -117,6 +117,9 @@
     <string name="no_rides">No rides found! \n Please try with some other places and other filters</string>
     <string name="you_have_no_interested_rides">You have not shown interest in any rides! \n Please visit take a ride now, to show interest</string>
     <string name="title_activity_help">Help</string>
+    <string name="title_activity_find_ride">Find A Ride</string>
+    <string name="title_activity_rides">Rides</string>
+    <string name="title_activity_forgot_password">Forgot Password</string>
 
 
     <string name="what_is_lyftoxi">What is Lyftoxi</string>
@@ -155,7 +158,6 @@
         ou can also request several drivers at the same time and the first one that accepts your request will be your driver
     </string>
     <string name="faq">FAQ</string>
-
 
 
 </resources>

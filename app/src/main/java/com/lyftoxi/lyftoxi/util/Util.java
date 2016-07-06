@@ -99,4 +99,27 @@ public class Util {
 
         return userInfo;
     }
+
+    public static void addParamToUrl(StringBuffer url,String paramName, String paramValue)
+    {
+        if(url.toString().contains("?"))
+        {
+            url.append("&") ;
+        }
+        else
+        {
+            url.append("?") ;
+        }
+        url.append(paramName);
+        url.append("=");
+        url.append(paramValue);
+    }
+
+    public static String getResourceNameFromDisplayName(String displayName)
+    {
+        String resourceName = null;
+        resourceName = displayName.toLowerCase();
+        resourceName = resourceName.replace(" ","_");
+        return resourceName;
+    }
 }

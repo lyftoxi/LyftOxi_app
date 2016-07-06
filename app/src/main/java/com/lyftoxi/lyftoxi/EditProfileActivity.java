@@ -237,7 +237,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
 
 
                 if(mobileNumberNotChanged) {
-                    new UpdateUserInfoTask().execute((Void) null);
+                    new UpdateUserInfoTask().execute(false);
                 }
                 else{
                     initiateOTPVerification();
@@ -365,7 +365,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
                     .setContentType("image/jpg")
                     .build();
 
-            StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl(getString(R.string.firebase_database_url));
+            StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://lyftoxi-1321.appspot.com");
             UploadTask uploadTask = storageRef.child("userProfilePics/"+profilePicFileName).putBytes(stream.toByteArray(),metadata);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -501,7 +501,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
     public void onVerified(String response) {
         Log.d("gog.debug", "Verified!\n" + response);
         showProgress(false);
-        new UpdateUserInfoTask().execute((Void) null);
+        new UpdateUserInfoTask().execute(true);
     }
 
     @Override
@@ -510,7 +510,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
         showProgress(false);
     }
 
-    public class UpdateUserInfoTask extends AsyncTask<Void, Void, Boolean> {
+    public class UpdateUserInfoTask extends AsyncTask<Boolean, Void, Boolean> {
         Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
 
         @Override
@@ -518,7 +518,16 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
             showProgress(true);
         }
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected Boolean doInBackground(Boolean... params) {
+            Boolean isMobileNumberChanged = false;
+            String url = "userService/user";
+            if(params.length==1)
+            {
+                isMobileNumberChanged = params[0];
+                if(isMobileNumberChanged) {
+                    url = url + "?mobileNoChanged=true";
+                }
+            }
             if(null == user)
             {
                 return false;
@@ -527,7 +536,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
             try {
 
                 HttpRestUtil httpRestUtil = new HttpRestUtil(getApplicationContext());
-                String response = httpRestUtil.httpPut("userService/user",userInfoJson);
+                String response = httpRestUtil.httpPut(url,userInfoJson);
                 if(null!=response)
                 {
                     return true;
@@ -561,7 +570,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
                 currentUser.setDob(user.getDob());
                 currentUser.setAddresses(user.getAddresses());
                 toast = Toast.makeText(getApplicationContext(), "Updating profile successful", Toast.LENGTH_LONG);
-
+               // startHomeActivity();
 
             } else {
                 toast = Toast.makeText(getApplicationContext(), "Updating profile Failed. Try Again", Toast.LENGTH_LONG);
@@ -569,7 +578,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
             }
             toast.show();
             //finish();
-            startHomeActivity();
+
 
         }
 

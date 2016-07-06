@@ -142,29 +142,39 @@ public class BaseActivity extends AppCompatActivity {
 
         List<NavDrawerItem> navList = new ArrayList<>();
 
-        navList.add(new NavDrawerItem(getString(R.string.home),
-                ContextCompat.getDrawable(this, R.drawable.ic_home_18pt)));
-        navList.add(new NavDrawerItem(getString(R.string.take),
-                ContextCompat.getDrawable(this, R.drawable.ic_thumbs_up_down_black_18dp)));
-        navList.add(new NavDrawerItem(getString(R.string.share_your_ride),
-                ContextCompat.getDrawable(this, R.drawable.ic_share_black_18dp)));
-
 
         if(session.isLoggedIn())
         {
+            navList.add(new NavDrawerItem(getString(R.string.home),
+                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_view)));
+            navList.add(new NavDrawerItem(getString(R.string.take),
+                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_search)));
+            navList.add(new NavDrawerItem(getString(R.string.share_your_ride),
+                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_share)));
 /*            navList.add(new NavDrawerItem(getString(R.string.my_suggested_rides),
                     ContextCompat.getDrawable(this, R.drawable.ic_share_black_18dp)));*/
             navList.add(new NavDrawerItem(getString(R.string.my_shared_rides),
-                    ContextCompat.getDrawable(this, R.drawable.ic_share_black_18dp)));
+                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_manage)));
             navList.add(new NavDrawerItem(getString(R.string.my_interested_rides),
-                    ContextCompat.getDrawable(this, R.drawable.ic_share_black_18dp)));
+                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_manage)));
 
             navList.add(new NavDrawerItem(getString(R.string.log_out),
-                    ContextCompat.getDrawable(this, R.drawable.ic_exit_to_app_black_18dp)));
+                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_close_clear_cancel)));
 
             this.loggedInUser = session.getUserDetails();
             navName.setText(this.loggedInUser.getName());
             navMobile.setText(this.loggedInUser.getPhNo());
+        }
+        else
+        {
+            navList.add(new NavDrawerItem(getString(R.string.home),
+                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_view)));
+            navList.add(new NavDrawerItem(getString(R.string.take),
+                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_search)));
+            navList.add(new NavDrawerItem(getString(R.string.share_your_ride),
+                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_share)));
+            navList.add(new NavDrawerItem(getString(R.string.action_sign_in),
+                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_send)));
         }
 
 
@@ -299,32 +309,55 @@ public class BaseActivity extends AppCompatActivity {
 
             Intent contentIntent = null;
 
-            switch (position) {
-                case 0:
-                    contentIntent = new Intent(this.callingActivity, MainActivity.class);
-                    break;
-                case 1:
-                    contentIntent = new Intent(this.callingActivity, TakeRideActivity.class);
-                    break;
-                case 2:
-                    contentIntent = new Intent(this.callingActivity, ShareRideActivity.class);
-                    break;
-                case 3:
-                    contentIntent = new Intent(this.callingActivity, MySharedRides.class);
-                    break;
-                case 4:
-                    contentIntent = new Intent(this.callingActivity, MyInterestedRides.class);
-                    break;
-                case 5:
-                    session.logoutUser();
-                    CurrentUserInfo.reset();
-                    CurrentUserInterestedRides.reset();
-                    RideInfo.reset();
-                    contentIntent = new Intent(this.callingActivity, MainActivity.class);
-                    contentIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
-                    break;
-                default:contentIntent = new Intent(this.callingActivity, MainActivity.class);
-                    break;
+            if(session.isLoggedIn()) {
+                switch (position) {
+                    case 0:
+                        contentIntent = new Intent(this.callingActivity, MainActivity.class);
+                        break;
+                    case 1:
+                        contentIntent = new Intent(this.callingActivity, FindRideActivity.class);
+                        break;
+                    case 2:
+                        contentIntent = new Intent(this.callingActivity, ShareRideActivity.class);
+                        break;
+                    case 3:
+                        contentIntent = new Intent(this.callingActivity, MySharedRides.class);
+                        break;
+                    case 4:
+                        contentIntent = new Intent(this.callingActivity, MyInterestedRides.class);
+                        break;
+                    case 5:
+                        session.logoutUser();
+                        CurrentUserInfo.reset();
+                        CurrentUserInterestedRides.reset();
+                        RideInfo.reset();
+                        contentIntent = new Intent(this.callingActivity, MainActivity.class);
+                        contentIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        break;
+                    default:
+                        contentIntent = new Intent(this.callingActivity, MainActivity.class);
+                        break;
+                }
+            }
+            else
+            {
+                switch (position) {
+                    case 0:
+                        contentIntent = new Intent(this.callingActivity, MainActivity.class);
+                        break;
+                    case 1:
+                        contentIntent = new Intent(this.callingActivity, FindRideActivity.class);
+                        break;
+                    case 2:
+                        contentIntent = new Intent(this.callingActivity, ShareRideActivity.class);
+                        break;
+                    case 3:
+                        contentIntent = new Intent(this.callingActivity, LoginActivity.class);
+                        break;
+                    default:
+                        contentIntent = new Intent(this.callingActivity, MainActivity.class);
+                        break;
+                }
             }
 
             startActivity(contentIntent);

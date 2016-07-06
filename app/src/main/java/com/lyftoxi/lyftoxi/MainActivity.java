@@ -161,14 +161,8 @@ public class MainActivity extends BaseActivity {
 
     public void takeRide(View view)
     {
-        Intent takeRideIntent = new Intent(this, TakeRideActivity.class);
-        Bundle b = new Bundle();
-        if(null!=currentLocation) {
-            b.putDouble("currentLocationLatitude", currentLocation.latitude);
-            b.putDouble("currentLocationLongitude", currentLocation.longitude);
-            takeRideIntent.putExtras(b);
-        }
-        startActivity(takeRideIntent);
+        Intent findRideIntent = new Intent(this, FindRideActivity.class);
+        startActivity(findRideIntent);
     }
 
 

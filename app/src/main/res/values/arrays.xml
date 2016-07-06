@@ -16,41 +16,24 @@
     </string-array>
 
     <string-array name="car_brands" >
-        <item>Maruti</item>
-        <item>Hyundai</item>
-        <item>Honda</item>
-        <item>Volkswagen</item>
         <item>Chevrolet</item>
-        <item>Toyota</item>
-        <item>Fiat</item>
-        <item>Ford</item>
-        <item>Skoda</item>
-        <item>Audi</item>
-        <item>Marcedez Benz</item>
-        <item>BMW</item>
-        <item>Jaguar</item>
-        <item>Jeep</item>
-        <item>Daewoo</item>
         <item>Datsun</item>
-        <item>Mahindra</item>
-        <item>Tata</item>
-        <item>Renault</item>
-        <item>Nissan</item>
-        <item>Land Rover</item>
+        <item>Fiat</item>
         <item>Force</item>
-        <item>Mini</item>
-        <item>Aston Martin</item>
-        <item>Bentley</item>
-        <item>Ferrari</item>
-        <item>Mitsubishi</item>
-        <item>Porshe</item>
-        <item>Volvo</item>
-        <item>Bugatti</item>
-        <item>Eicher</item>
-        <item>Lamborgini</item>
-        <item>Rolls Royce</item>
-        <item>HM</item>
+        <item>Ford</item>
+        <item>Hidustan Motor</item>
+        <item>Honda</item>
+        <item>Hyundai</item>
+        <item>Mahindra</item>
+        <item>Maruti Suzuki</item>
+        <item>Nissan</item>
+        <item>Renault</item>
+        <item>Skoda</item>
+        <item>Tata</item>
+        <item>Toyota</item>
+        <item>Volkswagen</item>
         <item>Other</item>
     </string-array>
+
 
 </resources>
