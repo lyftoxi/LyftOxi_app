@@ -365,8 +365,8 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
                     .setContentType("image/jpg")
                     .build();
 
-            //StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://lyftoxi-1321.appspot.com");
-            StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://sharingride-1366.appspot.com");
+            StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://lyftoxi-1321.appspot.com");
+            //StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://sharingride-1366.appspot.com");
             UploadTask uploadTask = storageRef.child("userProfilePics/"+profilePicFileName).putBytes(stream.toByteArray(),metadata);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override

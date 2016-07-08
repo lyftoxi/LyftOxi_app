@@ -168,8 +168,8 @@ public class LoginActivity extends Activity {
 
         final String profilePicFileName = session.getUserDetails().getUID()+"_profile_pic.jpg";
         Log.d("gog.debug ","profilePicFileName "+profilePicFileName);
-        //StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://lyftoxi-1321.appspot.com");
-        StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://sharingride-1366.appspot.com");
+        StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://lyftoxi-1321.appspot.com");
+        //StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://sharingride-1366.appspot.com");
         //StorageReference profileImageRef = storageRef.child("userProfilePics/Screenshot_20160607-233643.png");
         StorageReference profileImageRef = storageRef.child("userProfilePics/"+profilePicFileName);
 
