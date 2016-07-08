@@ -146,7 +146,7 @@ public class BaseActivity extends AppCompatActivity {
         if(session.isLoggedIn())
         {
             navList.add(new NavDrawerItem(getString(R.string.home),
-                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_view)));
+                    ContextCompat.getDrawable(this, R.drawable.ic_home_black_24dp)));
             navList.add(new NavDrawerItem(getString(R.string.take),
                     ContextCompat.getDrawable(this, android.R.drawable.ic_menu_search)));
             navList.add(new NavDrawerItem(getString(R.string.share_your_ride),
@@ -168,7 +168,7 @@ public class BaseActivity extends AppCompatActivity {
         else
         {
             navList.add(new NavDrawerItem(getString(R.string.home),
-                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_view)));
+                    ContextCompat.getDrawable(this, R.drawable.ic_home_black_24dp)));
             navList.add(new NavDrawerItem(getString(R.string.take),
                     ContextCompat.getDrawable(this, android.R.drawable.ic_menu_search)));
             navList.add(new NavDrawerItem(getString(R.string.share_your_ride),

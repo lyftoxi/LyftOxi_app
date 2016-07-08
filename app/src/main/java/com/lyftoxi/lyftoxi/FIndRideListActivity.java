@@ -146,33 +146,34 @@ public class FindRideListActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Log.d("gog.debug", "clicked ride position " + position);
+
+                RideListingInfo selectedRide = (RideListingInfo)adapterView.getItemAtPosition(position);
+                RideInfo ride = RideInfo.getInstance();
+                ride.setId(selectedRide.getId());
+                ride.setCar(selectedRide.getCar());
+                ride.setUserMessage(selectedRide.getUserMessage());
+                ride.setFare(selectedRide.getFare());
+                ride.setSourceName(selectedRide.getSourceName());
+                ride.setSource(selectedRide.getSource());
+                ride.setDestinationName(selectedRide.getDestinationName());
+                ride.setDestination(selectedRide.getDestination());
+                ride.setStarTime(selectedRide.getStarTime());
+                ride.setRideOf(selectedRide.getRideOf());
+                Log.d("gog.debug","Interested in take ride "+selectedRide.isInterested());
+                ride.setInterested(selectedRide.isInterested());
+                Log.d("gog.debug","Interested in take ride "+ride.isInterested());
+                ride.setStatus(selectedRide.getStatus());
+
+
                 if (!session.isLoggedIn()) {
                     Intent loginIntent = new Intent(view.getContext(), LoginActivity.class);
                     Bundle b = new Bundle();
-                    b.putString("activityOnSuccess", FindRideActivity.class.getName());
+                    b.putString("activityOnSuccess", TakeRideDetailsActivity.class.getName());
                     loginIntent.putExtras(b);
                     startActivity(loginIntent);
                 }
                 else
                 {
-
-                    RideListingInfo selectedRide = (RideListingInfo)adapterView.getItemAtPosition(position);
-                    RideInfo ride = RideInfo.getInstance();
-                    ride.setId(selectedRide.getId());
-                    ride.setCar(selectedRide.getCar());
-                    ride.setUserMessage(selectedRide.getUserMessage());
-                    ride.setFare(selectedRide.getFare());
-                    ride.setSourceName(selectedRide.getSourceName());
-                    ride.setSource(selectedRide.getSource());
-                    ride.setDestinationName(selectedRide.getDestinationName());
-                    ride.setDestination(selectedRide.getDestination());
-                    ride.setStarTime(selectedRide.getStarTime());
-                    ride.setRideOf(selectedRide.getRideOf());
-                    Log.d("gog.debug","Interested in take ride "+selectedRide.isInterested());
-                    ride.setInterested(selectedRide.isInterested());
-                    Log.d("gog.debug","Interested in take ride "+ride.isInterested());
-                    ride.setStatus(selectedRide.getStatus());
-
                     Intent takeRideDetailsIntent = new Intent(view.getContext(), TakeRideDetailsActivity.class);
                     startActivity(takeRideDetailsIntent);
                 }

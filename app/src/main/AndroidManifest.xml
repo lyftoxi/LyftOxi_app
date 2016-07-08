@@ -86,14 +86,20 @@
             android:name=".HelpActivity"
             android:label="@string/title_activity_help"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ForgotPasswordActivity"
+        <activity
+            android:name=".ForgotPasswordActivity"
             android:label="@string/title_activity_forgot_password"
             android:theme="@style/AppTheme" />
-        <activity android:name=".FindRideActivity"
+        <activity
+            android:name=".FindRideActivity"
             android:label="@string/title_activity_find_ride"
             android:theme="@style/AppTheme" />
-        <activity android:name=".FindRideListActivity"
+        <activity
+            android:name=".FindRideListActivity"
             android:label="@string/title_activity_rides"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".RentedCarActivity"
+            android:label="@string/title_activity_rented_car"
             android:theme="@style/AppTheme" />
     </application>
 

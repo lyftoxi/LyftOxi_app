@@ -500,7 +500,8 @@ public class SignupActivity extends BaseActivity implements VerificationListener
                         .setContentType("image/jpg")
                         .build();
                 final String profilePicFileName = newUserId+"_profile_pic.jpg";
-                StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://lyftoxi-1321.appspot.com");
+                //StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://lyftoxi-1321.appspot.com");
+                StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://sharingride-1366.appspot.com");
                 UploadTask uploadTask = storageRef.child("userProfilePics/"+profilePicFileName).putBytes(stream.toByteArray(),metadata);
                 uploadTask.addOnFailureListener(new OnFailureListener() {
                     @Override
