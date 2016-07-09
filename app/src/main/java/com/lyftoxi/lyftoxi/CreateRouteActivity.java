@@ -13,6 +13,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.common.collect.Iterators;
 import com.lyftoxi.lyftoxi.singletons.RideInfo;
@@ -37,7 +38,7 @@ public class CreateRouteActivity extends BaseActivity {
 
     private Button saveRoute;
     private ImageButton changeDate, changeTime;
-    private EditText startDate;
+    private EditText startDate,sourcePlaceholderText, destinationPlaceholderText;
     private static final int DATE_PICKER_ID = 1111;
     private static final int TIME_PICKER_ID = 1112;
     private RideInfo rideInfo = RideInfo.getInstance();
@@ -138,10 +139,12 @@ public class CreateRouteActivity extends BaseActivity {
 
             @Override
             public void onError(Status status) {
-                // TODO: Handle the error.
                 Log.d("gog.debug", "An error occurred: " + status);
             }
         });
+
+        sourcePlaceholderText = ((EditText)autocompleteFragmentDestination.getView().findViewById(R.id.place_autocomplete_search_input));
+        destinationPlaceholderText = ((EditText)autocompleteFragmentDestination.getView().findViewById(R.id.place_autocomplete_search_input));
     }
 
     private boolean isValidInputs() {
@@ -180,27 +183,24 @@ public class CreateRouteActivity extends BaseActivity {
             return false;
         }
 
-
-        if(null==source)
+        if(null==sourcePlaceholderText.getText() || sourcePlaceholderText.getText().toString().trim().equals(""))
         {
-            EditText sourcePlaceholderText = ((EditText)autocompleteFragmentDestination.getView().findViewById(R.id.place_autocomplete_search_input));
-            sourcePlaceholderText.setError("Source cannot be blank");
-            sourcePlaceholderText.requestFocus();
+            Toast toast = Toast.makeText(this,"Source cannot be blank", Toast.LENGTH_SHORT);
+            toast.show();
             return false;
         }
-        if(null==destination)
+
+        if(null==destinationPlaceholderText.getText() || destinationPlaceholderText.getText().toString().trim().equals(""))
         {
-            EditText destinationPlaceholderText = ((EditText)autocompleteFragmentDestination.getView().findViewById(R.id.place_autocomplete_search_input));
-            destinationPlaceholderText.setError("Destination cannot be blank");
-            destinationPlaceholderText.requestFocus();
+            Toast toast = Toast.makeText(this,"Destination cannot be blank", Toast.LENGTH_SHORT);
+            toast.show();
             return false;
         }
 
         if(source.equals(destination))
         {
-            EditText destinationPlaceholderText = ((EditText)autocompleteFragmentDestination.getView().findViewById(R.id.place_autocomplete_search_input));
-            destinationPlaceholderText.setError("Source and Destination cannot be same");
-            destinationPlaceholderText.requestFocus();
+            Toast toast = Toast.makeText(this,"Source and Destination both cannot be blank", Toast.LENGTH_SHORT);
+            toast.show();
             return false;
         }
         return true;

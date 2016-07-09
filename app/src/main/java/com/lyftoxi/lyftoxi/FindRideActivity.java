@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
@@ -26,6 +27,7 @@ import com.lyftoxi.lyftoxi.util.Util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class FindRideActivity extends BaseActivity {
 
@@ -37,9 +39,10 @@ public class FindRideActivity extends BaseActivity {
     private CheckBox ac,music,airBag,luggage,smoking;
     private Button saveRoute;
     private ImageButton changeDate;
-    private EditText startDate;
+    private EditText startDate, sourcePlaceholderText, destinationPlaceholderText;
     private static final int DATE_PICKER_ID = 1111;
     private RideInfo rideInfo = RideInfo.getInstance();
+
 
     private Calendar startDateTime = Calendar.getInstance();
     @Override
@@ -182,17 +185,37 @@ public class FindRideActivity extends BaseActivity {
                 Log.d("gog.debug", "An error occurred: " + status);
             }
         });
+
+        sourcePlaceholderText = ((EditText)autocompleteFragmentDestination.getView().findViewById(R.id.place_autocomplete_search_input));
+        destinationPlaceholderText = ((EditText)autocompleteFragmentDestination.getView().findViewById(R.id.place_autocomplete_search_input));
     }
 
     private boolean isValidInputs() {
 
-        if(null==startDate.getText() || startDate.getText().toString().trim().equals(""))
+         if(null==startDate.getText() || startDate.getText().toString().trim().equals(""))
         {
             startDate.setError("Start Time cannot be blank");
             startDate.requestFocus();
             return false;
         }
         try {
+            Date startDateTime = sdf.parse(startDate.getText().toString());
+
+            if((new Date().getTime() - startDateTime.getTime())/(60*60*1000)>24)
+            {
+                Log.e("gog.error","time diff in hours "+(startDateTime.getTime() - new Date().getTime())/(60*60*1000));
+                startDate.setError("Start time must at least current date");
+                startDate.requestFocus();
+                return false;
+            }
+
+            if((startDateTime.getTime() - new Date().getTime())/(24*60*60*1000)>60)
+            {
+                Log.e("gog.error","time diff in days "+(startDateTime.getTime() - new Date().getTime())/(24*60*60*1000));
+                startDate.setError("Start time must be within 120 days");
+                startDate.requestFocus();
+                return false;
+            }
             rideInfo.setStarTime(sdf.parse(startDate.getText().toString()));
         }
         catch (ParseException pex)
@@ -204,11 +227,22 @@ public class FindRideActivity extends BaseActivity {
         }
 
 
-        if(null==source && null==destination)
+
+
+        if((null==sourcePlaceholderText.getText() || sourcePlaceholderText.getText().toString().trim().equals("")) &&
+                (null==destinationPlaceholderText.getText() || destinationPlaceholderText.getText().toString().trim().equals("")))
         {
-            EditText sourcePlaceholderText = ((EditText)autocompleteFragmentDestination.getView().findViewById(R.id.place_autocomplete_search_input));
-            sourcePlaceholderText.setError("Source and Destination both cannot be blank");
-            sourcePlaceholderText.requestFocus();
+
+            Toast toast = Toast.makeText(this,"Source and Destination both cannot be blank", Toast.LENGTH_SHORT);
+            toast.show();
+            return false;
+        }
+
+        if(source.equals(destination))
+        {
+
+            Toast toast = Toast.makeText(this,"Source and Destination cannot be same", Toast.LENGTH_SHORT);
+            toast.show();
             return false;
         }
 

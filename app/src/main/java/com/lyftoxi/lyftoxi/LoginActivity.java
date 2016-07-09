@@ -346,19 +346,55 @@ public class LoginActivity extends Activity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            showProgress(false);
+
 
             if (success) {
-                downloadUserProfilePic();
-                if(null!=onSuccessActivity) {
-                    Log.d("gog.debug","onSuccessActivity Starting....");
-                    Intent onSuccessIntent = new Intent(getApplicationContext(), onSuccessActivity);
-                    startActivity(onSuccessIntent);
-                }
-                else {
-                    Log.d("gog.debug","onSuccessActivity is null");
-                    finish();
-                }
+
+                final String profilePicFileName = session.getUserDetails().getUID()+"_profile_pic.jpg";
+                Log.d("gog.debug ","profilePicFileName "+profilePicFileName);
+                StorageReference storageRef = LyftoxiFirebase.storageRef;
+                StorageReference profileImageRef = storageRef.child("userProfilePics/"+profilePicFileName);
+
+                final long ONE_MEGABYTE = 1024 * 1024;
+                profileImageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                        Log.d("gog.debug"," downloaded profile pic");
+                        ImageUtil imageUtil = new ImageUtil();
+                        String filePath = imageUtil.saveToInternalStorage(getBaseContext(),bitmap,"user_avatar.jpg");
+                        CurrentUserInfo.getInstance().setProfilePicPath(filePath);
+                        if(null!=onSuccessActivity) {
+                            Log.d("gog.debug","onSuccessActivity Starting....");
+                            Intent onSuccessIntent = new Intent(getApplicationContext(), onSuccessActivity);
+                            startActivity(onSuccessIntent);
+                        }
+                        else {
+                            Log.d("gog.debug","onSuccessActivity is null");
+                            finish();
+                        }
+                        showProgress(false);
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(Exception exception) {
+                        Log.d("gog.debug","Firebase: profile pic download failed");
+                        if(null!=onSuccessActivity) {
+                            Log.d("gog.debug","onSuccessActivity Starting....");
+                            Intent onSuccessIntent = new Intent(getApplicationContext(), onSuccessActivity);
+                            startActivity(onSuccessIntent);
+                        }
+                        else {
+                            Log.d("gog.debug","onSuccessActivity is null");
+                            finish();
+                        }
+                        showProgress(false);
+                    }
+                });
+
+
+
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
