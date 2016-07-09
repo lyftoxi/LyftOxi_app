@@ -37,6 +37,7 @@ import com.lyftoxi.lyftoxi.singletons.CurrentUserInterestedRides;
 import com.lyftoxi.lyftoxi.util.GPSTracker;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.lyftoxi.lyftoxi.util.ImageUtil;
+import com.lyftoxi.lyftoxi.util.LyftoxiFirebase;
 import com.lyftoxi.lyftoxi.util.RoundImage;
 
 import java.io.ByteArrayOutputStream;
@@ -48,7 +49,6 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
-   // private SessionManager session;
     private LatLng currentLocation;
     private ImageView logo;
     private FrameLayout splashScreen,  welcomeView;
@@ -94,8 +94,7 @@ public class MainActivity extends BaseActivity {
     {
         final String profilePicFileName = session.getUserDetails().getUID()+"_profile_pic.jpg";
         Log.d("gog.debug ","profilePicFileName "+profilePicFileName);
-        StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://lyftoxi-1321.appspot.com");
-        //StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://sharingride-1366.appspot.com");
+        StorageReference storageRef = LyftoxiFirebase.storageRef;
         StorageReference profileImageRef = storageRef.child("userProfilePics/"+profilePicFileName);
 
        // profileImageRef.getDownloadUrl();
@@ -104,23 +103,17 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onSuccess(byte[] bytes) {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                /*RoundImage roundedImage = new RoundImage(bm);
-                profileImage.setImageDrawable(roundedImage);*/
 
                 Log.d("gog.debug"," downloaded profile pic");
                 ImageUtil imageUtil = new ImageUtil();
                 String filePath = imageUtil.saveToInternalStorage(getBaseContext(),bitmap,"user_avatar.jpg");
                 CurrentUserInfo.getInstance().setProfilePicPath(filePath);
-               /* RoundImage roundedImage = new RoundImage(bitmap);
-                profileImage.setImageDrawable(roundedImage);*/
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(Exception exception) {
                 Log.d("gog.debug","Firebase: profile pic download failed");
                 Bitmap bm = BitmapFactory.decodeResource(getResources(),R.drawable.sample_profile_pic);
-               /* RoundImage roundedImage = new RoundImage(bm);
-                profileImage.setImageDrawable(roundedImage);*/
             }
         });
     }

@@ -44,6 +44,7 @@ import com.lyftoxi.lyftoxi.dao.User;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.lyftoxi.lyftoxi.util.ImageUtil;
+import com.lyftoxi.lyftoxi.util.LyftoxiFirebase;
 import com.lyftoxi.lyftoxi.util.Util;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.ByteArrayContent;
@@ -500,8 +501,7 @@ public class SignupActivity extends BaseActivity implements VerificationListener
                         .setContentType("image/jpg")
                         .build();
                 final String profilePicFileName = newUserId+"_profile_pic.jpg";
-                //StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://lyftoxi-1321.appspot.com");
-                StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://sharingride-1366.appspot.com");
+                StorageReference storageRef = LyftoxiFirebase.storageRef;
                 UploadTask uploadTask = storageRef.child("userProfilePics/"+profilePicFileName).putBytes(stream.toByteArray(),metadata);
                 uploadTask.addOnFailureListener(new OnFailureListener() {
                     @Override
