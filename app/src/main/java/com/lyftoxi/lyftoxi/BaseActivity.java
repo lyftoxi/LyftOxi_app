@@ -146,20 +146,20 @@ public class BaseActivity extends AppCompatActivity {
         if(session.isLoggedIn())
         {
             navList.add(new NavDrawerItem(getString(R.string.home),
-                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_view)));
+                    ContextCompat.getDrawable(this, R.drawable.ic_home_black_24dp)));
             navList.add(new NavDrawerItem(getString(R.string.take),
-                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_search)));
+                    ContextCompat.getDrawable(this, R.drawable.ic_search_black_24dp)));
             navList.add(new NavDrawerItem(getString(R.string.share_your_ride),
-                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_share)));
+                    ContextCompat.getDrawable(this, R.drawable.ic_share_black_24dp)));
 /*            navList.add(new NavDrawerItem(getString(R.string.my_suggested_rides),
                     ContextCompat.getDrawable(this, R.drawable.ic_share_black_18dp)));*/
             navList.add(new NavDrawerItem(getString(R.string.my_shared_rides),
-                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_manage)));
+                    ContextCompat.getDrawable(this, R.drawable.ic_drive_eta_black_24dp)));
             navList.add(new NavDrawerItem(getString(R.string.my_interested_rides),
-                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_manage)));
+                    ContextCompat.getDrawable(this, R.drawable.ic_drive_eta_black_24dp)));
 
             navList.add(new NavDrawerItem(getString(R.string.log_out),
-                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_close_clear_cancel)));
+                    ContextCompat.getDrawable(this, R.drawable.ic_power_settings_new_black_24dp)));
 
             this.loggedInUser = session.getUserDetails();
             navName.setText(this.loggedInUser.getName());
@@ -168,13 +168,13 @@ public class BaseActivity extends AppCompatActivity {
         else
         {
             navList.add(new NavDrawerItem(getString(R.string.home),
-                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_view)));
+                    ContextCompat.getDrawable(this, R.drawable.ic_home_black_24dp)));
             navList.add(new NavDrawerItem(getString(R.string.take),
-                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_search)));
+                    ContextCompat.getDrawable(this, R.drawable.ic_search_black_24dp)));
             navList.add(new NavDrawerItem(getString(R.string.share_your_ride),
-                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_share)));
+                    ContextCompat.getDrawable(this, R.drawable.ic_share_black_24dp)));
             navList.add(new NavDrawerItem(getString(R.string.action_sign_in),
-                    ContextCompat.getDrawable(this, android.R.drawable.ic_menu_send)));
+                    ContextCompat.getDrawable(this, R.drawable.ic_perm_identity_black_24dp)));
         }
 
 
