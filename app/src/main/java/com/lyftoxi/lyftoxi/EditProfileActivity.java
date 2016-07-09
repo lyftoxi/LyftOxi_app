@@ -51,6 +51,7 @@ import com.lyftoxi.lyftoxi.dao.UserAddress;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.lyftoxi.lyftoxi.util.ImageUtil;
+import com.lyftoxi.lyftoxi.util.LyftoxiFirebase;
 import com.msg91.sendotp.library.Config;
 import com.msg91.sendotp.library.SendOtpVerification;
 import com.msg91.sendotp.library.Verification;
@@ -365,8 +366,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
                     .setContentType("image/jpg")
                     .build();
 
-            StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://lyftoxi-1321.appspot.com");
-            //StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://sharingride-1366.appspot.com");
+            StorageReference storageRef = LyftoxiFirebase.storageRef;
             UploadTask uploadTask = storageRef.child("userProfilePics/"+profilePicFileName).putBytes(stream.toByteArray(),metadata);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override

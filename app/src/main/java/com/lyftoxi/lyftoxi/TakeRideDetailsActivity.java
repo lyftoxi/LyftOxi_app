@@ -35,6 +35,7 @@ import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInterestedRides;
 import com.lyftoxi.lyftoxi.singletons.RideInfo;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
+import com.lyftoxi.lyftoxi.util.LyftoxiFirebase;
 import com.lyftoxi.lyftoxi.util.RoundImage;
 import com.lyftoxi.lyftoxi.util.Util;
 
@@ -180,8 +181,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
         }
         final String profilePicFileName = userId+"_profile_pic.jpg";
         Log.d("gog.debug ","profilePicFileName "+profilePicFileName);
-        StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://sharingride-1366.appspot.com");
-        //StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://lyftoxi-1321.appspot.com");
+        StorageReference storageRef = LyftoxiFirebase.storageRef;
         StorageReference profileImageRef = storageRef.child("userProfilePics/"+profilePicFileName);
         // profileImageRef.getDownloadUrl();
         final long ONE_MEGABYTE = 500 * 500;
