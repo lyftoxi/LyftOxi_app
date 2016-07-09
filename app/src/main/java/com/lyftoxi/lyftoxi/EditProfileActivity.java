@@ -124,7 +124,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
         else
         {
             Log.d("gog.debug","using default pic");
-            profilePic = BitmapFactory.decodeResource(getResources(),R.drawable.sample_profile_pic);
+            profilePic = BitmapFactory.decodeResource(getResources(),R.drawable.profile_pic_placeholder_large);
         }
         collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(), profilePic));
 
@@ -380,6 +380,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
                    String filePath =  imageUtil.saveToInternalStorage(getApplicationContext(),thumbBitmap,profilePicFileName);
                     CurrentUserInfo.getInstance().setProfilePicPath(filePath);
                     collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(),thumbBitmap));
+                    refreshProfileImage();
                     showProgress(false);
                 }
             });
@@ -408,12 +409,6 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
                 .build();
         mVerification = SendOtpVerification.createSmsVerification(config, user.getPhNo(), this, "91");
         mVerification.initiate();
-    }
-
-    private void startHomeActivity()
-    {
-        Intent mainIntent = new Intent(this, MainActivity.class);
-        startActivity(mainIntent);
     }
 
     private boolean isValidInputs()
