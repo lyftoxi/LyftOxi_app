@@ -68,12 +68,14 @@ public class OtherRideDetailsActivity extends BaseActivity {
         smokingAllowed.setChecked(rideInfo.getCar().isSmokingAllowed());
         luggageAllowed.setChecked(rideInfo.getCar().isLuggageAllowed());
 
-        if(!rideInfo.getCar().isAcAvailable()){acAvailable.setEnabled(false);}
-        if(!rideInfo.getCar().isAirbagAvailable()){airbagAvailable.setEnabled(false);}
-        if(!rideInfo.getCar().isMusicAvailable()){musicAvailable.setEnabled(false);}
-        if(!rideInfo.getCar().isSmokingAllowed()){smokingAllowed.setEnabled(false);}
-        if(!rideInfo.getCar().isLuggageAllowed()){luggageAllowed.setEnabled(false);}
-
+        if(!rideInfo.getCar().getCarBrand().contains("Rented"))
+        {
+            if(!rideInfo.getCar().isAcAvailable()){acAvailable.setEnabled(false);}
+            if(!rideInfo.getCar().isAirbagAvailable()){airbagAvailable.setEnabled(false);}
+            if(!rideInfo.getCar().isMusicAvailable()){musicAvailable.setEnabled(false);}
+            if(!rideInfo.getCar().isSmokingAllowed()){smokingAllowed.setEnabled(false);}
+            if(!rideInfo.getCar().isLuggageAllowed()){luggageAllowed.setEnabled(false);}
+        }
 
         price.setText(rideInfo.getFare()+"");
         userMessage.setText(rideInfo.getUserMessage());

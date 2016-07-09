@@ -78,8 +78,8 @@ public class CarListAdapter extends ArrayAdapter<CarInfo> {
             }
 
 
-            RoundImage roundedImage = new RoundImage(bm);
-            carImage.setImageDrawable(roundedImage);
+           // RoundImage roundedImage = new RoundImage(bm);
+            carImage.setImageBitmap(bm);
 
             final View progressBar = v.findViewById(R.id.carListingProgress);
 

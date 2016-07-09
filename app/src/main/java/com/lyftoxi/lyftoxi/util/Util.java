@@ -1,5 +1,7 @@
 package com.lyftoxi.lyftoxi.util;
 
+import android.util.Log;
+
 import com.lyftoxi.lyftoxi.CarInfo;
 import com.lyftoxi.lyftoxi.UserInfo;
 import com.lyftoxi.lyftoxi.dao.Car;

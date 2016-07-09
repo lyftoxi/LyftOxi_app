@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.lyftoxi.lyftoxi.RentedCarActivity">
+
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rentedCarMainView"
+        android:padding="30dp"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+
+    <Spinner
+        android:id="@+id/rentedCarBrand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+        <EditText
+            android:id="@+id/rentedCarBrandOther"
+            android:layout_width="match_parent"
+            android:hint="@string/car_brand"
+            android:visibility="gone"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/rentedCarModel"
+            android:layout_width="match_parent"
+            android:hint="@string/car_model"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/rentedCarColor"
+            android:layout_width="match_parent"
+            android:hint="@string/car_color"
+            android:layout_height="wrap_content" />
+
+
+        <EditText
+        android:id="@+id/rentedCarNumber"
+        android:layout_width="match_parent"
+        android:hint="@string/car_number"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rentedCarSave"
+        android:text="@string/save"
+        android:background="@color/primaryButtonBackgroundColor"
+        android:textColor="@color/primaryButtonTextColor"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        />
+
+    </LinearLayout>
+
+
+
+</android.support.design.widget.CoordinatorLayout>
