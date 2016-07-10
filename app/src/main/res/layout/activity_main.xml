@@ -11,7 +11,6 @@
         android:id="@+id/splashScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
         >
 
         <ImageView
@@ -28,7 +27,7 @@
         android:id="@+id/welcomeView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:visibility="gone"
         android:background="@drawable/welcome_background">
 
         <LinearLayout
@@ -64,7 +63,7 @@
                 android:textColor="@color/primaryDark"
                 android:textStyle="bold"
                 android:textAlignment="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/welcomeTagline"
                 android:layout_gravity="center"
                 android:singleLine="false" />
