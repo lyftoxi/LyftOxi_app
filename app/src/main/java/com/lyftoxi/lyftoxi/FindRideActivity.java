@@ -186,7 +186,7 @@ public class FindRideActivity extends BaseActivity {
             }
         });
 
-        sourcePlaceholderText = ((EditText)autocompleteFragmentDestination.getView().findViewById(R.id.place_autocomplete_search_input));
+        sourcePlaceholderText = ((EditText)autocompleteFragmentSource.getView().findViewById(R.id.place_autocomplete_search_input));
         destinationPlaceholderText = ((EditText)autocompleteFragmentDestination.getView().findViewById(R.id.place_autocomplete_search_input));
     }
 
@@ -238,7 +238,7 @@ public class FindRideActivity extends BaseActivity {
             return false;
         }
 
-        if(source.equals(destination))
+        if(null!=source && source.equals(destination))
         {
 
             Toast toast = Toast.makeText(this,"Source and Destination cannot be same", Toast.LENGTH_SHORT);
