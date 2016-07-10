@@ -19,6 +19,7 @@
         android:layout_height="50dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_directions_car_black_48dp"
+        android:layout_marginTop="6dp"
         android:layout_weight="0.14" />
 
 
@@ -30,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp"
+
         android:layout_weight="0.66">
 
         <TextView
@@ -67,20 +68,23 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:orientation="vertical">
         <ImageButton
             android:id="@+id/carListingEditCar"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
             android:backgroundTint="@android:color/transparent"
             android:clickable="true"
             android:src="@drawable/ic_create_black_24dp"
-            android:tint="@color/primaryDark"/>
+            android:tint="@color/primaryDark"
+            />
         <ImageButton
             android:id="@+id/carListingDeleteCar"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
             android:backgroundTint="@android:color/transparent"
             android:clickable="true"
             android:src="@drawable/ic_delete_black_24dp"
