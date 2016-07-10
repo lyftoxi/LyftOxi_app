@@ -38,7 +38,7 @@
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="dotted_line">|</string>
-    <string name="rupee">Rs.</string>
+    <string name="rupee">\u20B9</string>
     <string name="owner_comment">Comment</string>
     <string name="phone_number_sample">0000000000</string>
     <string name="starting_at">Starting @</string>

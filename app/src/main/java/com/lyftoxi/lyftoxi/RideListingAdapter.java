@@ -216,7 +216,7 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
             holder.from.setText(i.getSourceName());
             holder.to.setText(i.getDestinationName());
 
-            String fareStr = "Rs. " + i.getFare();
+            String fareStr = " "+ i.getFare();
             holder.fare.setText(fareStr);
             holder.startingTime.setText(sdf.format(i.getStarTime().getTime()));
 

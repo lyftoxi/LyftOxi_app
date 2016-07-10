@@ -49,5 +49,7 @@
     <item name="primaryTextColor" type="color">#000000</item>
     <item name="bannerTextColor" type="color">#ffffff</item>
     <item name="fragmentBackground" type="color">#D7DBDD</item>
-    <item name="primaryGreen" type="color">#7BF211</item>
+    <item name="primaryGreen" type="color">#63CE4C</item>
+    <item name="primaryRed" type="color">#E36E57</item>
+    <item name="disclaimer" type="color">#A39D9C</item>
 </resources>

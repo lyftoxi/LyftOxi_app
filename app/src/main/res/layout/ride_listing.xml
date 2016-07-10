@@ -18,19 +18,30 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_margin="10dp"/>
+        android:layout_margin="4dp"/>
+    <ImageView
+        android:id="@+id/sourceLocation_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/rideListingUserImage"
 
-        <TextView
-            android:id="@+id/rideListingFrom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/from"
-            android:textColor="@color/primaryTextColor"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/rideListingUserImage"
-            android:layout_toEndOf="@+id/rideListingUserImage"
-            android:layout_marginLeft="17dp"
-            android:layout_marginStart="17dp"
+        android:src="@drawable/ic_place_black_24dp"
+        android:tint="@color/primaryGreen"/>
+
+
+
+    <TextView
+        android:id="@+id/rideListingFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/from"
+        android:textColor="@color/primaryTextColor"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@id/sourceLocation_icon"
+
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="5dp"
+
             />
 
         <TextView
@@ -53,6 +64,15 @@
             android:layout_alignLeft="@+id/rideListingStartingTime"
             android:layout_alignStart="@+id/rideListingStartingTime" />
 
+        <ImageView
+            android:id="@+id/destinationLocation_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/rideListingUserImage"
+            android:layout_below="@id/textView"
+
+            android:src="@drawable/ic_place_black_24dp"
+            android:tint="@color/primaryRed"/>
         <TextView
             android:id="@+id/rideListingTo"
             android:layout_width="wrap_content"
@@ -64,29 +84,65 @@
             android:layout_alignStart="@+id/textView" />
 
 
+        <TextView
+            android:id="@+id/rideFareText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fare: "
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textColor="#ff335a50"
+            android:layout_alignLeft="@id/rideListingTo"
+            android:layout_below="@id/rideListingTo"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            />
 
-    <TextView
-        android:id="@+id/rideListingFare"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/rupee"
-        style="@style/Base.TextAppearance.AppCompat.Headline"
-        android:textColor="#ff335a50"
-        android:layout_gravity="right"
-        android:paddingRight="20dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <ImageButton
-        android:id="@+id/rideListingBtnInterested"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@android:drawable/btn_star_big_off"
-        android:background="#00000000"
-
-        android:layout_below="@+id/rideListingFare"
-        android:layout_alignLeft="@+id/rideListingFare"
-        android:layout_alignStart="@+id/rideListingFare" />
+        <TextView
+            android:id="@+id/rideListingRupeeSymbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rupee"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textColor="#ff335a50"
+            android:layout_below="@id/rideListingTo"
+            android:layout_toEndOf="@id/rideFareText"
+            android:layout_alignBaseline="@id/rideFareText"
+            android:textSize="12sp"
+            android:textStyle="bold"
+             />
+        <TextView
+            android:id="@+id/rideListingFare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textColor="#ff335a50"
+            android:layout_below="@id/rideListingTo"
+            android:layout_toEndOf="@id/rideListingRupeeSymbol"
+            android:textSize="15sp"
+            android:textStyle="bold"
+        />
+        <TextView
+            android:id="@+id/rideListingFareDisclaimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" (Price Decided By Ride Owner)"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textColor="@color/disclaimer"
+            android:layout_below="@id/rideListingTo"
+            android:layout_toEndOf="@id/rideListingFare"
+            android:layout_alignBaseline="@id/rideFareText"
+            android:textSize="9sp"
+            android:textStyle="italic"
+            />
+        <ImageButton
+            android:id="@+id/rideListingBtnInterested"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@android:drawable/btn_star_big_off"
+            android:background="#00000000"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/rideListingFrom" />
 
     <ProgressBar android:id="@+id/rideListingProgress"
         style="?android:attr/progressBarStyleSmall"
@@ -94,9 +150,8 @@
         android:layout_height="50dp"
         android:visibility="gone"
         android:layout_gravity="right"
-        android:layout_below="@+id/rideListingFare"
-        android:layout_alignLeft="@+id/rideListingFare"
-        android:layout_alignStart="@+id/rideListingFare"  />
+        android:layout_below="@+id/rideListingBtnInterested"
+        android:layout_alignParentEnd="true"/>
 
     <TextView
         android:id="@+id/rideListingCancelled"
@@ -105,8 +160,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/cancelled"
         android:textColor="@android:color/holo_red_dark"
-        android:layout_below="@+id/rideListingFare"
-        android:layout_alignRight="@+id/rideListingFare"
-        android:layout_alignEnd="@+id/rideListingFare" />
+        android:layout_below="@+id/rideListingBtnInterested"
+        android:layout_alignParentRight="true"/>
 
 </RelativeLayout>
