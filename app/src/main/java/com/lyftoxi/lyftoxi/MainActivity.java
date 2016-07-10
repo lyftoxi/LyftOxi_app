@@ -4,6 +4,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
@@ -13,6 +16,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +25,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -44,6 +49,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 
@@ -87,7 +94,29 @@ public class MainActivity extends BaseActivity {
         {
             crossfade();
         }
+       /* TextView certKey = (TextView)findViewById(R.id.textViewClickCallShare);
+        certKey.setText("SIGNED "+getSecretKey());*/
 
+    }
+
+
+    private String getSecretKey() {
+        MessageDigest md = null;
+        try {
+            PackageInfo info = this.getPackageManager().getPackageInfo(
+                    this.getPackageName(),
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
+        }
+        //Log.i("SecretKey = ", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+        return Base64.encodeToString(md.digest(), Base64.DEFAULT);
     }
 
 
