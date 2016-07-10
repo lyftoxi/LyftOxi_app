@@ -233,6 +233,7 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
             return;
         }
         final String profilePicFileName = userId+"_profile_pic.jpg";
+        final String profilePicThumbFileName = userId+"_profile_pic_thumb.jpg";
         final ImageView rideListingUserImage = (ImageView)v.findViewById(R.id.rideListingUserImage);
         Bitmap bm = getBitmapFromMemCache(profilePicFileName);
         if (bm != null) {
@@ -241,15 +242,15 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
         } else {
 
             Log.d("gog.debug ","profilePicFileName "+profilePicFileName);
-            StorageReference storageRef = LyftoxiFirebase.storageRef;
-            StorageReference profileImageRef = storageRef.child("userProfilePics/"+profilePicFileName);
-            final long ONE_MEGABYTE = 500 * 500;
-            profileImageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            final StorageReference storageRef = LyftoxiFirebase.storageRef;
+            StorageReference profileImageThumbRef = storageRef.child("userProfilePicThumbs/"+profilePicThumbFileName);
+            final long SIZE = 100 * 100;
+            profileImageThumbRef.getBytes(SIZE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                 @Override
                 public void onSuccess(byte[] bytes) {
 
                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                    bitmap = Bitmap.createScaledBitmap(bitmap, 50, 50, false);
+                    bitmap = Bitmap.createScaledBitmap(bitmap, 100, 100, false);
                     RoundImage roundedImage = new RoundImage(bitmap);
                     addBitmapToMemoryCache(profilePicFileName, bitmap);
                     rideListingUserImage.setImageDrawable(roundedImage);
@@ -259,11 +260,28 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(Exception exception) {
-                    Log.d("gog.debug","Firebase: profile pic download failed");
-                   /* Bitmap bm = BitmapFactory.decodeResource(v.getResources(),R.drawable.sample_profile_pic);
-                    RoundImage roundedImage = new RoundImage(bm);
-                    rideListingUserImage.setImageDrawable(roundedImage);*/
+                    Log.d("gog.debug","Firebase: profile pic thumnail download failed");
+                    StorageReference profileImageRef = storageRef.child("userProfilePics/"+profilePicFileName);
+                    final long ONE_MEGABYTE = 500 * 500;
+                    profileImageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
 
+                            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                            bitmap = Bitmap.createScaledBitmap(bitmap, 100, 100, false);
+                            RoundImage roundedImage = new RoundImage(bitmap);
+                            addBitmapToMemoryCache(profilePicFileName, bitmap);
+                            rideListingUserImage.setImageDrawable(roundedImage);
+                            notifyDataSetChanged();
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(Exception exception) {
+                            Log.d("gog.debug","Firebase: profile pic download failed");
+
+                        }
+                    });
 
                 }
             });

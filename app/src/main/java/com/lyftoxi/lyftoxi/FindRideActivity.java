@@ -186,8 +186,7 @@ public class FindRideActivity extends BaseActivity {
             }
         });
 
-        //sourcePlaceholderText = ((EditText)autocompleteFragmentDestination.getView().findViewById(R.id.place_autocomplete_search_input));
-        sourcePlaceholderText = ((EditText)autocompleteFragmentSource.getView().findViewById(R.id.place_autocomplete_search_input));
+        sourcePlaceholderText = ((EditText)autocompleteFragmentDestination.getView().findViewById(R.id.place_autocomplete_search_input));
         destinationPlaceholderText = ((EditText)autocompleteFragmentDestination.getView().findViewById(R.id.place_autocomplete_search_input));
     }
 
@@ -226,6 +225,8 @@ public class FindRideActivity extends BaseActivity {
             startDate.requestFocus();
             return false;
         }
+
+
 
 
         if((null==sourcePlaceholderText.getText() || sourcePlaceholderText.getText().toString().trim().equals("")) &&

@@ -195,7 +195,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
             @Override
             public void onFailure(Exception exception) {
                 Log.d("gog.debug","Firebase: profile pic download failed");
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.sample_profile_pic);
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.profile_pic_placeholder_large);
                 collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(),bitmap));
             }
         });
