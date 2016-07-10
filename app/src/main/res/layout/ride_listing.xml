@@ -55,10 +55,10 @@
             android:layout_alignStart="@+id/rideListingFrom" />
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dotted_line"
-            android:id="@+id/textView"
             android:textSize="15sp"
             android:layout_below="@+id/rideListingStartingTime"
             android:layout_alignLeft="@+id/rideListingStartingTime"

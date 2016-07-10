@@ -76,7 +76,7 @@ public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
 
             from.setText(i.getSourceName());
             to.setText(i.getDestinationName());
-            String fareStr = "Rs. "+i.getFare();
+            String fareStr = " "+i.getFare();
             fare.setText(fareStr);
             startingTime.setText(sdf.format(i.getStarTime().getTime()));
             if("C".equals(i.getStatus()))
