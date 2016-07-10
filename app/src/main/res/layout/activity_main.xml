@@ -11,6 +11,7 @@
         android:id="@+id/splashScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         >
 
         <ImageView
@@ -27,7 +28,7 @@
         android:id="@+id/welcomeView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+
         android:background="@drawable/welcome_background">
 
         <LinearLayout
@@ -42,7 +43,7 @@
             android:layout_height="75dp"
             android:src="@drawable/lyftoxi_logo"
             android:layout_gravity="center"
-            android:layout_margin="20dp" />
+            android:layout_margin="5dp" />
 
 
         <TextView
@@ -51,20 +52,22 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/tagline"
             android:textColor="@color/primaryButtonTextColor"
-            android:textSize="15sp"
+            android:textSize="8sp"
             android:gravity="center"
             android:id="@+id/textViewClickCallShare" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30dp"
+                android:textSize="45dp"
                 android:text="@string/going_somewhere"
-                android:textColor="@color/accent"
-
+                android:textColor="@color/primaryDark"
+                android:textStyle="bold"
+                android:textAlignment="center"
                 android:layout_marginTop="20dp"
                 android:id="@+id/welcomeTagline"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:singleLine="false" />
         </LinearLayout>
 
 
@@ -75,23 +78,6 @@
             android:gravity="center"
             android:layout_gravity="center_horizontal|bottom"
             android:paddingBottom="20dp">
-
-
-            <Button
-                android:id="@+id/buttonNewToLyftoxi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/primaryButtonTextColor"
-                android:background="@android:color/white"
-                android:textSize="15sp"
-                android:padding="10dp"
-                android:text="@string/new_to_lyftoxi"
-                android:onClick="help"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_gravity="center" />
 
             <Button
                 android:id="@+id/buttonShare"
@@ -122,6 +108,23 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:onClick="takeRide"/>
+
+            <Button
+                android:id="@+id/buttonNewToLyftoxi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryButtonTextColor"
+                android:background="@android:color/white"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:text="@string/new_to_lyftoxi"
+                android:onClick="help"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="center" />
+
 
         </LinearLayout>
 

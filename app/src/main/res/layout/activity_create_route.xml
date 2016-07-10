@@ -104,6 +104,11 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
             />
         </LinearLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map"/>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

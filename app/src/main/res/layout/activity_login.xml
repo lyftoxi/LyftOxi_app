@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     tools:context="com.lyftoxi.lyftoxi.LoginActivity">
 
     <!-- Login progress -->
@@ -15,14 +15,34 @@
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_marginBottom="8dp" android:visibility="gone" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="100dp">
+
     <ImageView
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:src="@android:drawable/ic_lock_lock"
-        android:layout_gravity="center_horizontal" />
+        android:src="@drawable/lyftoxi_logo"
+        android:layout_margin="5dp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/tagline"
+        android:textColor="@color/primaryButtonTextColor"
+        android:textSize="8sp" />
+        </LinearLayout>
 
     <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         >
 
         <LinearLayout android:id="@+id/email_login_form" android:layout_width="match_parent"
