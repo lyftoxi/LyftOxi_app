@@ -11,72 +11,111 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
     android:orientation="vertical"
     android:padding="10dp">
 
-
-    <LinearLayout
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/source_card_view"
+        android:layout_gravity="left"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-
-        <EditText
-            android:id="@+id/createRouteDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="datetime"
-            android:textStyle="bold"
-            android:hint="@string/starting_at"
-            android:textSize="20sp"
-            />
-
-
-        <ImageButton
-            android:id="@+id/createRouteDatePicker"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:src="@android:drawable/ic_menu_my_calendar"
-            />
-
-        <ImageButton
-            android:id="@+id/createRouteTimePicker"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:src="@android:drawable/ic_lock_idle_alarm"
-            />
-
-
-    </LinearLayout>
-
-
+        android:layout_height="50dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardPreventCornerOverlap="true"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardBackgroundColor="@color/fragmentBackground"
+        card_view:contentPaddingLeft="5dp">
         <fragment
             android:id="@+id/createRouteSource"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-                android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
-            />
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+        />
+    </android.support.v7.widget.CardView>
 
-            <fragment
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/destination_card_view"
+        android:layout_gravity="left"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardPreventCornerOverlap="true"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardBackgroundColor="@color/fragmentBackground"
+        card_view:contentPaddingLeft="5dp"
+        card_view:contentPaddingTop="10dp">
+        <fragment
             android:id="@+id/createRouteDestination"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
-            />
-
-    <Button
+        />
+    </android.support.v7.widget.CardView>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/createRouteSave"
-        android:text="@string/proceed"
-        android:background="@color/primaryButtonBackgroundColor"
-        android:textColor="@color/primaryButtonTextColor"
-        android:textSize="15sp"
-        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:gravity="left"
+        android:paddingTop="10dp">
+        <EditText
+            android:id="@+id/createRouteDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:inputType="datetime"
+            android:textStyle="italic"
+            android:hint="Ride Start Date"
+            android:textSize="20sp"
+            />
+        <ImageButton
+            android:id="@+id/createRouteDatePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_date_range_black_24dp"
+            android:tint="@color/primaryDark"
+
+            />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="left"
+            android:paddingTop="5dp">
+            <EditText
+                android:id="@+id/createRouteTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:inputType="datetime"
+                android:textStyle="italic"
+                android:hint="Ride Start Time"
+                android:textSize="20sp"
+                />
+            <ImageButton
+                android:id="@+id/createRouteTimePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:baselineAlignBottom="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_access_time_black_24dp"
+                android:tint="@color/primaryDark"
+            />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/createRouteSave"
+            android:text="@string/proceed"
+            android:background="@color/primaryButtonBackgroundColor"
+            android:textColor="@color/primaryButtonTextColor"
+            android:textSize="15sp"
+            android:layout_marginTop="30dp"
         />
 
-        </LinearLayout>
+</LinearLayout>
 
   <!--  <fragment
         android:id="@+id/createRouteMapView"

@@ -33,8 +33,6 @@
             android:layout_height="wrap_content" />
 
 
-
-
         <EditText
             android:id="@+id/carAddEditCarNumber"
             android:layout_width="match_parent"

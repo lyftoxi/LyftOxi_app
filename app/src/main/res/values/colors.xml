@@ -48,4 +48,6 @@
     <item name="mainScreenBackground" type="color">#ffffff</item>
     <item name="primaryTextColor" type="color">#000000</item>
     <item name="bannerTextColor" type="color">#ffffff</item>
+    <item name="fragmentBackground" type="color">#D7DBDD</item>
+    <item name="primaryGreen" type="color">#7BF211</item>
 </resources>
