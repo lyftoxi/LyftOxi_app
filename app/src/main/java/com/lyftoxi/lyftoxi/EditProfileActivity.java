@@ -356,19 +356,27 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
             }
             int nh = (int) (bitmap.getHeight() * (512.0 / bitmap.getWidth())); // scaling captured image
             bitmap = Bitmap.createScaledBitmap(bitmap, 512, nh, true);
-            final Bitmap thumbBitmap = ThumbnailUtils.extractThumbnail(bitmap, 400, 400);
+            //final Bitmap thumbBitmap = ThumbnailUtils.extractThumbnail(bitmap, 400, 400);
+            final Bitmap fullBitmap = ThumbnailUtils.extractThumbnail(bitmap, 400, 200);
+            final Bitmap thumbBitmap = ThumbnailUtils.extractThumbnail(bitmap, 50, 50);
 
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            thumbBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            ByteArrayOutputStream thumbStream = new ByteArrayOutputStream();
+            thumbBitmap.compress(Bitmap.CompressFormat.JPEG, 100, thumbStream);
+
+            final ByteArrayOutputStream fullStream = new ByteArrayOutputStream();
+            fullBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fullStream);
 
             final String profilePicFileName = CurrentUserInfo.getInstance().getId()+"_profile_pic.jpg";
-            StorageMetadata metadata = new StorageMetadata.Builder()
+            final String profilePicThumbFileName = CurrentUserInfo.getInstance().getId()+"_profile_pic_thumb.jpg";
+
+            final StorageMetadata metadata = new StorageMetadata.Builder()
                     .setContentType("image/jpg")
                     .build();
 
             StorageReference storageRef = LyftoxiFirebase.storageRef;
-            UploadTask uploadTask = storageRef.child("userProfilePics/"+profilePicFileName).putBytes(stream.toByteArray(),metadata);
-            uploadTask.addOnFailureListener(new OnFailureListener() {
+
+            UploadTask uploadTaskThumbPic = storageRef.child("userProfilePicThumbs/"+profilePicThumbFileName).putBytes(thumbStream.toByteArray(),metadata);
+            uploadTaskThumbPic.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(Exception exception) {
                     showProgress(false);
@@ -377,13 +385,36 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                   String filePath =  imageUtil.saveToInternalStorage(getApplicationContext(),thumbBitmap,profilePicFileName);
+                   String filePath =  imageUtil.saveToInternalStorage(getApplicationContext(),thumbBitmap,profilePicThumbFileName);
                     CurrentUserInfo.getInstance().setProfilePicPath(filePath);
                     collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(),thumbBitmap));
                     refreshProfileImage();
+
+                    StorageReference storageRef = LyftoxiFirebase.storageRef;
+                    UploadTask uploadTaskFullPic = storageRef.child("userProfilePics/"+profilePicFileName).putBytes(fullStream.toByteArray(),metadata);
+                    uploadTaskFullPic.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(Exception exception) {
+                            //showProgress(false);
+                            exception.printStackTrace();
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            String filePath =  imageUtil.saveToInternalStorage(getApplicationContext(),fullBitmap,profilePicFileName);
+                            CurrentUserInfo.getInstance().setProfilePicPath(filePath);
+                            collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(),fullBitmap));
+                            refreshProfileImage();
+
+                           // showProgress(false);
+                        }
+                    });
+
                     showProgress(false);
                 }
             });
+
+
         }
     }
 

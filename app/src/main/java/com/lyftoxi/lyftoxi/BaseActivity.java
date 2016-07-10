@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.ThumbnailUtils;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -231,6 +232,7 @@ public class BaseActivity extends AppCompatActivity {
         if(session.isLoggedIn() && null!=CurrentUserInfo.getInstance().getProfilePicPath()) {
             Log.d("gog.debug","profile pic path "+CurrentUserInfo.getInstance().getProfilePicPath());
             profilePic = imageUtil.loadImageFromStorage(CurrentUserInfo.getInstance().getProfilePicPath());
+            profilePic = ThumbnailUtils.extractThumbnail(profilePic, 100, 100);
         }
         else
         {

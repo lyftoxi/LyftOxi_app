@@ -102,7 +102,7 @@ public class SignupActivity extends BaseActivity implements VerificationListener
     private static final int PROFILE_PIC_SIZE = 400;
 
     private ImageUtil imageUtil;
-    private Bitmap profilePic;
+    private Bitmap profilePic, profilePicThumb;
     private Calendar dobValue = Calendar.getInstance();
     private static final int DATE_PICKER_ID = 1111;
 
@@ -324,8 +324,8 @@ public class SignupActivity extends BaseActivity implements VerificationListener
             }
             int nh = (int) (bitmap.getHeight() * (512.0 / bitmap.getWidth()));
             bitmap = Bitmap.createScaledBitmap(bitmap, 512, nh, true);
-            bitmap = ThumbnailUtils.extractThumbnail(bitmap, 400, 400);
-            profilePic = bitmap;
+            profilePic = ThumbnailUtils.extractThumbnail(bitmap, 400, 200);
+            profilePicThumb = ThumbnailUtils.extractThumbnail(bitmap, 50, 50);
             collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(),profilePic));
         }
     }
@@ -495,19 +495,25 @@ public class SignupActivity extends BaseActivity implements VerificationListener
 
             Toast toast;
             if (success) {
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                profilePic.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                StorageMetadata metadata = new StorageMetadata.Builder()
+                final ByteArrayOutputStream fullStream = new ByteArrayOutputStream();
+                profilePic.compress(Bitmap.CompressFormat.JPEG, 100, fullStream);
+
+                ByteArrayOutputStream thumbStream = new ByteArrayOutputStream();
+                profilePicThumb.compress(Bitmap.CompressFormat.JPEG, 100, thumbStream);
+
+                final StorageMetadata metadata = new StorageMetadata.Builder()
                         .setContentType("image/jpg")
                         .build();
                 final String profilePicFileName = newUserId+"_profile_pic.jpg";
+                final String profilePicThumbsFileName = newUserId+"_profile_pic_thumb.jpg";
+
                 StorageReference storageRef = LyftoxiFirebase.storageRef;
-                UploadTask uploadTask = storageRef.child("userProfilePics/"+profilePicFileName).putBytes(stream.toByteArray(),metadata);
-                uploadTask.addOnFailureListener(new OnFailureListener() {
+                UploadTask thumbUploadTask = storageRef.child("userProfilePicThumbs/"+profilePicThumbsFileName).putBytes(thumbStream.toByteArray(),metadata);
+                thumbUploadTask.addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(Exception exception) {
                         showProgress(false);
-                        collapsingToolbarLayout.setBackground(getResources().getDrawable(R.drawable.sample_profile_pic));
+                        collapsingToolbarLayout.setBackground(getResources().getDrawable(R.drawable.profile_pic_placeholder_large));
                         Toast toast = Toast.makeText(getApplicationContext(), "Image upload Failed. Try Again", Toast.LENGTH_LONG);
                         toast.show();
                         exception.printStackTrace();
@@ -516,12 +522,33 @@ public class SignupActivity extends BaseActivity implements VerificationListener
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         showProgress(false);
-                        String filePath =  imageUtil.saveToInternalStorage(getBaseContext(),profilePic,profilePicFileName);
+                        String filePath =  imageUtil.saveToInternalStorage(getBaseContext(),profilePicThumb,profilePicThumbsFileName);
                         CurrentUserInfo.getInstance().setProfilePicPath(filePath);
-                        collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(),profilePic));
-
+                        collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(),profilePicThumb));
+                        refreshProfileImage();
                         Toast toast = Toast.makeText(getApplicationContext(), "Sign Up Successful", Toast.LENGTH_LONG);
                         toast.show();
+
+                        StorageReference storageRef = LyftoxiFirebase.storageRef;
+                        UploadTask uploadTaskFullPic = storageRef.child("userProfilePics/"+profilePicFileName).putBytes(fullStream.toByteArray(),metadata);
+                        uploadTaskFullPic.addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(Exception exception) {
+                                //showProgress(false);
+                                exception.printStackTrace();
+                            }
+                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                String filePath =  imageUtil.saveToInternalStorage(getApplicationContext(),profilePic,profilePicFileName);
+                                CurrentUserInfo.getInstance().setProfilePicPath(filePath);
+                                collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(),profilePic));
+                                refreshProfileImage();
+                                //showProgress(false);
+                            }
+                        });
+
+
                     }
                 });
 
