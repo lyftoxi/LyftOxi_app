@@ -126,7 +126,8 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
             Log.d("gog.debug","using default pic");
             profilePic = BitmapFactory.decodeResource(getResources(),R.drawable.profile_pic_placeholder_large);
         }
-        collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(), profilePic));
+        collapsingToolbarLayout.setBackground(new BitmapDrawable(imageUtil.getProfilePic(this)));
+        //collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(), profilePic));
 
         save =(Button)findViewById(R.id.editProfileSave);
 
@@ -386,6 +387,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                    String filePath =  imageUtil.saveToInternalStorage(getApplicationContext(),thumbBitmap,profilePicThumbFileName);
+                    //String filePath = imageUtil.saveToInternalStorage(getBaseContext(),fullBitmap,"user_avatar.jpg");
                     CurrentUserInfo.getInstance().setProfilePicPath(filePath);
                     collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(),thumbBitmap));
                     refreshProfileImage();
@@ -401,7 +403,8 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
                     }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            String filePath =  imageUtil.saveToInternalStorage(getApplicationContext(),fullBitmap,profilePicFileName);
+                            //String filePath =  imageUtil.saveToInternalStorage(getApplicationContext(),fullBitmap,profilePicFileName);
+                            String filePath = imageUtil.saveToInternalStorage(getBaseContext(),fullBitmap,"user_avatar.jpg");
                             CurrentUserInfo.getInstance().setProfilePicPath(filePath);
                             collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(),fullBitmap));
                             refreshProfileImage();

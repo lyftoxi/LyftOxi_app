@@ -182,6 +182,8 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
                             RemoveInterestedRide removeInterestedRide = new RemoveInterestedRide();
                             removeInterestedRide.position = position;
                             removeInterestedRide.execute(i.getId(), CurrentUserInfo.getInstance().getId());
+                            Toast toast =  Toast.makeText(view.getContext(),view.getResources().getString(R.string.marked_uninterested),Toast.LENGTH_SHORT);
+                            toast.show();
                             return;
                         }
 
@@ -209,6 +211,8 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
                         AddInterestedRide addInterestedRide = new AddInterestedRide();
                         addInterestedRide.position = position;
                         addInterestedRide.execute(interestedRide);
+                        Toast toast =  Toast.makeText(view.getContext(),view.getResources().getString(R.string.marked_interested),Toast.LENGTH_SHORT);
+                        toast.show();
                     }
                 });
             }
