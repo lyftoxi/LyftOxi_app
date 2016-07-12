@@ -11,27 +11,90 @@
         android:gravity="center"
         android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="left"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp">
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:layout_margin="20dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/rupee"
-                        android:id="@+id/confirmRideDetailsCurrency"
-                        android:textSize="20sp"
-                        android:textColor="@color/primaryDark"
-                        android:layout_alignBaseline="@+id/confirmRideDetailsPrice"
-                        android:layout_alignBottom="@+id/confirmRideDetailsPrice"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+            <ImageView
+                android:id="@+id/sourceLocation_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_place_black_24dp"
+                android:tint="@color/primaryGreen"/>
+
+            <TextView
+                android:id="@+id/confirmRideDetailsSource"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@id/sourceLocation_icon"
+                android:textSize="20sp"
+                android:text="@string/source"
+                android:textColor="@color/primaryTextColor" />
+
+
+            <ImageView
+                android:id="@+id/confirmRideDetailsTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/confirmRideDetailsSource"
+                android:layout_alignLeft="@id/confirmRideDetailsSource"
+                android:src="@drawable/ic_access_time_black_24dp"
+                android:tint="@color/primaryDark"/>
+            <TextView
+                android:id="@+id/confirmRideDetailsStartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/starting_at"
+                android:layout_below="@id/confirmRideDetailsSource"
+                android:layout_toEndOf="@id/confirmRideDetailsTime"
+
+                />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dotted_line"
+                android:textSize="15sp"
+                android:layout_below="@+id/confirmRideDetailsTime"
+                android:layout_alignLeft="@+id/confirmRideDetailsTime"
+                android:layout_alignStart="@+id/confirmRideDetailsTime"
+                android:textStyle="bold"/>
+            <ImageView
+                android:id="@+id/destinationLocation_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_place_black_24dp"
+                android:tint="@color/primaryRed"
+                android:layout_below="@+id/textView"
+                android:layout_alignLeft="@+id/sourceLocation_icon"
+                android:layout_alignStart="@+id/sourceLocation_icon"/>
+
+            <TextView
+                android:id="@+id/confirmRideDetailsDestination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView"
+                android:layout_toEndOf="@id/destinationLocation_icon"
+                android:textSize="20sp"
+                android:text="@string/destination"
+                android:textColor="@color/primaryTextColor" />
+
+            <!--<TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rupee"
+                android:id="@+id/confirmRideDetailsCurrency"
+                android:textSize="20sp"
+                android:textColor="@color/primaryDark"
+                android:layout_alignBaseline="@+id/confirmRideDetailsPrice"
+                android:layout_alignBottom="@+id/confirmRideDetailsPrice"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
                     <TextView
                         android:id="@+id/confirmRideDetailsPrice"
                         android:layout_width="wrap_content"
@@ -51,68 +114,59 @@
                         android:text="@string/price_decided_by_user"
                         android:layout_below="@id/confirmRideDetailsPrice"
                         android:id="@+id/confirmRideDetailsPriceMessage" />
-
-                </RelativeLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="10dp"
-                    android:gravity="center_horizontal">
-
-
-                    <TextView
-                        android:id="@+id/confirmRideDetailsSource"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/primaryTextColor"
-                        android:textSize="20sp"
-                        android:text="@string/source"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginRight="5dp"
-                            android:src="@android:drawable/ic_menu_my_calendar"/>
-                        <TextView
-                            android:id="@+id/confirmRideDetailsStartTime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/starting_at"
-                            />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="|"/>
-                    <TextView
-                        android:id="@+id/confirmRideDetailsDestination"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/primaryTextColor"
-                        android:textSize="20sp"
-                        android:text="@string/destination"/>
-
-                </LinearLayout>
-            </LinearLayout>
-
-
-
-
-            <LinearLayout
-                android:layout_width="fill_parent"
+-->         <TextView
+                android:id="@+id/rideFareText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:background="@android:drawable/picture_frame">
+                android:text="@string/fare"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textColor="#ff335a50"
+                android:layout_alignLeft="@id/confirmRideDetailsDestination"
+                android:layout_below="@id/confirmRideDetailsDestination"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+            />
 
+            <TextView
+                android:id="@+id/rideListingRupeeSymbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rupee"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textColor="#ff335a50"
+                android:layout_below="@id/confirmRideDetailsDestination"
+                android:layout_toEndOf="@id/rideFareText"
+                android:layout_alignBaseline="@id/rideFareText"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/confirmRideDetailsPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textColor="#ff335a50"
+                android:layout_below="@id/confirmRideDetailsDestination"
+                android:layout_toEndOf="@id/rideListingRupeeSymbol"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                />
+            <View style="@style/HorizontalDivider"
+                android:layout_below="@id/rideFareText"
+                android:layout_marginTop="10dp"/>
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+            <!--android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@android:drawable/picture_frame">
+-->
                 <TextView
                     android:id="@+id/confirmRideDetailsCarBrand"
                     android:layout_width="wrap_content"

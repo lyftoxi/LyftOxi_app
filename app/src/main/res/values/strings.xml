@@ -79,8 +79,8 @@
 
     <string name="marked_interested">Marked as Interested</string>
     <string name="marked_uninterested">Marked as Uninterested</string>
-
-    <string name="price_decided_by_user">(Price Decided by OWNER)</string>
+    <string name="fare">Fare: </string>
+    <string name="price_decided_by_owner"> (Price Decided By Ride Owner)</string>
 
     <string name="title_section1">BOOM</string>
     <string name="title_section2">TICK</string>
