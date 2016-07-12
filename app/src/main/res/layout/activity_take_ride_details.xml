@@ -50,7 +50,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/primaryButtonBackgroundColor"
-                        android:text="@string/price_decided_by_user"
+                        android:text="@string/price_decided_by_owner"
                        android:layout_below="@id/takeRideDetailsPrice"
                         android:id="@+id/takeRideDetailsPriceMessage" />
 
