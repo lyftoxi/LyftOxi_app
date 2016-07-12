@@ -8,110 +8,78 @@
 
 
     <LinearLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-        android:gravity="center"
-    android:orientation="vertical">
-
+        android:layout_height="match_parent"
+        android:gravity="left"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        >
         <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="0px"
+            android:layout_height="0px">
+
+        </LinearLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_otherRideDetailsPrice"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
-
-
-            <TextView
-                android:id="@+id/otherRideDetailsSource"
-                android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/otherRideDetailsPrice"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="@string/source"
-                android:textColor="@color/primaryTextColor" />
+                android:textColor="@color/primaryDark"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:inputType="number"
+                android:hint="@string/priceText"
+                android:layout_marginLeft="20dp"
+                />
+        </android.support.design.widget.TextInputLayout>
 
-            <LinearLayout
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_otherRideDetailsUserMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/otherRideDetailsUserMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginRight="5dp"
-                    android:src="@android:drawable/ic_menu_my_calendar"/>
-                <TextView
-                    android:id="@+id/otherRideDetailsStartTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/starting_at"
-                    />
-            </LinearLayout>
+                android:layout_marginTop="40dp"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:hint="@string/anything_else"
+                android:layout_marginLeft="20dp"/>
+        </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:id="@+id/otherRideDetailsFirstPipe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="|"/>
-            <TextView
-                android:id="@+id/otherRideDetailsVia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:text="@string/via"
-                android:textColor="@color/primaryTextColor" />
-            <TextView
-                android:id="@+id/otherRideDetailsSecondPipe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="|"/>
-            <TextView
-                android:id="@+id/otherRideDetailsDestination"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="@string/destination"
-                android:textColor="@color/primaryTextColor" />
+        <View style="@style/HorizontalDivider"
+            android:layout_marginTop="20dp"/>
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/otherRideDetailsCarBrand"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="@string/car_brand"
-                android:textSize="20sp"
-                android:paddingRight="10dp"/>
-
-            <TextView
-                android:id="@+id/otherRideDetailsCarModel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="@string/car_model"
-                android:textSize="20sp"
-                android:paddingRight="10dp"/>
-
-            <TextView
-                android:id="@+id/otherRideDetailsCarNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:text="@string/car_number"/>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/carFeatureText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
+            android:textStyle="italic"
+            android:textSize="20sp"
+            android:text="@string/carFeatureText"
+            android:textColor="@color/lightBlue"
+            android:layout_marginLeft="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+
+            android:layout_weight="1">
 
             <CheckBox android:id="@+id/otherRideDetailsRadioAc"
                 android:layout_width="wrap_content"
@@ -129,90 +97,39 @@
                 android:text="@string/smoking"
                 />
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
-
-            <CheckBox android:id="@+id/otherRideDetailsRadioAirbag"
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/air_bag"
-                />
 
-            <CheckBox android:id="@+id/otherRideDetailsRadioLuggage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/luggage"
-                />
+                android:orientation="vertical"
+                android:layout_weight="1">
 
+                <CheckBox android:id="@+id/otherRideDetailsRadioAirbag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/air_bag"
+                    />
+
+                <CheckBox android:id="@+id/otherRideDetailsRadioLuggage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/luggage"
+                    />
+
+            </LinearLayout>
         </LinearLayout>
-        <View
-            android:layout_margin="15dp"
-            android:id="@+id/SplitLine_hor1"
-            android:layout_width="match_parent"
-            android:layout_height= "2dp"
-            android:background="@color/background" />
-        <LinearLayout
+
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:gravity="top|center_horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/primaryDark"
-                android:textStyle="bold"
-                android:text="@string/rupee"
-                android:id="@+id/otherRideDetailsRupee" />
-
-            <EditText
-                android:id="@+id/otherRideDetailsPrice"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:textColor="@color/primaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:inputType="number"
-                android:maxLength="4" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/primaryDark"
-                android:textStyle="bold"
-                android:layout_marginLeft="5dp"
-                android:text="@string/owner_comment"
-                android:id="@+id/otherRideDetailsOwnerComment" />
-
-            <EditText
-                android:id="@+id/otherRideDetailsUserMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textSize="12sp"
-                android:textStyle="italic"
-                android:hint="@string/anything_else"/>
-
-        </LinearLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/otherRideDetailsSave"
-        android:text="@string/proceed"
-        android:background="@color/primaryButtonBackgroundColor"
-        android:textColor="@color/primaryButtonTextColor"
-        android:textSize="15sp"
-        android:layout_margin="10dp"
-        />
-
+            android:id="@+id/otherRideDetailsSave"
+            android:text="@string/proceed"
+            android:background="@color/primaryButtonBackgroundColor"
+            android:textColor="@color/primaryButtonTextColor"
+            android:textSize="15sp"
+            android:layout_margin="10dp"
+            />
 
     </LinearLayout>
 
