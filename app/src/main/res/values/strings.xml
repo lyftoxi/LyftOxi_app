@@ -76,8 +76,8 @@
     <string name="no_internet_connection">No Internet !</string>
     <string name="no_internet_connection_please_try_again">Please check your Network connectivity</string>
 
-
-    <string name="price_decided_by_user">Price Decided\nby OWNER</string>
+    <string name="fare">Fare: </string>
+    <string name="price_decided_by_owner"> (Price Decided By Ride Owner)</string>
 
     <string name="title_section1">BOOM</string>
     <string name="title_section2">TICK</string>
