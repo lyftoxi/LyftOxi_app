@@ -1,17 +1,21 @@
 package com.lyftoxi.lyftoxi;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,6 +36,8 @@ public class ShareRideActivity extends BaseActivity {
     static final int RENTED_CAR=1;
 
     private Button addCarBtn;
+
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +91,7 @@ public class ShareRideActivity extends BaseActivity {
 
     private void selectCarType(final Context context)
     {
-        final String [] items           = new String [] {getString(R.string.own_cars), getString(R.string.rented_cars), getString(R.string.back)};
+        /*final String [] items           = new String [] {getString(R.string.own_cars), getString(R.string.rented_cars), getString(R.string.back)};
         ArrayAdapter<String> adapter  = new ArrayAdapter<String> (this, android.R.layout.select_dialog_item,items);
         AlertDialog.Builder builder     = new AlertDialog.Builder(this);
 
@@ -97,9 +103,43 @@ public class ShareRideActivity extends BaseActivity {
             }
         } );
 
-        final AlertDialog dialog = builder.create();
+        final AlertDialog dialog = builder.create();*/
+        dialog = new Dialog(context);
+        dialog.setContentView(R.layout.select_car_type_layout);
+        //dialog.setTitle(getString(R.string.select_car_type));
+
+
+        Button ownCars = (Button) dialog.findViewById(R.id.selectCarTypeOwnCar);
+        Button rentedCars = (Button) dialog.findViewById(R.id.selectCarTypeRentedCar);
+        Button back = (Button) dialog.findViewById(R.id.selectCarTypeBack);
+
+        ownCars.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCarsByType(OWN_CAR);
+            }
+        });
+
+        rentedCars.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCarsByType(RENTED_CAR);
+            }
+        });
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                dialog.dismiss();
+            }
+        });
+
         dialog.setCancelable(false);
         dialog.show();
+        Window window = dialog.getWindow();
+        window.setLayout(LinearLayoutCompat.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
     }
 
 
@@ -114,6 +154,7 @@ public class ShareRideActivity extends BaseActivity {
                 showRentedCars();
                 break;
             default: finish();
+                dialog.dismiss();
         }
     }
 
@@ -142,6 +183,7 @@ public class ShareRideActivity extends BaseActivity {
         }
         carListAdapter = new CarListAdapter(this,R.layout.car_listing, carInfos);
         carListView.setAdapter(carListAdapter);
+        dialog.dismiss();
     }
 
     private void showRentedCars()

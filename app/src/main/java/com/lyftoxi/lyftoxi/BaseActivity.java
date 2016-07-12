@@ -42,24 +42,9 @@ import com.lyftoxi.lyftoxi.util.ConnectionDetector;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.lyftoxi.lyftoxi.util.ImageUtil;
 import com.lyftoxi.lyftoxi.util.RoundImage;
-import com.lyftoxi.lyftoxi.util.Util;
-import com.google.api.client.extensions.android.http.AndroidHttp;
-import com.google.api.client.http.GenericUrl;
-import com.google.api.client.http.HttpHeaders;
-import com.google.api.client.http.HttpRequest;
-import com.google.api.client.http.HttpResponse;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.util.Base64;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -227,9 +212,18 @@ public class BaseActivity extends AppCompatActivity {
     public void refreshProfileImage()
     {
         Log.d("gog.debug","executing profile image refresh...");
-        ImageUtil imageUtil = new ImageUtil();
-        Bitmap profilePic = imageUtil.getProfilePic(this);
-        profilePic = ThumbnailUtils.extractThumbnail(profilePic, 100, 100);
+        Bitmap profilePic = null;
+        if(session.isLoggedIn())
+        {
+            ImageUtil imageUtil = new ImageUtil();
+            profilePic = imageUtil.getProfilePic(this);
+            profilePic = ThumbnailUtils.extractThumbnail(profilePic, 100, 100);
+        }
+        else
+        {
+            Log.d("gog.debug","using default pic");
+            profilePic = BitmapFactory.decodeResource(getResources(),R.drawable.sample_profile_pic);
+        }
         /*Bitmap profilePic;
         if(session.isLoggedIn() && null!=CurrentUserInfo.getInstance().getProfilePicPath()) {
             Log.d("gog.debug","profile pic path "+CurrentUserInfo.getInstance().getProfilePicPath());
@@ -334,6 +328,7 @@ public class BaseActivity extends AppCompatActivity {
                         CurrentUserInfo.reset();
                         CurrentUserInterestedRides.reset();
                         RideInfo.reset();
+                        refreshProfileImage();
                         contentIntent = new Intent(this.callingActivity, MainActivity.class);
                         contentIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         break;

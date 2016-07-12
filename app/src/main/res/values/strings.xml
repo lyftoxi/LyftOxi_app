@@ -77,6 +77,9 @@
     <string name="no_internet_connection_please_try_again">Please check your Network connectivity</string>
 
 
+    <string name="marked_interested">Marked as Interested</string>
+    <string name="marked_uninterested">Marked as Uninterested</string>
+
     <string name="price_decided_by_user">(Price Decided by OWNER)</string>
 
     <string name="title_section1">BOOM</string>
