@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">lyftoxi</string>
+    <string name="app_name">LyftOxi</string>
 
     <string name="tagline">R I D E \tS H A R I N G \t A P P</string>
     <string name="action_settings">Settings</string>
@@ -53,7 +53,7 @@
     <string name="seat">Seat</string>
     <string name="ride_of">Ride of </string>
     <string name="ac">AC</string>
-    <string name="priceText">Ride Fare (in Rupees)</string>
+    <string name="priceText">Ride Fare (in \u20B9)</string>
     <string name="anything_else">Specific Ride Instructions</string>
     <string name="carFeatureText">Car Features for this Ride</string>
     <string name="music">Music</string>
