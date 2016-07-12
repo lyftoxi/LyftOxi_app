@@ -56,13 +56,12 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
-   // private SessionManager session;
     private LatLng currentLocation;
     private ImageView logo;
     private FrameLayout splashScreen,  welcomeView;
     private static final int ANIMATION_DURATION=2000;
     private AnimationDrawable frameAnimation = null;
-
+    private static boolean showSplashScreen=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,25 +77,28 @@ public class MainActivity extends BaseActivity {
         welcomeView = (FrameLayout)findViewById(R.id.welcomeView);
         splashScreen = (FrameLayout)findViewById(R.id.splashScreen);
 
-
-
-        logo = (ImageView)findViewById(R.id.mainLyftoxiLogoAnim);
-        logo.setBackgroundResource(R.drawable.lyftoxi_logo_anim);
-        /*AnimationDrawable frameAnimation = (AnimationDrawable) logo.getBackground();
-        frameAnimation.setOneShot(true);
-        frameAnimation.start();*/
-        logoAnimation();
-        if(session.isLoggedIn()) {
-            downloadUserProfilePic();
-            new GetMyInterestedRides().execute();
+        if(showSplashScreen) {
+            logo = (ImageView) findViewById(R.id.mainLyftoxiLogoAnim);
+            logo.setBackgroundResource(R.drawable.lyftoxi_logo_anim);
+            AnimationDrawable frameAnimation = (AnimationDrawable) logo.getBackground();
+            frameAnimation.setOneShot(true);
+            frameAnimation.start();
+            logoAnimation();
+            crossfade();
+            showSplashScreen=false;
         }
         else
         {
-            crossfade();
+            splashScreen.setVisibility(View.GONE);
+            welcomeView.setVisibility(View.VISIBLE);
         }
-       /* TextView certKey = (TextView)findViewById(R.id.textViewClickCallShare);
-        certKey.setText("SIGNED "+getSecretKey());*/
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        showSplashScreen=true;
+        Log.i("gog.debug", "On Destroy .....");
     }
 
 

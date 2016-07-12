@@ -37,6 +37,22 @@ public class ImageUtil {
        Log.d("myTag", "ABSOLUTE PATH................"+mypath.getAbsolutePath());
        return mypath.getAbsolutePath();
 	}
+
+    public Bitmap getProfilePic(Context context)
+    {
+        ContextWrapper cw = new ContextWrapper(context);
+        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+        File f=new File(directory,"user_avatar.jpg");
+        Bitmap b = null;
+        try {
+            b = BitmapFactory.decodeStream(new FileInputStream(f));
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        return b;
+    }
        
        public Bitmap loadImageFromStorage(String path)
        {

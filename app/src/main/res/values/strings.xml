@@ -84,6 +84,7 @@
     <string name="title_section3">BLA</string>
     <string name="title_section4">Take A ride</string>
 
+
     <string name="car_delete_message">Do you really want to delete this car ?</string>
     <string name="cancel_ride">Do you really want to cancel this ride ?</string>
     <string name="back">Back</string>

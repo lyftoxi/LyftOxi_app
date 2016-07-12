@@ -228,17 +228,18 @@ public class BaseActivity extends AppCompatActivity {
     {
         Log.d("gog.debug","executing profile image refresh...");
         ImageUtil imageUtil = new ImageUtil();
-        Bitmap profilePic;
+        Bitmap profilePic = imageUtil.getProfilePic(this);
+        profilePic = ThumbnailUtils.extractThumbnail(profilePic, 100, 100);
+        /*Bitmap profilePic;
         if(session.isLoggedIn() && null!=CurrentUserInfo.getInstance().getProfilePicPath()) {
             Log.d("gog.debug","profile pic path "+CurrentUserInfo.getInstance().getProfilePicPath());
-            profilePic = imageUtil.loadImageFromStorage(CurrentUserInfo.getInstance().getProfilePicPath());
-            profilePic = ThumbnailUtils.extractThumbnail(profilePic, 100, 100);
+
         }
         else
         {
             Log.d("gog.debug","using default pic");
            profilePic = BitmapFactory.decodeResource(getResources(),R.drawable.sample_profile_pic);
-        }
+        }*/
         navProfilePicBtn.setImageDrawable(new RoundImage(profilePic));
     }
 
