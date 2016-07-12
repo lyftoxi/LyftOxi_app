@@ -15,7 +15,9 @@ import java.text.SimpleDateFormat;
 
 public class OtherRideDetailsActivity extends BaseActivity {
 
-    private TextView source, via, destination,carModel,carBrand, carNumber, userMessage, price, startingTime ;
+    private TextView userMessage, price;
+
+    /*via,source, destination,carModel,carBrand, carNumber, userMessage, price, startingTime ;*/
     private CheckBox acAvailable, airbagAvailable, musicAvailable, smokingAllowed, luggageAllowed;
     private Button otherRideDetailsDetails;
     @Override
@@ -23,17 +25,17 @@ public class OtherRideDetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_other_ride_details);
 
-        final SimpleDateFormat sdf  = new SimpleDateFormat("dd-MM-yyyy h:mm a");
+        //final SimpleDateFormat sdf  = new SimpleDateFormat("dd-MM-yyyy h:mm a");
 
-        source  = (TextView)findViewById(R.id.otherRideDetailsSource);
-        via  = (TextView)findViewById(R.id.otherRideDetailsVia);
-        destination  = (TextView)findViewById(R.id.otherRideDetailsDestination);
-        carBrand = (TextView)findViewById(R.id.otherRideDetailsCarBrand);
-        carModel = (TextView)findViewById(R.id.otherRideDetailsCarModel);
-        carNumber  = (TextView)findViewById(R.id.otherRideDetailsCarNumber);
+        //source  = (TextView)findViewById(R.id.otherRideDetailsSource);
+        //via  = (TextView)findViewById(R.id.otherRideDetailsVia);
+        //destination  = (TextView)findViewById(R.id.otherRideDetailsDestination);
+        //carBrand = (TextView)findViewById(R.id.otherRideDetailsCarBrand);
+        //carModel = (TextView)findViewById(R.id.otherRideDetailsCarModel);
+        //carNumber  = (TextView)findViewById(R.id.otherRideDetailsCarNumber);
         userMessage = (TextView)findViewById(R.id.otherRideDetailsUserMessage);
         price = (TextView)findViewById(R.id.otherRideDetailsPrice);
-        startingTime = (TextView)findViewById(R.id.otherRideDetailsStartTime);
+        //startingTime = (TextView)findViewById(R.id.otherRideDetailsStartTime);
 
         acAvailable = (CheckBox) findViewById(R.id.otherRideDetailsRadioAc);
         airbagAvailable = (CheckBox) findViewById(R.id.otherRideDetailsRadioAirbag);
@@ -46,8 +48,8 @@ public class OtherRideDetailsActivity extends BaseActivity {
         RideInfo rideInfo = RideInfo.getInstance();
 
         getSupportActionBar().setTitle("Ride of "+rideInfo.getRideOf().getName());
-        source.setText(rideInfo.getSourceName());
-        if(null != rideInfo.getViaName()) {
+        //source.setText(rideInfo.getSourceName());
+        /*if(null != rideInfo.getViaName()) {
             via.setText(rideInfo.getViaName());
         }
         else
@@ -55,12 +57,12 @@ public class OtherRideDetailsActivity extends BaseActivity {
             via.setVisibility(View.GONE);
             TextView secondPipe = (TextView)findViewById(R.id.otherRideDetailsSecondPipe);
             secondPipe.setVisibility(View.GONE);
-        }
-        destination.setText(rideInfo.getDestinationName());
+        }*/
+        /*destination.setText(rideInfo.getDestinationName());
         carBrand.setText(rideInfo.getCar().getCarBrand());
         carModel.setText(rideInfo.getCar().getCarModel());
         carNumber.setText(rideInfo.getCar().getCarNo());
-        startingTime.setText(sdf.format(rideInfo.getStarTime()));
+        startingTime.setText(sdf.format(rideInfo.getStarTime()));*/
 
         acAvailable.setChecked(rideInfo.getCar().isAcAvailable());
         airbagAvailable.setChecked(rideInfo.getCar().isAirbagAvailable());
@@ -77,7 +79,7 @@ public class OtherRideDetailsActivity extends BaseActivity {
             if(!rideInfo.getCar().isLuggageAllowed()){luggageAllowed.setEnabled(false);}
         }
 
-        price.setText(rideInfo.getFare()+"");
+        //price.setText(rideInfo.getFare()+"");
         userMessage.setText(rideInfo.getUserMessage());
 
 
