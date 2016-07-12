@@ -45,7 +45,7 @@ public class CarAddEdit extends BaseActivity {
 
     private String[] brands;
 
-    private static final String  CAR_NUMBER_PATTERN = "^[A-Z]{2}\\s[0-9]{2}\\s[A-Z]{2}\\s[0-9]{4}$";
+    private static final String  CAR_NUMBER_PATTERN = "^[A-Z]{2}[\\s|.|-]*[0-9]+[\\s|.|-]*[A-Z]*[\\s|.|-]*[0-9]{4}$";
 
 
     @Override

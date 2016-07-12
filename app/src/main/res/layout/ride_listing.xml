@@ -124,10 +124,9 @@
         />
         <TextView
             android:id="@+id/rideListingFareDisclaimer"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=" (Price Decided By Ride Owner)"
-            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:text="@string/price_decided_by_user"
             android:textColor="@color/disclaimer"
             android:layout_below="@id/rideListingTo"
             android:layout_toEndOf="@id/rideListingFare"

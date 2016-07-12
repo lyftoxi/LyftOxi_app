@@ -75,12 +75,13 @@
     <string name="no_internet_connection_please_try_again">Please check your Network connectivity</string>
 
 
-    <string name="price_decided_by_user">Price Decided\nby OWNER</string>
+    <string name="price_decided_by_user">(Price Decided by OWNER)</string>
 
     <string name="title_section1">BOOM</string>
     <string name="title_section2">TICK</string>
     <string name="title_section3">BLA</string>
     <string name="title_section4">Take A ride</string>
+
 
     <string name="car_delete_message">Do you really want to delete this car ?</string>
     <string name="cancel_ride">Do you really want to cancel this ride ?</string>
