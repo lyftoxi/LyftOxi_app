@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +49,7 @@ public class ConfirmRideActivity extends BaseActivity {
 
     private TextView confirmRideDetailsPrice, confirmRideDetailsSource, confirmRideDetailsDestination,
             confirmRideDetailsStartTime, confirmRideDetailsCarBrand, confirmRideDetailsCarModel, confirmRideDetailsCarNumber,
-            confirmRideDetailsUserMessage, confirmRideDetailsPhone;
+            confirmRideDetailsUserMessage, confirmRideDetailsCarColor,confirmRideDetailsPhone;
 
     private CheckBox confirmRideDetailsRadioAc,confirmRideDetailsRadioMusic,confirmRideDetailsRadioSmoking,
             confirmRideDetailsRadioAirbag, confirmRideDetailsLuggage;
@@ -56,6 +57,8 @@ public class ConfirmRideActivity extends BaseActivity {
     private SimpleDateFormat sdf =  new SimpleDateFormat("dd-MM-yyyy h:mm a");
 
     private Button confirmRideDetailsPublish;
+
+    private ImageView confirmRideDetailsCarLogo;
 
     private ImageUtil imageUtil;
 
@@ -79,6 +82,9 @@ public class ConfirmRideActivity extends BaseActivity {
         confirmRideDetailsCarNumber = (TextView) findViewById(R.id.confirmRideDetailsCarNumber);
         confirmRideDetailsUserMessage = (TextView) findViewById(R.id.confirmRideDetailsUserMessage);
         //confirmRideDetailsPhone = (TextView) findViewById(R.id.confirmRideDetailsPhone);
+        confirmRideDetailsCarColor = (TextView) findViewById(R.id.confirmRideDetailsCarColor);
+
+        confirmRideDetailsCarLogo = (ImageView) findViewById(R.id.confirmRideDetailsCarLogo);
 
         confirmRideDetailsRadioAc = (CheckBox) findViewById(R.id.confirmRideDetailsRadioAc);
         confirmRideDetailsRadioAc.setEnabled(false);
@@ -110,9 +116,34 @@ public class ConfirmRideActivity extends BaseActivity {
             confirmRideDetailsCarBrand.setText(ride.getCar().getCarBrand());
             confirmRideDetailsCarModel.setText(ride.getCar().getCarModel());
             confirmRideDetailsCarNumber.setText(ride.getCar().getCarNo());
+            confirmRideDetailsCarColor.setText(ride.getCar().getCarColor());
             confirmRideDetailsUserMessage.setText(ride.getUserMessage());
             //confirmRideDetailsPhone.setText(ride.getRideOf().getPhNo());
 
+            Bitmap carLogo;
+            if(null!=ride.getCar().getCarBrand() && !ride.getCar().getCarBrand().trim().equals(""))
+            {
+                int id;
+                if(ride.getCar().getCarBrand().contains("Rented"))
+                {
+                    id= getResources().getIdentifier("rented", "drawable",getPackageName());
+                }
+                else {
+                    id = getResources().getIdentifier(ride.getCar().getCarBrand().toLowerCase(), "drawable", getPackageName());
+                }
+                carLogo = BitmapFactory.decodeResource(getResources(),id);
+                if(null==carLogo)
+                {
+                    carLogo = BitmapFactory.decodeResource(getResources(),R.drawable.my_brand);
+                }
+
+            }
+            else
+            {
+                carLogo = BitmapFactory.decodeResource(getResources(),R.drawable.my_brand);
+            }
+
+            confirmRideDetailsCarLogo.setImageBitmap(carLogo);
 
             confirmRideDetailsRadioAc.setChecked(ride.getCar().isAcAvailable());
             confirmRideDetailsRadioMusic.setChecked(ride.getCar().isMusicAvailable());

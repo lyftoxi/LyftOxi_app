@@ -146,19 +146,18 @@
                 android:layout_marginTop="10dp"/>
 
             <ImageView
-                android:id="@+id/carLogo"
+                android:id="@+id/takeRideDetailsCarLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/dividerAfterRideDetail"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/my_brand"
-                android:tint="@color/primaryYellow"/>
+                android:src="@drawable/my_brand" />
             <TextView
                 android:id="@+id/takeRideDetailsCarBrand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/dividerAfterRideDetail"
-                android:layout_toRightOf="@id/carLogo"
+                android:layout_toRightOf="@id/takeRideDetailsCarLogo"
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:text="@string/car_brand"
@@ -204,7 +203,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/takeRideDetailsCarColor"
-                android:layout_toRightOf="@id/carLogo"
+                android:layout_toRightOf="@id/takeRideDetailsCarLogo"
                 android:layout_marginTop="1dp"
                 android:textStyle="bold"
                 android:textSize="15sp"
@@ -215,7 +214,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/takeRideDetailsCarNumber"
-                android:layout_toRightOf="@id/carLogo"
+                android:layout_toRightOf="@id/takeRideDetailsCarLogo"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp"
                 android:text="@string/ac"
@@ -226,7 +225,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/takeRideDetailsRadioAc"
-                android:layout_toRightOf="@id/carLogo"
+                android:layout_toRightOf="@id/takeRideDetailsCarLogo"
                 android:layout_marginTop="1dp"
                 android:layout_marginLeft="5dp"
                 android:text="@string/music"
@@ -237,7 +236,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/takeRideDetailsRadioMusic"
-                android:layout_toRightOf="@id/carLogo"
+                android:layout_toRightOf="@id/takeRideDetailsCarLogo"
                 android:layout_marginTop="1dp"
                 android:layout_marginLeft="5dp"
                 android:text="@string/smoking"
@@ -300,44 +299,46 @@
                 android:layout_below="@id/takeRideDetailsUserMessage"
                 android:layout_marginTop="10dp"/>
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="horizontal"
+                android:layout_below="@id/takeRideDetailsUserMessage"
+                android:layout_margin="10dp"
+                android:gravity="center_horizontal">
+
+
             <ImageButton
                 android:id="@+id/takeRideDetailsCall"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_below="@id/dividerAfterUserComment"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="4dp"
+                android:layout_margin="10dp"
                 android:src="@drawable/ic_call_black_48dp"
                 android:tint="@color/primaryGreen"
-                android:backgroundTint="@android:color/transparent"/>
-
-            <TextView
-                android:id="@+id/takeRideDetailsContactOwner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/dividerAfterUserComment"
-                android:layout_toRightOf="@id/takeRideDetailsCall"
-                android:text="@string/contactRideOwner"
-                android:background="@drawable/rectangle_border"
-                android:textColor="@color/lightBlue"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="5dp"
+                android:background="@android:color/transparent"
                 />
+
+                <TextView
+                    android:id="@+id/takeRideDetailsContactOwner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contactRideOwner"
+                    android:textColor="@color/primaryTextColor"
+                    android:textStyle="normal"
+                    android:textSize="20sp"
+                    android:layout_marginTop="20dp"
+                    />
 
             <ImageButton
                 android:id="@+id/takeRideDetailSms"
-                android:layout_width="fill_parent"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_below="@id/dividerAfterUserComment"
-                android:layout_toRightOf="@id/takeRideDetailsContactOwner"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="0dp"
+                android:layout_margin="10dp"
                 android:src="@drawable/ic_message_black_48dp"
                 android:tint="@color/primaryGreen"
-                android:backgroundTint="@android:color/transparent"
+                android:background="@android:color/transparent"
                 />
+            </LinearLayout>
 
         </RelativeLayout>
 
