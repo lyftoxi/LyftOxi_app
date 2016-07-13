@@ -11,8 +11,336 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="left"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp">
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/sourceLocation_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/ic_place_black_24dp"
+                android:tint="@color/primaryGreen"/>
+
+            <TextView
+                android:id="@+id/takeRideDetailsSource"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@id/sourceLocation_icon"
+                android:textSize="18sp"
+                android:text="@string/source"
+                android:textColor="@color/primaryGreen" />
+
+
+            <ImageView
+                android:id="@+id/takeRideDetailsTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/takeRideDetailsSource"
+                android:layout_alignLeft="@id/takeRideDetailsSource"
+                android:src="@drawable/ic_access_time_black_24dp"
+                android:tint="@color/primaryDark"/>
+            <TextView
+                android:id="@+id/takeRideDetailsStartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/starting_at"
+                android:layout_below="@id/takeRideDetailsSource"
+                android:layout_toEndOf="@id/takeRideDetailsTime"
+
+                />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dotted_line"
+                android:textSize="15sp"
+                android:layout_below="@+id/takeRideDetailsTime"
+                android:layout_alignLeft="@+id/takeRideDetailsTime"
+                android:layout_alignStart="@+id/takeRideDetailsTime"
+                android:textStyle="bold"/>
+            <ImageView
+                android:id="@+id/destinationLocation_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_place_black_24dp"
+                android:tint="@color/primaryRed"
+                android:layout_below="@+id/textView"
+                android:layout_alignLeft="@+id/sourceLocation_icon"
+                android:layout_alignStart="@+id/sourceLocation_icon"/>
+
+            <TextView
+                android:id="@+id/takeRideDetailsDestination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/destinationLocation_icon"
+                android:layout_below="@+id/textView"
+                android:layout_toEndOf="@id/destinationLocation_icon"
+                android:textSize="18sp"
+                android:text="@string/destination"
+                android:textColor="@color/primaryRed" />
+
+            <TextView
+                android:id="@+id/rideFareText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fare"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textColor="#ff335a50"
+                android:layout_alignLeft="@id/takeRideDetailsDestination"
+                android:layout_below="@id/takeRideDetailsDestination"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/takeRideRupeeSymbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rupee"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textColor="#ff335a50"
+                android:layout_below="@id/takeRideDetailsDestination"
+                android:layout_toEndOf="@id/rideFareText"
+                android:layout_alignBaseline="@id/rideFareText"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/takeRideDetailsPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textColor="#ff335a50"
+                android:layout_below="@id/takeRideDetailsDestination"
+                android:layout_toEndOf="@id/takeRideRupeeSymbol"
+                android:layout_alignBaseline="@id/rideFareText"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/takeRideFareDisclaimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/price_decided_by_owner"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textColor="@color/disclaimer"
+                android:layout_below="@id/takeRideDetailsDestination"
+                android:layout_toEndOf="@id/takeRideDetailsPrice"
+                android:layout_alignBaseline="@id/rideFareText"
+                android:textSize="9sp"
+                android:textStyle="italic"
+                />
+            <View android:id="@+id/dividerAfterRideDetail"
+                style="@style/HorizontalDivider"
+                android:layout_below="@id/rideFareText"
+                android:layout_marginTop="10dp"/>
+
+            <ImageView
+                android:id="@+id/carLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dividerAfterRideDetail"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/my_brand"
+                android:tint="@color/primaryYellow"/>
+            <TextView
+                android:id="@+id/takeRideDetailsCarBrand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dividerAfterRideDetail"
+                android:layout_toRightOf="@id/carLogo"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:text="@string/car_brand"
+                android:textSize="17sp"
+                />
+            <TextView
+                android:id="@+id/takeRideDetailsCarModel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dividerAfterRideDetail"
+                android:layout_toRightOf="@id/takeRideDetailsCarBrand"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_alignBaseline="@id/takeRideDetailsCarBrand"
+                android:textStyle="bold"
+                android:text="@string/car_model"
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/hyphen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dividerAfterRideDetail"
+                android:layout_toRightOf="@id/takeRideDetailsCarModel"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:text=" - "
+                android:textSize="17sp"
+                />
+            <TextView
+                android:id="@+id/takeRideDetailsCarColor"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dividerAfterRideDetail"
+                android:layout_toRightOf="@id/hyphen"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:text="@string/car_color"
+                android:textSize="17sp"
+                />
+            <TextView
+                android:id="@+id/takeRideDetailsCarNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/takeRideDetailsCarColor"
+                android:layout_toRightOf="@id/carLogo"
+                android:layout_marginTop="1dp"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="@color/accent"
+                android:text="@string/car_number"/>
+
+            <CheckBox android:id="@+id/takeRideDetailsRadioAc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/takeRideDetailsCarNumber"
+                android:layout_toRightOf="@id/carLogo"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:text="@string/ac"
+                android:textColor="@color/lightBlue"
+                android:buttonTint="@color/lightBlue"
+                />
+            <CheckBox android:id="@+id/takeRideDetailsRadioMusic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/takeRideDetailsRadioAc"
+                android:layout_toRightOf="@id/carLogo"
+                android:layout_marginTop="1dp"
+                android:layout_marginLeft="5dp"
+                android:text="@string/music"
+                android:textColor="@color/lightBlue"
+                android:buttonTint="@color/lightBlue"
+                />
+            <CheckBox android:id="@+id/takeRideDetailsRadioSmoking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/takeRideDetailsRadioMusic"
+                android:layout_toRightOf="@id/carLogo"
+                android:layout_marginTop="1dp"
+                android:layout_marginLeft="5dp"
+                android:text="@string/smoking"
+                android:textColor="@color/lightBlue"
+                android:buttonTint="@color/lightBlue"
+                />
+            <CheckBox android:id="@+id/takeRideDetailsRadioAirbag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/takeRideDetailsCarNumber"
+                android:layout_toRightOf="@id/takeRideDetailsRadioAc"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="40dp"
+                android:text="@string/air_bag"
+                android:textColor="@color/lightBlue"
+                android:buttonTint="@color/lightBlue"
+                />
+
+            <CheckBox android:id="@+id/takeRideDetailsLuggage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/takeRideDetailsRadioAirbag"
+                android:layout_toRightOf="@id/takeRideDetailsRadioAc"
+                android:layout_marginTop="1dp"
+                android:layout_marginLeft="40dp"
+                android:text="@string/luggage"
+                android:textColor="@color/lightBlue"
+                android:buttonTint="@color/lightBlue"
+                />
+            <View android:id="@+id/dividerAfterCarDetail"
+                style="@style/HorizontalDivider"
+                android:layout_below="@id/takeRideDetailsRadioSmoking"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/takeRideDetailsUserMessageHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dividerAfterCarDetail"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:text="@string/anything_else"
+                android:textColor="@color/disclaimer"
+                android:textSize="17sp"
+                android:textStyle="normal"/>
+            <TextView
+                android:id="@+id/takeRideDetailsUserMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/takeRideDetailsUserMessageHeading"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:singleLine="false"
+                android:text="test"
+                android:textColor="@color/lightBlue"
+                android:textSize="15sp"
+                android:textStyle="italic"/>
+
+            <View android:id="@+id/dividerAfterUserComment"
+                style="@style/HorizontalDivider"
+                android:layout_below="@id/takeRideDetailsUserMessage"
+                android:layout_marginTop="10dp"/>
+
+            <ImageButton
+                android:id="@+id/takeRideDetailsCall"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@id/dividerAfterUserComment"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/ic_call_black_48dp"
+                android:tint="@color/primaryGreen"
+                android:backgroundTint="@android:color/transparent"/>
+            <Button
+                android:id="@+id/takeRideDetailsContactOwner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dividerAfterUserComment"
+                android:layout_toRightOf="@id/takeRideDetailsCall"
+                android:text="@string/contactRideOwner"
+                android:background="@color/lightBlue"
+                android:textColor="@color/primaryTextColor"
+                android:textStyle="normal"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                />
+
+            <ImageButton
+                android:id="@+id/takeRideDetailSms"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/dividerAfterUserComment"
+                android:layout_toRightOf="@id/takeRideDetailsContactOwner"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_message_black_48dp"
+                android:tint="@color/primaryGreen"
+                android:backgroundTint="@android:color/transparent"
+                />
+
+        </RelativeLayout>
+
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -246,7 +574,7 @@
 
 
             </LinearLayout>
-
+-->
       <!--  <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

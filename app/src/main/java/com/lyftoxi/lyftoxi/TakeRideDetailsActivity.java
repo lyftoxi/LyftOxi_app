@@ -77,7 +77,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
         takeRideDetailsCarModel = (TextView) findViewById(R.id.takeRideDetailsCarModel);
         takeRideDetailsCarNumber = (TextView) findViewById(R.id.takeRideDetailsCarNumber);
         takeRideDetailsUserMessage = (TextView) findViewById(R.id.takeRideDetailsUserMessage);
-        takeRideDetailsPhone = (TextView) findViewById(R.id.takeRideDetailsPhone);
+        //takeRideDetailsPhone = (TextView) findViewById(R.id.takeRideDetailsPhone);
 
         takeRideDetailsRadioAc = (CheckBox) findViewById(R.id.takeRideDetailsRadioAc);
         takeRideDetailsRadioAc.setEnabled(false);
@@ -112,7 +112,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
             takeRideDetailsCarModel.setText(seletctedRide.getCar().getCarModel());
             takeRideDetailsCarNumber.setText(seletctedRide.getCar().getCarNo());
             takeRideDetailsUserMessage.setText(seletctedRide.getUserMessage());
-            takeRideDetailsPhone.setText(seletctedRide.getRideOf().getPhNo());
+            //takeRideDetailsPhone.setText(seletctedRide.getRideOf().getPhNo());
 
 
             takeRideDetailsRadioAc.setChecked(seletctedRide.getCar().isAcAvailable());

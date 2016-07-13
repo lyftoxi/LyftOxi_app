@@ -23,6 +23,7 @@
                 android:id="@+id/sourceLocation_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:src="@drawable/ic_place_black_24dp"
                 android:tint="@color/primaryGreen"/>
 
@@ -32,9 +33,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@id/sourceLocation_icon"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:text="@string/source"
-                android:textColor="@color/primaryTextColor" />
+                android:textColor="@color/primaryGreen" />
 
 
             <ImageView
@@ -78,11 +79,12 @@
                 android:id="@+id/confirmRideDetailsDestination"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignTop="@id/destinationLocation_icon"
                 android:layout_below="@+id/textView"
                 android:layout_toEndOf="@id/destinationLocation_icon"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:text="@string/destination"
-                android:textColor="@color/primaryTextColor" />
+                android:textColor="@color/primaryRed" />
 
             <TextView
                 android:id="@+id/rideFareText"
@@ -99,7 +101,7 @@
             />
 
             <TextView
-                android:id="@+id/rideListingRupeeSymbol"
+                android:id="@+id/confirmRideRupeeSymbol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/rupee"
@@ -119,11 +121,12 @@
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:textColor="#ff335a50"
                 android:layout_below="@id/confirmRideDetailsDestination"
-                android:layout_toEndOf="@id/rideListingRupeeSymbol"
+                android:layout_toEndOf="@id/confirmRideRupeeSymbol"
                 android:layout_alignBaseline="@id/rideFareText"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 />
+            
             <View android:id="@+id/dividerAfterRideDetail"
                 style="@style/HorizontalDivider"
                 android:layout_below="@id/rideFareText"
@@ -203,7 +206,9 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp"
                 android:text="@string/ac"
-                    />
+                android:textColor="@color/lightBlue"
+                android:buttonTint="@color/lightBlue"
+                />
             <CheckBox android:id="@+id/confirmRideDetailsRadioMusic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -212,6 +217,8 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginLeft="5dp"
                 android:text="@string/music"
+                android:textColor="@color/lightBlue"
+                android:buttonTint="@color/lightBlue"
                 />
             <CheckBox android:id="@+id/confirmRideDetailsRadioSmoking"
                 android:layout_width="wrap_content"
@@ -221,6 +228,8 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginLeft="5dp"
                 android:text="@string/smoking"
+                android:textColor="@color/lightBlue"
+                android:buttonTint="@color/lightBlue"
                 />
             <CheckBox android:id="@+id/confirmRideDetailsRadioAirbag"
                 android:layout_width="wrap_content"
@@ -230,6 +239,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="40dp"
                 android:text="@string/air_bag"
+                android:textColor="@color/lightBlue"
+                android:buttonTint="@color/lightBlue"
                 />
 
             <CheckBox android:id="@+id/confirmRideDetailsLuggage"
@@ -240,6 +251,8 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginLeft="40dp"
                 android:text="@string/luggage"
+                android:textColor="@color/lightBlue"
+                android:buttonTint="@color/lightBlue"
                 />
             <View android:id="@+id/dividerAfterCarDetail"
                 style="@style/HorizontalDivider"
