@@ -306,23 +306,24 @@
                 android:layout_height="50dp"
                 android:layout_below="@id/dividerAfterUserComment"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="4dp"
                 android:src="@drawable/ic_call_black_48dp"
                 android:tint="@color/primaryGreen"
                 android:backgroundTint="@android:color/transparent"/>
-            <Button
+
+            <TextView
                 android:id="@+id/takeRideDetailsContactOwner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/dividerAfterUserComment"
                 android:layout_toRightOf="@id/takeRideDetailsCall"
                 android:text="@string/contactRideOwner"
-                android:background="@color/lightBlue"
-                android:textColor="@color/primaryTextColor"
-                android:textStyle="normal"
-                android:textSize="15sp"
+                android:background="@drawable/rectangle_border"
+                android:textColor="@color/lightBlue"
+                android:textStyle="bold"
+                android:textSize="20sp"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="5dp"
                 />
 
             <ImageButton
@@ -332,7 +333,7 @@
                 android:layout_below="@id/dividerAfterUserComment"
                 android:layout_toRightOf="@id/takeRideDetailsContactOwner"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="0dp"
                 android:src="@drawable/ic_message_black_48dp"
                 android:tint="@color/primaryGreen"
                 android:backgroundTint="@android:color/transparent"
