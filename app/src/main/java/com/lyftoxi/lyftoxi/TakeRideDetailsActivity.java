@@ -58,7 +58,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
 
     private ImageButton takeRideDetailsCall, takeRideDetailSms;
 
-    private ImageView takeRideDetailsRideOwnerImage;
+    private ImageView takeRideDetailsCarLogo;
 
    // private Button takeRideInterested;
 
@@ -78,6 +78,8 @@ public class TakeRideDetailsActivity extends BaseActivity {
         takeRideDetailsCarNumber = (TextView) findViewById(R.id.takeRideDetailsCarNumber);
         takeRideDetailsUserMessage = (TextView) findViewById(R.id.takeRideDetailsUserMessage);
         //takeRideDetailsPhone = (TextView) findViewById(R.id.takeRideDetailsPhone);
+
+        takeRideDetailsCarLogo = (ImageView) findViewById(R.id.takeRideDetailsCarLogo);
 
         takeRideDetailsRadioAc = (CheckBox) findViewById(R.id.takeRideDetailsRadioAc);
         takeRideDetailsRadioAc.setEnabled(false);
@@ -121,11 +123,37 @@ public class TakeRideDetailsActivity extends BaseActivity {
             takeRideDetailsRadioAirbag.setChecked(seletctedRide.getCar().isAirbagAvailable());
             takeRideDetailsLuggage.setChecked(seletctedRide.getCar().isLuggageAllowed());
 
+
+            Bitmap carLogo;
+            if(null!=seletctedRide.getCar().getCarBrand() && !seletctedRide.getCar().getCarBrand().trim().equals(""))
+            {
+                int id;
+                if(seletctedRide.getCar().getCarBrand().contains("Rented"))
+                {
+                    id= getResources().getIdentifier("rented", "drawable",getPackageName());
+                }
+                else {
+                    id = getResources().getIdentifier(seletctedRide.getCar().getCarBrand().toLowerCase(), "drawable", getPackageName());
+                }
+                carLogo = BitmapFactory.decodeResource(getResources(),id);
+                if(null==carLogo)
+                {
+                    carLogo = BitmapFactory.decodeResource(getResources(),R.drawable.my_brand);
+                }
+
+            }
+            else
+            {
+                carLogo = BitmapFactory.decodeResource(getResources(),R.drawable.my_brand);
+            }
+
+            takeRideDetailsCarLogo.setImageBitmap(carLogo);
+
             takeRideDetailsCall.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:" + takeRideDetailsPhone.getText()));
+                    intent.setData(Uri.parse("tel:" + seletctedRide.getRideOf().getPhNo()));
                     startActivity(intent);
                 }
             });

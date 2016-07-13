@@ -9,6 +9,7 @@
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:layout_margin="10dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -133,19 +134,19 @@
                 android:layout_marginTop="10dp"/>
 
             <ImageView
-                android:id="@+id/carLogo"
+                android:id="@+id/confirmRideDetailsCarLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/dividerAfterRideDetail"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/my_brand"
-                android:tint="@color/primaryYellow"/>
+                />
             <TextView
                 android:id="@+id/confirmRideDetailsCarBrand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/dividerAfterRideDetail"
-                android:layout_toRightOf="@id/carLogo"
+                android:layout_toRightOf="@id/confirmRideDetailsCarLogo"
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:text="@string/car_brand"
@@ -191,7 +192,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/confirmRideDetailsCarColor"
-                android:layout_toRightOf="@id/carLogo"
+                android:layout_toRightOf="@id/confirmRideDetailsCarLogo"
                 android:layout_marginTop="1dp"
                 android:textStyle="bold"
                 android:textSize="15sp"
@@ -202,7 +203,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/confirmRideDetailsCarNumber"
-                android:layout_toRightOf="@id/carLogo"
+                android:layout_toRightOf="@id/confirmRideDetailsCarLogo"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp"
                 android:text="@string/ac"
@@ -213,7 +214,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/confirmRideDetailsRadioAc"
-                android:layout_toRightOf="@id/carLogo"
+                android:layout_toRightOf="@id/confirmRideDetailsCarLogo"
                 android:layout_marginTop="1dp"
                 android:layout_marginLeft="5dp"
                 android:text="@string/music"
@@ -224,7 +225,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/confirmRideDetailsRadioMusic"
-                android:layout_toRightOf="@id/carLogo"
+                android:layout_toRightOf="@id/confirmRideDetailsCarLogo"
                 android:layout_marginTop="1dp"
                 android:layout_marginLeft="5dp"
                 android:text="@string/smoking"
