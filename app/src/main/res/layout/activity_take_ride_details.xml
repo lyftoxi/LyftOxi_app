@@ -302,38 +302,38 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_below="@id/takeRideDetailsUserMessage"
-                android:layout_margin="10dp"
-                android:gravity="center_horizontal">
+                android:layout_marginTop="40dp">
+
 
 
             <ImageButton
                 android:id="@+id/takeRideDetailsCall"
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_margin="10dp"
                 android:src="@drawable/ic_call_black_48dp"
                 android:tint="@color/primaryGreen"
-                android:background="@android:color/transparent"
-                />
+                android:backgroundTint="@android:color/transparent"/>
 
-                <TextView
-                    android:id="@+id/takeRideDetailsContactOwner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/contactRideOwner"
-                    android:textColor="@color/primaryTextColor"
-                    android:textStyle="normal"
-                    android:textSize="20sp"
-                    android:layout_marginTop="20dp"
-                    />
+            <TextView
+                android:id="@+id/takeRideDetailsContactOwner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@string/contactRideOwner"
+                android:background="@drawable/rectangle_border"
+                android:textColor="@color/lightBlue"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
 
             <ImageButton
                 android:id="@+id/takeRideDetailSms"
-                android:layout_width="50dp"
+                android:layout_width="fill_parent"
                 android:layout_height="50dp"
-                android:layout_margin="10dp"
+
                 android:src="@drawable/ic_message_black_48dp"
                 android:tint="@color/primaryGreen"
                 android:background="@android:color/transparent"
