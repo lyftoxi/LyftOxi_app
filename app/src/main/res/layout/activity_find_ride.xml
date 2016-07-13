@@ -64,7 +64,6 @@
                 android:hint="Ride Start Date"
                 android:textSize="20sp"
                 />
-
             <ImageButton
                 android:id="@+id/findRideDatePicker"
                 android:layout_width="wrap_content"

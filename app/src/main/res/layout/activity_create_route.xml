@@ -55,6 +55,7 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
         android:orientation="horizontal"
         android:gravity="left"
         android:paddingTop="10dp">
+
         <EditText
             android:id="@+id/createRouteDate"
             android:layout_width="wrap_content"
@@ -103,12 +104,6 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
                 android:tint="@color/primaryDark"
             />
         </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/map"/>
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -122,7 +117,7 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
 
 </LinearLayout>
 
-  <!--  <fragment
+  <!--  <fragmentd
         android:id="@+id/createRouteMapView"
         class="com.google.android.gms.maps.MapFragment"
         android:layout_width="match_parent"
