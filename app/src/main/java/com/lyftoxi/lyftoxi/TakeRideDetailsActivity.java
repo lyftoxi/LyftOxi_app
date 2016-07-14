@@ -49,7 +49,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
 
     private TextView takeRideDetailsPrice, takeRideDetailsSource, takeRideDetailsDestination,
                      takeRideDetailsStartTime, takeRideDetailsCarBrand, takeRideDetailsCarModel, takeRideDetailsCarNumber,
-                     takeRideDetailsUserMessage, takeRideDetailsPhone;
+                     takeRideDetailsUserMessage, takeRideDetailsCarColor;
 
     private CheckBox takeRideDetailsRadioAc,takeRideDetailsRadioMusic,takeRideDetailsRadioSmoking,
                      takeRideDetailsRadioAirbag, takeRideDetailsLuggage;
@@ -77,6 +77,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
         takeRideDetailsCarModel = (TextView) findViewById(R.id.takeRideDetailsCarModel);
         takeRideDetailsCarNumber = (TextView) findViewById(R.id.takeRideDetailsCarNumber);
         takeRideDetailsUserMessage = (TextView) findViewById(R.id.takeRideDetailsUserMessage);
+        takeRideDetailsCarColor = (TextView) findViewById(R.id.takeRideDetailsCarColor);
         //takeRideDetailsPhone = (TextView) findViewById(R.id.takeRideDetailsPhone);
 
         takeRideDetailsCarLogo = (ImageView) findViewById(R.id.takeRideDetailsCarLogo);
@@ -113,6 +114,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
             takeRideDetailsCarBrand.setText(seletctedRide.getCar().getCarBrand());
             takeRideDetailsCarModel.setText(seletctedRide.getCar().getCarModel());
             takeRideDetailsCarNumber.setText(seletctedRide.getCar().getCarNo());
+            takeRideDetailsCarColor.setText(seletctedRide.getCar().getCarColor());
             takeRideDetailsUserMessage.setText(seletctedRide.getUserMessage());
             //takeRideDetailsPhone.setText(seletctedRide.getRideOf().getPhNo());
 
