@@ -39,7 +39,7 @@
     <item name="bannerTextColor" type="color">#ffffff</item>-->
 
     <!-- style dark blue -->
-     <item name="background" type="color">#ffffff</item>
+    <item name="background" type="color">#ffffff</item>
     <item name="primary" type="color">#2b89ab</item>
     <item name="primaryDark" type="color">#2b89ab</item>
     <item name="accent" type="color">#ff6c8a97</item>
@@ -53,7 +53,7 @@
     <item name="lightGreen" type="color">#82E0AA</item>
     <item name="checkbox" type="color">#21618C</item>
     <item name="header" type="color">#85C1E9</item>
-    <item name="comment" type="color">21618C</item>
+    <item name="comment" type="color">#21618C</item>
     <item name="contactOwner" type="color">#85C1E9</item>
     <item name="primaryRed" type="color">#E36E57</item>
     <item name="primaryGrey" type="color">#D7DBDD</item>
