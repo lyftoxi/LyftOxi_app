@@ -63,7 +63,7 @@
             android:textStyle="italic"
             android:textSize="20sp"
             android:text="@string/carFeatureText"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/header"
             android:layout_marginLeft="20dp"/>
 
     <LinearLayout

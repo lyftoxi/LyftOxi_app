@@ -207,8 +207,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp"
                 android:text="@string/ac"
-                android:textColor="@color/lightBlue"
-                android:buttonTint="@color/lightBlue"
+                android:textColor="@color/checkbox"
+                android:buttonTint="@color/checkbox"
                 />
             <CheckBox android:id="@+id/confirmRideDetailsRadioMusic"
                 android:layout_width="wrap_content"
@@ -218,8 +218,8 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginLeft="5dp"
                 android:text="@string/music"
-                android:textColor="@color/lightBlue"
-                android:buttonTint="@color/lightBlue"
+                android:textColor="@color/checkbox"
+                android:buttonTint="@color/checkbox"
                 />
             <CheckBox android:id="@+id/confirmRideDetailsRadioSmoking"
                 android:layout_width="wrap_content"
@@ -229,8 +229,8 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginLeft="5dp"
                 android:text="@string/smoking"
-                android:textColor="@color/lightBlue"
-                android:buttonTint="@color/lightBlue"
+                android:textColor="@color/checkbox"
+                android:buttonTint="@color/checkbox"
                 />
             <CheckBox android:id="@+id/confirmRideDetailsRadioAirbag"
                 android:layout_width="wrap_content"
@@ -240,8 +240,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="40dp"
                 android:text="@string/air_bag"
-                android:textColor="@color/lightBlue"
-                android:buttonTint="@color/lightBlue"
+                android:textColor="@color/checkbox"
+                android:buttonTint="@color/checkbox"
                 />
 
             <CheckBox android:id="@+id/confirmRideDetailsLuggage"
@@ -252,8 +252,8 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginLeft="40dp"
                 android:text="@string/luggage"
-                android:textColor="@color/lightBlue"
-                android:buttonTint="@color/lightBlue"
+                android:textColor="@color/checkbox"
+                android:buttonTint="@color/checkbox"
                 />
             <View android:id="@+id/dividerAfterCarDetail"
                 style="@style/HorizontalDivider"
@@ -267,7 +267,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp"
                 android:text="@string/anything_else"
-                android:textColor="@color/disclaimer"
+                android:textColor="@color/header"
                 android:textSize="17sp"
                 android:textStyle="normal"/>
             <TextView
@@ -279,7 +279,7 @@
                 android:layout_marginLeft="5dp"
                 android:singleLine="false"
                 android:text="test"
-                android:textColor="@color/lightBlue"
+                android:textColor="@color/comment"
                 android:textSize="15sp"
                 android:textStyle="italic"/>
         </RelativeLayout>
