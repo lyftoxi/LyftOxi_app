@@ -111,7 +111,7 @@
     <string name="select_car_type">Select Car Type</string>
     <string name="car_brand">Car Brand</string>
     <string name="car_model">Car Model</string>
-    <string name="car_number">WB 02 AB 1234</string>
+    <string name="car_number">Car Number (WB 02 AB 1234)</string>
     <string name="car_color">Car Color</string>
     <string name="route_name">Route Name</string>
     <string name="title_activity_take_ride_details">Take Ride Details</string>

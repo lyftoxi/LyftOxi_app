@@ -9,7 +9,8 @@
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/carAddEditMainView"
-        android:padding="30dp"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
         android:orientation="vertical"
         android:weightSum="1">
 
@@ -19,70 +20,119 @@
             android:hint="@string/car_brand"
             android:layout_height="wrap_content" />
 -->
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="0px"
+            android:layout_height="0px">
+        </LinearLayout>
         <Spinner
             android:id="@+id/carAddEditCarBrand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
              />
-
-        <EditText
-            android:id="@+id/carAddEditCarBrandOther"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_carAddEditCarBrandOther"
             android:layout_width="match_parent"
-            android:hint="@string/car_brand"
-            android:visibility="gone"
-            android:layout_height="wrap_content" />
-
-
-        <EditText
-            android:id="@+id/carAddEditCarNumber"
-            android:layout_width="match_parent"
-            android:hint="@string/car_number"
-            android:layout_height="wrap_content" />
-
-
-        <EditText
-            android:id="@+id/carAddEditCarModel"
-            android:layout_width="match_parent"
-            android:hint="@string/car_model"
-            android:layout_height="wrap_content" />
-
-        <EditText
-            android:id="@+id/carAddEditCarColor"
-            android:layout_width="match_parent"
-            android:hint="@string/car_color"
-            android:layout_height="wrap_content" />
-
-
-
-
-            <CheckBox android:id="@+id/carAddEditRadioAc"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/carAddEditCarBrandOther"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ac"
-                />
-            <CheckBox android:id="@+id/carAddEditRadioMusic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/music"
-                />
-            <CheckBox android:id="@+id/carAddEditRadioSmoking"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/smoking"
-                />
+                android:hint="@string/car_brand"
+                android:visibility="gone"
+                android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_carAddEditCarNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/carAddEditCarNumber"
+                android:layout_width="match_parent"
+                android:hint="@string/car_number"
+                android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
 
-            <CheckBox android:id="@+id/carAddEditRadioAirbag"
-                android:layout_width="wrap_content"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_carAddEditCarModel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/carAddEditCarModel"
+                android:layout_width="match_parent"
+                android:hint="@string/car_model"
+                android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_carAddEditCarColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/carAddEditCarColor"
+                android:layout_width="match_parent"
+                android:hint="@string/car_color"
+                android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
+        <View android:id="@+id/dividerAfterCarDetail"
+            style="@style/HorizontalDivider"
+            android:layout_marginTop="10dp"/>
+        <LinearLayout
+            android:id="@+id/carAddEditCarPreferences"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp">
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/air_bag"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <CheckBox android:id="@+id/carAddEditRadioAc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ac"
+                    android:textColor="@color/checkboxEnabled"
+                    android:buttonTint="@color/checkboxEnabled"
+                    />
+                <CheckBox android:id="@+id/carAddEditRadioMusic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/music"
+                    android:textColor="@color/checkboxEnabled"
+                    android:buttonTint="@color/checkboxEnabled"
+                    />
+                <CheckBox android:id="@+id/carAddEditRadioSmoking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/smoking"
+                    android:textColor="@color/checkboxEnabled"
+                    android:buttonTint="@color/checkboxEnabled"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <CheckBox android:id="@+id/carAddEditRadioAirbag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/air_bag"
+                    android:textColor="@color/checkboxEnabled"
+                    android:buttonTint="@color/checkboxEnabled"
+                    />
+                <CheckBox android:id="@+id/carAddEditRadioLuggage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/luggage"
+                    android:textColor="@color/checkboxEnabled"
+                    android:buttonTint="@color/checkboxEnabled"
                 />
-
-            <CheckBox android:id="@+id/carAddEditRadioLuggage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/luggage"
-            />
-
+            </LinearLayout>
+        </LinearLayout>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,7 +144,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             />
-
 
     </LinearLayout>
 

@@ -52,17 +52,19 @@
     <item name="locationGreen" type="color">#63CE4C</item>
     <item name="locationRed" type="color">#E36E57</item>
     <item name="iconGreen" type="color">#63CE4C</item>
+    <item name="iconBlue" type="color">#2E86C1</item>
     <item name="checkboxBoarder" type="color">#85C1E9</item>
     <item name="checkboxDisabled" type="color">#85C1E9</item>
     <item name="checkboxEnabled" type="color">#3498DB</item>
     <item name="header" type="color">#85C1E9</item>
     <item name="comment" type="color">#21618C</item>
     <item name="contactOwner" type="color">#85C1E9</item>
-    <item name="iconBlue" type="color">#2E86C1</item>
     <item name="primaryGrey" type="color">#D7DBDD</item>
     <item name="primaryYellow" type="color">#F4D03F</item>
     <item name="disclaimer" type="color">#A39D9C</item>
     <item name="borderBackground" type="color">#2b89ab</item>
     <item name="border" type="color">#2b89ab</item>
-    <item name="carDetailsBackground" type="color">#F2F3F4</item>
+    <item name="carDetailsBackground" type="color">#EDEEE8</item>
+    <item name="ownCar" type="color">#2b89ab</item>
+    <item name="rentedCar" type="color">#F4D03F</item>
 </resources>
