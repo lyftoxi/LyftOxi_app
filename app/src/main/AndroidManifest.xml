@@ -38,7 +38,7 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
-            android:windowSoftInputMode="adjustResize|stateVisible" />
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".ShareRideActivity"
             android:label="@string/title_activity_share_ride"

@@ -41,7 +41,7 @@
     <!-- style dark blue -->
     <item name="background" type="color">#ffffff</item>
     <item name="primary" type="color">#2b89ab</item>
-    <item name="primaryDark" type="color">#2b89ab</item>
+    <item name="primaryDark" type="color">#267997</item>
     <item name="accent" type="color">#ff6c8a97</item>
     <item name="primaryButtonBackgroundColor" type="color">#0d1f2d</item>
     <item name="primaryButtonTextColor" type="color">#2b89ab</item>

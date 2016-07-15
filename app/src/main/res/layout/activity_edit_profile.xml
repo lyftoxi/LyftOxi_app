@@ -15,62 +15,82 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editProfileMobile"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_editProfileMobileNo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/mobile"
-            android:inputType="phone"
-            android:ems="10"
-          />
-
-        <EditText
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/editProfileMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/mobile"
+                android:inputType="phone"
+                android:ems="10"
+              />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_editProfileName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/name"
-            android:inputType="textPersonName"
-            android:textSize="@dimen/abc_text_size_small_material"
-            android:ems="10"
-            android:id="@+id/editProfileName"
-            />
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:textSize="@dimen/abc_text_size_small_material"
+                android:ems="10"
+                android:id="@+id/editProfileName"
+                />
+        </android.support.design.widget.TextInputLayout>
 
-
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_editProfileEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="@string/email"
-            android:textSize="@dimen/abc_text_size_small_material"
-            android:ems="10"
-            android:id="@+id/editProfileEmail"
-            />
-
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="@string/email"
+                android:textSize="@dimen/abc_text_size_small_material"
+                android:ems="10"
+                android:id="@+id/editProfileEmail"
+                />
+        </android.support.design.widget.TextInputLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="left|center_horizontal">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layout_editProfileDob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="date"
                 android:hint="@string/dob"
-                android:layout_marginRight="10dp"
+
                 android:id="@+id/editProfileDob"
                 />
-
+            </android.support.design.widget.TextInputLayout>
             <ImageButton
                 android:id="@+id/editProfileDatePicker"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:background="@android:color/transparent"
-                android:src="@android:drawable/ic_menu_my_calendar"
+                android:src="@drawable/ic_date_range_black_24dp"
+                android:tint="@color/primary"
                 />
 
 
             <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/editProfileSex"
                 android:orientation="horizontal">
@@ -82,82 +102,106 @@
                 <RadioButton android:id="@+id/editProfileRadioMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:text="@string/male"
                     android:checked="false" />
                 <RadioButton android:id="@+id/editProfileRadioFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:text="@string/female"
                     />
 
 
             </RadioGroup>
-            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
+            android:layout_marginTop="15dp"
             android:id="@+id/editProfileAddressView"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:gravity="center_horizontal"
                 android:text="@string/address"/>
 
-            <EditText
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layout_editProfileAddressLine1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/address_line1"
-                android:textSize="@dimen/abc_text_size_small_material"
-                android:ems="10"
-                android:id="@+id/editProfileAddressLine1"
-                />
-
-            <EditText
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/address_line1"
+                    android:textSize="@dimen/abc_text_size_small_material"
+                    android:ems="10"
+                    android:id="@+id/editProfileAddressLine1"
+                    />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layout_editProfileAddressLine2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/address_line2"
-                android:textSize="@dimen/abc_text_size_small_material"
-                android:ems="10"
-                android:id="@+id/editProfileAddressLine2"
-                />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="@string/city"
-            android:textSize="@dimen/abc_text_size_small_material"
-            android:ems="10"
-            android:id="@+id/editProfileCity"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="@string/state"
-            android:textSize="@dimen/abc_text_size_small_material"
-            android:ems="10"
-            android:id="@+id/editProfileState"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="@string/pin"
-            android:textSize="@dimen/abc_text_size_small_material"
-            android:ems="10"
-            android:id="@+id/editProfilePin"
-            />
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/address_line2"
+                    android:textSize="@dimen/abc_text_size_small_material"
+                    android:ems="10"
+                    android:id="@+id/editProfileAddressLine2"
+                    />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layout_editProfileCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/city"
+                    android:textSize="@dimen/abc_text_size_small_material"
+                    android:ems="10"
+                    android:id="@+id/editProfileCity"
+                    />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layout_editProfileState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/state"
+                    android:textSize="@dimen/abc_text_size_small_material"
+                    android:ems="10"
+                    android:id="@+id/editProfileState"
+                    />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layout_editProfilePin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/pin"
+                    android:textSize="@dimen/abc_text_size_small_material"
+                    android:ems="10"
+                    android:id="@+id/editProfilePin"
+                    />
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <Button
