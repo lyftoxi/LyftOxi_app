@@ -9,7 +9,7 @@
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_margin="10dp"
+
         android:orientation="vertical">
 
         <RelativeLayout
@@ -133,137 +133,146 @@
                 android:layout_below="@id/rideFareText"
                 android:layout_marginTop="10dp"/>
 
-            <ImageView
-                android:id="@+id/confirmRideDetailsCarLogo"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/confirmRideCarDetails"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/dividerAfterRideDetail"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/my_brand"
-                />
-            <TextView
-                android:id="@+id/confirmRideDetailsCarBrand"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/dividerAfterRideDetail"
-                android:layout_toRightOf="@id/confirmRideDetailsCarLogo"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:text="@string/car_brand"
-                android:textSize="17sp"
-                />
-            <TextView
-                android:id="@+id/confirmRideDetailsCarModel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/dividerAfterRideDetail"
-                android:layout_toRightOf="@id/confirmRideDetailsCarBrand"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_alignBaseline="@id/confirmRideDetailsCarBrand"
-                android:textStyle="bold"
-                android:text="@string/car_model"
-                android:textSize="15sp"
-                />
-            <TextView
-                android:id="@+id/hyphen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/dividerAfterRideDetail"
-                android:layout_toRightOf="@id/confirmRideDetailsCarModel"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:text=" - "
-                android:textSize="17sp"
-                />
-            <TextView
-                android:id="@+id/confirmRideDetailsCarColor"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/dividerAfterRideDetail"
-                android:layout_toRightOf="@id/hyphen"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:text="@string/car_color"
-                android:textSize="17sp"
-                />
-            <TextView
-                android:id="@+id/confirmRideDetailsCarNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/confirmRideDetailsCarColor"
-                android:layout_toRightOf="@id/confirmRideDetailsCarLogo"
-                android:layout_marginTop="1dp"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:textColor="@color/accent"
-                android:text="@string/car_number"/>
+                android:background="@color/carDetailsBackground"
+                >
+                <ImageView
+                    android:id="@+id/confirmRideDetailsCarLogo"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/my_brand"
+                    />
+                <TextView
+                    android:id="@+id/confirmRideDetailsCarBrand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/confirmRideDetailsCarLogo"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:text="@string/car_brand"
+                    android:textSize="15sp"
+                    />
+                <TextView
+                    android:id="@+id/confirmRideDetailsCarModel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-            <CheckBox android:id="@+id/confirmRideDetailsRadioAc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/confirmRideDetailsCarNumber"
-                android:layout_toRightOf="@id/confirmRideDetailsCarLogo"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="5dp"
-                android:text="@string/ac"
-                android:textColor="@color/checkboxDisabled"
-                android:buttonTint="@color/checkboxDisabled"
-                />
-            <CheckBox android:id="@+id/confirmRideDetailsRadioMusic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/confirmRideDetailsRadioAc"
-                android:layout_toRightOf="@id/confirmRideDetailsCarLogo"
-                android:layout_marginTop="1dp"
-                android:layout_marginLeft="5dp"
-                android:text="@string/music"
-                android:textColor="@color/checkboxDisabled"
-                android:buttonTint="@color/checkboxDisabled"
-                />
-            <CheckBox android:id="@+id/confirmRideDetailsRadioSmoking"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/confirmRideDetailsRadioMusic"
-                android:layout_toRightOf="@id/confirmRideDetailsCarLogo"
-                android:layout_marginTop="1dp"
-                android:layout_marginLeft="5dp"
-                android:text="@string/smoking"
-                android:textColor="@color/checkboxDisabled"
-                android:buttonTint="@color/checkboxDisabled"
-                />
-            <CheckBox android:id="@+id/confirmRideDetailsRadioAirbag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/confirmRideDetailsCarNumber"
-                android:layout_toRightOf="@id/confirmRideDetailsRadioAc"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="40dp"
-                android:text="@string/air_bag"
-                android:textColor="@color/checkboxDisabled"
-                android:buttonTint="@color/checkboxDisabled"
-                />
+                    android:layout_toRightOf="@id/confirmRideDetailsCarBrand"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignBaseline="@id/confirmRideDetailsCarBrand"
+                    android:textStyle="bold"
+                    android:text="@string/car_model"
+                    android:textSize="15sp"
+                    />
+                <TextView
+                    android:id="@+id/hyphen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-            <CheckBox android:id="@+id/confirmRideDetailsLuggage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/confirmRideDetailsRadioAirbag"
-                android:layout_toRightOf="@id/confirmRideDetailsRadioAc"
-                android:layout_marginTop="1dp"
-                android:layout_marginLeft="40dp"
-                android:text="@string/luggage"
-                android:textColor="@color/checkboxDisabled"
-                android:buttonTint="@color/checkboxDisabled"
-                />
-            <View android:id="@+id/dividerAfterCarDetail"
-                style="@style/HorizontalDivider"
-                android:layout_below="@id/confirmRideDetailsRadioSmoking"
-                android:layout_marginTop="10dp"/>
+                    android:layout_toRightOf="@id/confirmRideDetailsCarModel"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:text=" - "
+                    android:textSize="17sp"
+                    />
+                <TextView
+                    android:id="@+id/confirmRideDetailsCarColor"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_toRightOf="@id/hyphen"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:text="@string/car_color"
+                    android:textSize="17sp"
+                    />
+                <TextView
+                    android:id="@+id/confirmRideDetailsCarNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/confirmRideDetailsCarColor"
+                    android:layout_toRightOf="@id/confirmRideDetailsCarLogo"
+                    android:layout_alignLeft="@id/confirmRideDetailsCarBrand"
+                    android:layout_marginTop="1dp"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/accent"
+                    android:text="@string/car_number"/>
+
+                <CheckBox android:id="@+id/confirmRideDetailsRadioAc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/confirmRideDetailsCarLogo"
+
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/ac"
+                    android:textColor="@color/checkboxDisabled"
+                    android:buttonTint="@color/checkboxDisabled"
+                    />
+                <CheckBox android:id="@+id/confirmRideDetailsRadioMusic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/confirmRideDetailsRadioAc"
+
+                    android:layout_marginTop="1dp"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/music"
+                    android:textColor="@color/checkboxDisabled"
+                    android:buttonTint="@color/checkboxDisabled"
+                    />
+                <CheckBox android:id="@+id/confirmRideDetailsRadioSmoking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/confirmRideDetailsRadioMusic"
+
+                    android:layout_marginTop="1dp"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/smoking"
+                    android:textColor="@color/checkboxDisabled"
+                    android:buttonTint="@color/checkboxDisabled"
+                    />
+                <CheckBox android:id="@+id/confirmRideDetailsRadioAirbag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/confirmRideDetailsCarLogo"
+                    android:layout_toRightOf="@id/confirmRideDetailsRadioAc"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="70dp"
+                    android:text="@string/air_bag"
+                    android:textColor="@color/checkboxDisabled"
+                    android:buttonTint="@color/checkboxDisabled"
+                    />
+
+                <CheckBox android:id="@+id/confirmRideDetailsLuggage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/confirmRideDetailsRadioAirbag"
+                    android:layout_toRightOf="@id/confirmRideDetailsRadioAc"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginLeft="70dp"
+                    android:text="@string/luggage"
+                    android:textColor="@color/checkboxDisabled"
+                    android:buttonTint="@color/checkboxDisabled"
+                    />
+                <View android:id="@+id/dividerAfterCarDetail"
+                    style="@style/HorizontalDivider"
+                    android:layout_below="@id/confirmRideDetailsRadioSmoking"
+                    android:layout_marginTop="10dp"/>
+            </RelativeLayout>
             <TextView
                 android:id="@+id/confirmRideDetailsUserMessageHeading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/dividerAfterCarDetail"
+                android:layout_below="@id/confirmRideCarDetails"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp"
                 android:text="@string/anything_else"
