@@ -44,7 +44,6 @@ public class ShareRideActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         isScrollable=false;
         setContentView(R.layout.activity_share_ride);
-
         if(!session.isLoggedIn())
         {
             Intent loginIntent = new Intent(this, LoginActivity.class);
@@ -52,6 +51,7 @@ public class ShareRideActivity extends BaseActivity {
             b.putString("activityOnSuccess", ShareRideActivity.class.getName());
             loginIntent.putExtras(b);
             startActivity(loginIntent);
+            finish();
         }
         addCarBtn = (Button)findViewById(R.id.sharingRideAddCar);
         addCarBtn.setOnClickListener(new View.OnClickListener() {
