@@ -64,7 +64,9 @@ public class OtherRideDetailsActivity extends BaseActivity {
         carNumber.setText(rideInfo.getCar().getCarNo());
         startingTime.setText(sdf.format(rideInfo.getStarTime()));*/
 
-        price.setText(""+rideInfo.getFare());
+        if(rideInfo.getFare()>0) {
+            price.setText("" + rideInfo.getFare());
+        }
 
         acAvailable.setChecked(rideInfo.getCar().isAcAvailable());
         airbagAvailable.setChecked(rideInfo.getCar().isAirbagAvailable());

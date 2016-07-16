@@ -130,6 +130,8 @@
     <string name="title_activity_rented_car">Rented Car Details</string>
     <string name="error_message_start_time_120_days">Start time must be within 120 days</string>
     <string name="error_message_start_time_15_mins">Start time must be 15 mins more than current time.</string>
+    <string name="error_message_start_date_bkank">Start date cannot be blank</string>
+    <string name="error_message_start_time_bkank">Start time cannot be blank</string>
     <string name="ext_storage_write_permission_explanation_1">We need Permission save profile picture in your device for further use\n Highly recommended to get better response from co-travellers</string>
     <string name="ext_storage_write_permission_explanation_2">Highly recommended to get better response from co-travellers\n Please enable from device settings </string>
 

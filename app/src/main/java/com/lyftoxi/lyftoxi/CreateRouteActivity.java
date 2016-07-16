@@ -157,8 +157,14 @@ public class CreateRouteActivity extends BaseActivity {
 
         if(null==startDate.getText() || startDate.getText().toString().trim().equals(""))
         {
-            startDate.setError("Start Time cannot be blank");
+            startDate.setError(getString(R.string.error_message_start_date_bkank));
             startDate.requestFocus();
+            return false;
+        }
+        if(null==startTime.getText() || startTime.getText().toString().trim().equals(""))
+        {
+            startTime.setError(getString(R.string.error_message_start_time_bkank));
+            startTime.requestFocus();
             return false;
         }
         try {
