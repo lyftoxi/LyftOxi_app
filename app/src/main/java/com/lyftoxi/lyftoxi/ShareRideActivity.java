@@ -153,8 +153,9 @@ public class ShareRideActivity extends BaseActivity {
             case RENTED_CAR:
                 showRentedCars();
                 break;
-            default: finish();
-                dialog.dismiss();
+            default:dialog.dismiss();
+                finish();
+
         }
     }
 

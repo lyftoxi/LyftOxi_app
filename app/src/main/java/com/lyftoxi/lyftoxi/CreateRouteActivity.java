@@ -168,7 +168,7 @@ public class CreateRouteActivity extends BaseActivity {
             if((startDateTime.getTime() - new Date().getTime())/(60*1000)<15)
             {
                 Log.e("lyftoxi.error","time diff in minutes "+(startDateTime.getTime() - new Date().getTime())/(60*1000));
-                startDate.setError("Start time must be 15 mins more than current time.");
+                startDate.setError(getString(R.string.error_message_start_time_15_mins));
                 startDate.requestFocus();
                 return false;
             }
@@ -176,8 +176,8 @@ public class CreateRouteActivity extends BaseActivity {
             if((startDateTime.getTime() - new Date().getTime())/(24*60*60*1000)>60)
             {
                 Log.e("lyftoxi.error","time diff in days "+(startDateTime.getTime() - new Date().getTime())/(24*60*60*1000));
-                startDate.setError("Start time must be within 120 days");
-                startDate.requestFocus();
+                startTime.setError(getString(R.string.error_message_start_time_120_days));
+                startTime.requestFocus();
                 return false;
             }
             rideInfo.setStarTime(startDateTime);
@@ -225,8 +225,10 @@ public class CreateRouteActivity extends BaseActivity {
 
         switch (id) {
             case DATE_PICKER_ID:
+                startDate.setError(null);
                 return new DatePickerDialog(this, pickerListener, year, month,day);
             case TIME_PICKER_ID:
+                startTime.setError(null);
                 return new TimePickerDialog(this, timePickerListener, hour, minute,
                 false);
     }
