@@ -178,8 +178,7 @@ public class SignupActivity extends BaseActivity implements VerificationListener
 
                         AlertDialog.Builder alert = new AlertDialog.Builder(SignupActivity.this);
                         alert.setTitle("Explanation");
-                        alert.setMessage("Don't worry it is perfectly safe! " +
-                                "We need Permission save profile picture in your device for further use");
+                        alert.setMessage(getString(R.string.ext_storage_write_permission_explanation_1));
                         alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -228,7 +227,7 @@ public class SignupActivity extends BaseActivity implements VerificationListener
 
                     AlertDialog.Builder alert = new AlertDialog.Builder(SignupActivity.this);
                     alert.setTitle("Explanation");
-                    alert.setMessage("The app won't function properly without this permission");
+                    alert.setMessage(getString(R.string.ext_storage_write_permission_explanation_2));
                     alert.setPositiveButton("OK",null);
                     alert.show();
                 }

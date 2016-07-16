@@ -322,10 +322,8 @@ public class LoginActivity extends Activity {
                 Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
             }
 
-            if(null!= userInfo)
+            if(null!= userInfo  && null!= userInfo.getId() )
             {
-                //login successful
-
                 session.createLoginSession(userInfo.getId(), userInfo.getName(),userInfo.getPhNo(),userInfo.getEmail());
                 CurrentUserInfo currentUserInfo = CurrentUserInfo.getInstance();
                 currentUserInfo.setId(userInfo.getId());
@@ -346,9 +344,7 @@ public class LoginActivity extends Activity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-
-
-            if (success) {
+            if (success.equals(true)) {
 
                 final String profilePicFileName = session.getUserDetails().getUID()+"_profile_pic.jpg";
                 Log.d("gog.debug ","profilePicFileName "+profilePicFileName);
@@ -398,6 +394,7 @@ public class LoginActivity extends Activity {
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
+                showProgress(false);
             }
         }
 
