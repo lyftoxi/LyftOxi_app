@@ -234,7 +234,9 @@ public class BaseActivity extends AppCompatActivity {
             Log.d("gog.debug","using default pic");
            profilePic = BitmapFactory.decodeResource(getResources(),R.drawable.sample_profile_pic);
         }*/
-        navProfilePicBtn.setImageDrawable(new RoundImage(profilePic));
+        if(null!=profilePic) {
+            navProfilePicBtn.setImageDrawable(new RoundImage(profilePic));
+        }
     }
 
 

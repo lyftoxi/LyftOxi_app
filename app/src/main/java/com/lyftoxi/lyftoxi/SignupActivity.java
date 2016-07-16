@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,6 +18,8 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -96,6 +99,7 @@ public class SignupActivity extends BaseActivity implements VerificationListener
     private static final int PICK_FROM_CAMERA = 1;
     private static final int PICK_FROM_FILE = 2;
     private static final int CROP_FROM_CAMERA = 2;
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 0;
     private  Verification mVerification=null;
 
     // Profile pic image size in pixels
@@ -105,6 +109,8 @@ public class SignupActivity extends BaseActivity implements VerificationListener
     private Bitmap profilePic, profilePicThumb;
     private Calendar dobValue = Calendar.getInstance();
     private static final int DATE_PICKER_ID = 1111;
+
+    private AlertDialog chooseImageSourceDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,12 +165,41 @@ public class SignupActivity extends BaseActivity implements VerificationListener
             }
         } );
 
-        final AlertDialog dialog = builder.create();
+        chooseImageSourceDialog = builder.create();
         profilePicBtn = (FloatingActionButton) findViewById(R.id.signupProfilePic);
         profilePicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.show();
+                if (ContextCompat.checkSelfPermission(v.getContext(),
+                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(SignupActivity.this,
+                            android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                        AlertDialog.Builder alert = new AlertDialog.Builder(SignupActivity.this);
+                        alert.setTitle("Explanation");
+                        alert.setMessage("Don't worry it is perfectly safe! " +
+                                "We need Permission save profile picture in your device for further use");
+                        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                ActivityCompat.requestPermissions(SignupActivity.this,
+                                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+                            }
+                        });
+                        alert.show();
+
+                    } else {
+                        ActivityCompat.requestPermissions(SignupActivity.this,
+                                new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+                    }
+                }
+                else {
+
+                    chooseImageSourceDialog.show();
+                }
             }
         });
 
@@ -176,6 +211,31 @@ public class SignupActivity extends BaseActivity implements VerificationListener
             }
         });
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    chooseImageSourceDialog.show();
+
+                } else {
+
+                    AlertDialog.Builder alert = new AlertDialog.Builder(SignupActivity.this);
+                    alert.setTitle("Explanation");
+                    alert.setMessage("The app won't function properly without this permission");
+                    alert.setPositiveButton("OK",null);
+                    alert.show();
+                }
+                return;
+            }
+
+        }
     }
 
     @Override
