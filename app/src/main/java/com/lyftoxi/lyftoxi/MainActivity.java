@@ -94,12 +94,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        showSplashScreen=true;
-        Log.i("gog.debug", "On Destroy .....");
-    }
+
 
 
     private String getSecretKey() {
@@ -121,59 +116,6 @@ public class MainActivity extends BaseActivity {
         return Base64.encodeToString(md.digest(), Base64.DEFAULT);
     }
 
-
-    private void downloadUserProfilePic()
-    {
-        final String profilePicFileName = session.getUserDetails().getUID()+"_profile_pic.jpg";
-        Log.d("gog.debug ","profilePicFileName "+profilePicFileName);
-        StorageReference storageRef = LyftoxiFirebase.storageRef;
-        StorageReference profileImageRef = storageRef.child("userProfilePics/"+profilePicFileName);
-
-       // profileImageRef.getDownloadUrl();
-        final long ONE_MEGABYTE = 1024 * 1024;
-        profileImageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                /*RoundImage roundedImage = new RoundImage(bm);
-                profileImage.setImageDrawable(roundedImage);*/
-
-                Log.d("gog.debug"," downloaded profile pic");
-                ImageUtil imageUtil = new ImageUtil();
-                String filePath = imageUtil.saveToInternalStorage(getBaseContext(),bitmap,"user_avatar.jpg");
-                CurrentUserInfo.getInstance().setProfilePicPath(filePath);
-               /* RoundImage roundedImage = new RoundImage(bitmap);
-                profileImage.setImageDrawable(roundedImage);*/
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(Exception exception) {
-                Log.d("gog.debug","Firebase: profile pic download failed");
-                Bitmap bm = BitmapFactory.decodeResource(getResources(),R.drawable.sample_profile_pic);
-               /* RoundImage roundedImage = new RoundImage(bm);
-                profileImage.setImageDrawable(roundedImage);*/
-            }
-        });
-    }
-
-
-  /* @Override
-    public void onWindowFocusChanged (boolean hasFocus)
-    {
-        GPSTracker gps = new GPSTracker(this);
-
-        // check if GPS enabled
-        if(gps.canGetLocation()){
-            currentLocation = new LatLng(gps.getLatitude(),gps.getLongitude());
-        }else{
-            gps.showSettingsAlert(this);
-        }
-        if(null!=currentLocation) {
-            Toast locationToast = Toast.makeText(this, "Latitide :" + currentLocation.latitude + " \n Longitude :" + currentLocation.longitude, Toast.LENGTH_LONG);
-            locationToast.show();
-        }
-
-    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

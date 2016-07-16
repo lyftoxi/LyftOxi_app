@@ -69,17 +69,10 @@ public class MySharedRides extends BaseActivity {
                 Log.d("gog.debug",rideInfo.toString());
 
                 Intent rideDetails;
-                if("C".equalsIgnoreCase(rideInfo.getStatus()))
-                {
-                    rideDetails = new Intent(view.getContext(),ConfirmRideActivity.class);
-                    Bundle b = new Bundle();
-                    b.putBoolean("showConfirmButton",false);
-                    rideDetails.putExtras(b);
-                }
-                else
-                {
-                    rideDetails = new Intent(view.getContext(),OtherRideDetailsActivity.class);
-                }
+                rideDetails = new Intent(view.getContext(),ConfirmRideActivity.class);
+                Bundle b = new Bundle();
+                b.putBoolean("showConfirmButton",false);
+                rideDetails.putExtras(b);
                 view.getContext().startActivity(rideDetails);
 
             }

@@ -48,6 +48,12 @@ public class MyInterestedRides extends BaseActivity {
         new GetMyInterestedRides().execute();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showProgress(false);
+    }
+
     private void setRideListView(){
         RideListingAdapter rideListingAdapter = new RideListingAdapter(this,R.layout.ride_listing,rides);
         rideListing.setAdapter(rideListingAdapter);
@@ -58,7 +64,7 @@ public class MyInterestedRides extends BaseActivity {
 
                     selectedRide = (RideListingInfo)adapterView.getItemAtPosition(position);
                 Log.d("gog.debug", "selected ride id "+selectedRide.getId());
-                    new getRideDtails().execute(selectedRide.getId());
+                    new GetRideDtails().execute(selectedRide.getId());
 
             }
         });
@@ -73,7 +79,7 @@ public class MyInterestedRides extends BaseActivity {
     }
 
 
-    private class getRideDtails extends AsyncTask<String, Void, Boolean> {
+    private class GetRideDtails extends AsyncTask<String, Void, Boolean> {
 
         Ride ridesReceived = null;
 
@@ -141,7 +147,7 @@ public class MyInterestedRides extends BaseActivity {
                     break;
                 }
             }
-            showProgress(false);
+            //showProgress(false);
             openTakeRideDetails();
         }
 

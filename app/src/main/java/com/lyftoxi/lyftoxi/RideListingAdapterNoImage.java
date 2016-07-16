@@ -20,11 +20,13 @@ import com.google.gson.GsonBuilder;
 import com.lyftoxi.lyftoxi.dao.Location;
 import com.lyftoxi.lyftoxi.dao.TakeRide;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
+import com.lyftoxi.lyftoxi.singletons.RideInfo;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -74,20 +76,61 @@ public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
             final ImageButton cancelRideBtn = (ImageButton) v.findViewById(R.id.rideListingNoImageCancel);
             final View progressBar = v.findViewById(R.id.rideListingNoImageProgress);
 
+            ImageButton editRide = (ImageButton) v.findViewById(R.id.rideListingNoImageEdit);
+
             from.setText(i.getSourceName());
             to.setText(i.getDestinationName());
             String fareStr = " "+i.getFare();
             fare.setText(fareStr);
             startingTime.setText(sdf.format(i.getStarTime().getTime()));
-            if("C".equals(i.getStatus()))
+            if(i.getStarTime().after(new Date()))
             {
-                cancelled.setVisibility(View.VISIBLE);
+                if("C".equals(i.getStatus()))
+                {
+                    cancelled.setVisibility(View.VISIBLE);
+                    cancelRideBtn.setVisibility(View.GONE);
+                    editRide.setVisibility(View.GONE);
+                }
+                else{
+                    cancelled.setVisibility(View.GONE);
+                    cancelRideBtn.setVisibility(View.VISIBLE);
+                    editRide.setVisibility(View.VISIBLE);
+                }
+            }
+            else
+            {
                 cancelRideBtn.setVisibility(View.GONE);
+                editRide.setVisibility(View.GONE);
+                if("C".equals(i.getStatus())) {
+                    cancelled.setVisibility(View.VISIBLE);
+                } else {
+                    cancelled.setVisibility(View.GONE);
+                }
             }
-            else{
-                cancelled.setVisibility(View.GONE);
-                cancelRideBtn.setVisibility(View.VISIBLE);
-            }
+
+            editRide.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    RideInfo rideInfo = RideInfo.getInstance();
+                    rideInfo.reset();
+                    rideInfo = RideInfo.getInstance();
+                    rideInfo.setId(i.getId());
+                    rideInfo.setSource(i.getSource());
+                    rideInfo.setSourceName(i.getSourceName());
+                    rideInfo.setDestination(i.getDestination());
+                    rideInfo.setDestinationName(i.getDestinationName());
+                    rideInfo.setRideOf(session.getUserDetails());
+                    rideInfo.setStarTime(i.getStarTime());
+                    rideInfo.setFare(i.getFare());
+                    rideInfo.setUserMessage(i.getUserMessage());
+                    rideInfo.setCar(i.getCar());
+                    rideInfo.setStatus(i.getStatus());
+
+                    Intent otherRideDetailsActivity = new Intent(view.getContext(),OtherRideDetailsActivity.class);
+                    view.getContext().startActivity(otherRideDetailsActivity);
+                }
+            });
+
 
 
 
@@ -120,6 +163,8 @@ public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
         return v;
 
     }
+
+
 
     public class DeleteRideTask extends AsyncTask<String, Void,Boolean>
     {
