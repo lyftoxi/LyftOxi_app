@@ -650,7 +650,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
             Toast toast;
             if (success) {
 
-                session.createLoginSession(user.getId(), user.getName(),user.getPhNo(),user.getEmail());
+                session.createLoginSession(user.getId(), user.getName(),user.getPhNo(),user.getEmail(),user.getGender());
 
                 CurrentUserInfo currentUser = CurrentUserInfo.getInstance();
 

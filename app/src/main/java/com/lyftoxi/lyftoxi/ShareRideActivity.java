@@ -183,7 +183,9 @@ public class ShareRideActivity extends BaseActivity {
         }
         carListAdapter = new CarListAdapter(this,R.layout.car_listing, carInfos);
         carListView.setAdapter(carListAdapter);
-        dialog.dismiss();
+        if(null!=dialog) {
+            dialog.dismiss();
+        }
     }
 
     private void showRentedCars()

@@ -143,7 +143,6 @@ public class CarListAdapter extends ArrayAdapter<CarInfo> {
         protected Boolean doInBackground(String... params) {
 
             carNumber = params[0];
-            GenericUrl putUsersURL =  new GenericUrl("http://demo-sharingride.rhcloud.com/userService/user");
             if(null == carNumber)
             {
                 return false;

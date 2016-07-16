@@ -324,7 +324,7 @@ public class LoginActivity extends Activity {
 
             if(null!= userInfo  && null!= userInfo.getId() )
             {
-                session.createLoginSession(userInfo.getId(), userInfo.getName(),userInfo.getPhNo(),userInfo.getEmail());
+                session.createLoginSession(userInfo.getId(), userInfo.getName(),userInfo.getPhNo(),userInfo.getEmail(),userInfo.getGender());
                 CurrentUserInfo currentUserInfo = CurrentUserInfo.getInstance();
                 currentUserInfo.setId(userInfo.getId());
                 currentUserInfo.setName(userInfo.getName());

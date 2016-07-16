@@ -48,11 +48,11 @@ import java.util.List;
 public class TakeRideDetailsActivity extends BaseActivity {
 
     private TextView takeRideDetailsPrice, takeRideDetailsSource, takeRideDetailsDestination,
-                     takeRideDetailsStartTime, takeRideDetailsCarBrand, takeRideDetailsCarModel, takeRideDetailsCarNumber,
-                     takeRideDetailsUserMessage, takeRideDetailsCarColor;
+            takeRideDetailsStartTime, takeRideDetailsCarBrand, takeRideDetailsCarModel, takeRideDetailsCarNumber,
+            takeRideDetailsUserMessage, takeRideDetailsCarColor;
 
     private CheckBox takeRideDetailsRadioAc,takeRideDetailsRadioMusic,takeRideDetailsRadioSmoking,
-                     takeRideDetailsRadioAirbag, takeRideDetailsLuggage;
+            takeRideDetailsRadioAirbag, takeRideDetailsLuggage;
 
     private SimpleDateFormat sdf =  new SimpleDateFormat("dd-MM-yyyy h:mm a");
 
@@ -60,7 +60,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
 
     private ImageView takeRideDetailsCarLogo;
 
-   // private Button takeRideInterested;
+    // private Button takeRideInterested;
 
     private RideInfo seletctedRide;
 
@@ -94,9 +94,9 @@ public class TakeRideDetailsActivity extends BaseActivity {
         takeRideDetailsLuggage.setEnabled(false);
 
         takeRideDetailsCall = (ImageButton) findViewById(R.id.takeRideDetailsCall);
-        takeRideDetailSms = (ImageButton) findViewById(R.id.takeRideDetailSms);
+        takeRideDetailSms = (ImageButton) findViewById(R.id.takeRideDetailsSms);
 
-       // takeRideInterested = (Button) findViewById(R.id.takeRideInterested);
+        // takeRideInterested = (Button) findViewById(R.id.takeRideInterested);
 
         Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.sample_profile_pic);
         collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(), bm));
@@ -106,7 +106,6 @@ public class TakeRideDetailsActivity extends BaseActivity {
 
             downloadUserProfilePic(seletctedRide.getRideOf().getUID());
 
-            getSupportActionBar().setTitle(seletctedRide.getRideOf().getName());
             takeRideDetailsPrice.setText(seletctedRide.getFare() + "");
             takeRideDetailsSource.setText(seletctedRide.getSourceName());
             takeRideDetailsDestination.setText(seletctedRide.getDestinationName());
@@ -232,11 +231,11 @@ public class TakeRideDetailsActivity extends BaseActivity {
     }
 
 
-        private void startMyInterestedRideActivity()
-        {
-            Intent myInterestedRides = new Intent(this,MyInterestedRides.class);
-            startActivity(myInterestedRides);
-        }
+    private void startMyInterestedRideActivity()
+    {
+        Intent myInterestedRides = new Intent(this,MyInterestedRides.class);
+        startActivity(myInterestedRides);
+    }
 
 
     /*public class AddInterestedRide extends AsyncTask<Void, Void, Boolean> {

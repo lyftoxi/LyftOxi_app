@@ -64,7 +64,7 @@ public class MyInterestedRides extends BaseActivity {
 
                     selectedRide = (RideListingInfo)adapterView.getItemAtPosition(position);
                 Log.d("gog.debug", "selected ride id "+selectedRide.getId());
-                    new GetRideDtails().execute(selectedRide.getId());
+                    new GetRideDetails().execute(selectedRide.getId());
 
             }
         });
@@ -79,7 +79,7 @@ public class MyInterestedRides extends BaseActivity {
     }
 
 
-    private class GetRideDtails extends AsyncTask<String, Void, Boolean> {
+    private class GetRideDetails extends AsyncTask<String, Void, Boolean> {
 
         Ride ridesReceived = null;
 

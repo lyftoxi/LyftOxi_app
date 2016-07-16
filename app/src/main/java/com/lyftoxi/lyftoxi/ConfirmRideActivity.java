@@ -129,7 +129,7 @@ public class ConfirmRideActivity extends BaseActivity {
                     id= getResources().getIdentifier("rented", "drawable",getPackageName());
                 }
                 else {
-                    id = getResources().getIdentifier(ride.getCar().getCarBrand().toLowerCase(), "drawable", getPackageName());
+                    id = getResources().getIdentifier(Util.getResourceNameFromDisplayName(ride.getCar().getCarBrand()), "drawable", getPackageName());
                 }
                 carLogo = BitmapFactory.decodeResource(getResources(),id);
                 if(null==carLogo)

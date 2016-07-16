@@ -119,7 +119,7 @@ public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
                     rideInfo.setSourceName(i.getSourceName());
                     rideInfo.setDestination(i.getDestination());
                     rideInfo.setDestinationName(i.getDestinationName());
-                    rideInfo.setRideOf(session.getUserDetails());
+                    rideInfo.setRideOf(i.getRideOf());
                     rideInfo.setStarTime(i.getStarTime());
                     rideInfo.setFare(i.getFare());
                     rideInfo.setUserMessage(i.getUserMessage());

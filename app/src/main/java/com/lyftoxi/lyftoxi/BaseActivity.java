@@ -265,7 +265,7 @@ public class BaseActivity extends AppCompatActivity {
             if(null!= userInfo)
             {
                 //login successful
-                session.createLoginSession(userInfo.getId(), userInfo.getName(),userInfo.getPhNo(),userInfo.getEmail());
+                session.createLoginSession(userInfo.getId(), userInfo.getName(),userInfo.getPhNo(),userInfo.getEmail(), userInfo.getGender());
                 CurrentUserInfo currentUserInfo = CurrentUserInfo.getInstance();
                 currentUserInfo.setId(userInfo.getId());
                 currentUserInfo.setName(userInfo.getName());
