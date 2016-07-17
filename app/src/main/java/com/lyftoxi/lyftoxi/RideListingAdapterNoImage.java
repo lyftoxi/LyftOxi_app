@@ -74,7 +74,7 @@ public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
             final ImageButton cancelRideBtn = (ImageButton) v.findViewById(R.id.rideListingNoImageCancel);
             final View progressBar = v.findViewById(R.id.rideListingNoImageProgress);
 
-            ImageButton editRide = (ImageButton) v.findViewById(R.id.rideListingNoImageEdit);
+            final ImageButton editRide = (ImageButton) v.findViewById(R.id.rideListingNoImageEdit);
 
             from.setText(i.getSourceName());
             to.setText(i.getDestinationName());
@@ -149,6 +149,7 @@ public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
                                 deleteRide.progressBar = progressBar;
                                 deleteRide.cancelledText = cancelled;
                                 deleteRide.cancelBtn = cancelRideBtn;
+                                deleteRide.editBtn = editRide;
                                 deleteRide.execute(i.getId());
                             }})
                         .setNegativeButton(android.R.string.no, null).show();
@@ -170,7 +171,7 @@ public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
         Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
         View progressBar;
         TextView cancelledText;
-        ImageButton cancelBtn, editRide;
+        ImageButton cancelBtn, editBtn;
 
         @Override
         protected void onPreExecute() {
@@ -212,14 +213,14 @@ public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
             if (success) {
                 toast = Toast.makeText(getContext(), "Cancelled ride successful", Toast.LENGTH_LONG);
                 cancelledText.setVisibility(View.VISIBLE);
-                editRide.setVisibility(View.GONE);
+                editBtn.setVisibility(View.GONE);
                 cancelBtn.setVisibility(View.GONE);
                // RideListingAdapterNoImage.this.notifyDataSetChanged();
 
             } else {
                 toast = Toast.makeText(getContext(), "Canceling ride failed. Try Again", Toast.LENGTH_LONG);
                 cancelledText.setVisibility(View.GONE);
-                editRide.setVisibility(View.VISIBLE);
+                editBtn.setVisibility(View.VISIBLE);
                 cancelBtn.setVisibility(View.VISIBLE);
 
             }
