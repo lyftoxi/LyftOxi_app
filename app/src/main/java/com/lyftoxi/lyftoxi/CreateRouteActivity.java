@@ -186,6 +186,9 @@ public class CreateRouteActivity extends BaseActivity {
                 startTime.requestFocus();
                 return false;
             }
+            Calendar myTime =  Calendar.getInstance();
+            myTime.setTime(startDateTime);
+            Log.d("gog.debug","Time Zone "+myTime.getTimeZone().getDisplayName());
             rideInfo.setStarTime(startDateTime);
         }
         catch (ParseException pex)

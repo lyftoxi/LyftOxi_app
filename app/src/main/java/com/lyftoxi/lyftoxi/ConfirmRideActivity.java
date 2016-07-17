@@ -44,6 +44,8 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class ConfirmRideActivity extends BaseActivity {
 
@@ -179,7 +181,8 @@ public class ConfirmRideActivity extends BaseActivity {
 
     public class SaveRideDetailsTask extends AsyncTask<Void, Void, Boolean> {
 
-        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm").create();
+
+        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm Z").create();
         @Override
         protected void onPreExecute() {
             showProgress(true);
