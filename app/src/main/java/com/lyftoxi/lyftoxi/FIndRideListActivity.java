@@ -281,6 +281,7 @@ public class FindRideListActivity extends BaseActivity {
                     ride.setDestination(new LatLng(tmpRide.getDestination().getLatitude(),tmpRide.getDestination().getLongitude()));
                     ride.setStarTime(tmpRide.getStartTime());
                     ride.setRideOf(Util.convertUserToUserInfo(tmpRide.getRideOwner()));
+                    ride.setStatus(tmpRide.getRideStatus());
                     ride.setInterested(false);
                     Log.d("gog.debug","Interested rides "+ CurrentUserInterestedRides.getInstance().getRides());
                     for(TakeRide tmpInterestedRide : CurrentUserInterestedRides.getInstance().getRides())

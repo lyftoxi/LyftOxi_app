@@ -217,6 +217,7 @@ public class MyInterestedRides extends BaseActivity {
                     rideOf.setName(tmpRide.getOwnerName());
                     rideOf.setPhNo(tmpRide.getOwnerMobileNo());
                     ride.setRideOf(rideOf);
+                    ride.setStatus(tmpRide.getShareRideStatus());
                     ride.setInterested(true);
 
                     CurrentUserInterestedRides.getInstance().getRides().add(tmpRide);

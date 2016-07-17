@@ -18,6 +18,7 @@ public class TakeRide {
     private String interestedUserObjId;
     private String interestedUserName;
     private String interestedUserMobileNo;
+    private String shareRideStatus = "A";
 
     public String getId() {
         return id;
@@ -115,6 +116,14 @@ public class TakeRide {
         this.interestedUserMobileNo = interestedUserMobileNo;
     }
 
+    public String getShareRideStatus() {
+        return shareRideStatus;
+    }
+
+    public void setShareRideStatus(String shareRideStatus) {
+        this.shareRideStatus = shareRideStatus;
+    }
+
     @Override
     public String toString() {
         return "TakeRide{" +
@@ -130,6 +139,7 @@ public class TakeRide {
                 ", interestedUserObjId='" + interestedUserObjId + '\'' +
                 ", interestedUserName='" + interestedUserName + '\'' +
                 ", interestedUserMobileNo='" + interestedUserMobileNo + '\'' +
+                ", shareRideStatus='" + shareRideStatus + '\'' +
                 '}';
     }
 }

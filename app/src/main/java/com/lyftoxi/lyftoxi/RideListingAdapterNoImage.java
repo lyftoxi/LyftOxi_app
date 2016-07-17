@@ -29,9 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by DhimanZ on 4/16/2016.
- */
+
 public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
 
     List<RideListingInfo> rides;
@@ -172,7 +170,7 @@ public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
         Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
         View progressBar;
         TextView cancelledText;
-        ImageButton cancelBtn;
+        ImageButton cancelBtn, editRide;
 
         @Override
         protected void onPreExecute() {
@@ -214,10 +212,14 @@ public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
             if (success) {
                 toast = Toast.makeText(getContext(), "Cancelled ride successful", Toast.LENGTH_LONG);
                 cancelledText.setVisibility(View.VISIBLE);
+                editRide.setVisibility(View.GONE);
+                cancelBtn.setVisibility(View.GONE);
                // RideListingAdapterNoImage.this.notifyDataSetChanged();
 
             } else {
                 toast = Toast.makeText(getContext(), "Canceling ride failed. Try Again", Toast.LENGTH_LONG);
+                cancelledText.setVisibility(View.GONE);
+                editRide.setVisibility(View.VISIBLE);
                 cancelBtn.setVisibility(View.VISIBLE);
 
             }
