@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.lyftoxi.lyftoxi.dao.Car;
 import com.lyftoxi.lyftoxi.dao.User;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
+import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.lyftoxi.lyftoxi.util.RoundImage;
 import com.lyftoxi.lyftoxi.util.Util;
@@ -54,7 +55,7 @@ public class CarListAdapter extends ArrayAdapter<CarInfo> {
 
         final CarInfo carInfo = cars.get(position);
         if (carInfo != null) {
-            Log.d("gog.debug","car adapter "+carInfo.getCarNo());
+            Log.d("lyftoxi.debug","car adapter "+carInfo.getCarNo());
             ImageView carImage = (ImageView) v.findViewById(R.id.carListImage);
             TextView carBrand = (TextView) v.findViewById(R.id.carListingBrand);
             TextView carNumber = (TextView) v.findViewById(R.id.carListingNumber);
@@ -160,11 +161,11 @@ public class CarListAdapter extends ArrayAdapter<CarInfo> {
                 }
             }
 
-            Log.d("gog.debug","user "+user);
-            Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
+            Log.d("lyftoxi.debug","user "+user);
+            Gson gson = new GsonBuilder().setDateFormat(Constants.SIMPLE_DATE_FORMAT).create();
             Object carInfoJson = gson.toJson(user);
 
-            Log.d("gog.debug","user Info "+carInfoJson.toString());
+            Log.d("lyftoxi.debug","user Info "+carInfoJson.toString());
             try {
 
                 HttpRestUtil httpRestUtil = new HttpRestUtil(getContext());
@@ -176,11 +177,11 @@ public class CarListAdapter extends ArrayAdapter<CarInfo> {
 
             }catch (IOException ioex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
             }
             catch (Exception ex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
             }
             return false;
         }

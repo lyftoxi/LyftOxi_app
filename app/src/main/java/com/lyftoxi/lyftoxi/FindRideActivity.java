@@ -22,6 +22,7 @@ import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
 import com.lyftoxi.lyftoxi.singletons.RideInfo;
+import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.Util;
 
 import java.text.ParseException;
@@ -57,7 +58,7 @@ public class FindRideActivity extends BaseActivity {
         smoking = (CheckBox)findViewById(R.id.findRideRadioSmoking);
 
         changeDate = (ImageButton)findViewById(R.id.findRideDatePicker);
-        sdf  = new SimpleDateFormat("dd-MM-yyyy");
+        sdf  = new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);
         sdf.setLenient(false);
         startDate = (EditText)findViewById(R.id.findRideDate);
 
@@ -104,8 +105,8 @@ public class FindRideActivity extends BaseActivity {
                 {
                    // Util.addParamToUrl(urlParamaters,"dateTime",startDate.getText().toString());
                     try {
-                        Log.d("gog.debug"," date---> "+new SimpleDateFormat("dd-MM-yyyy'T'HH:mm").format(sdf.parse(startDate.getText().toString())));
-                        Util.addParamToUrl(urlParamaters,"dateTime",new SimpleDateFormat("dd-MM-yyyy'T'HH:mm").format(sdf.parse(startDate.getText().toString())));
+                        Log.d("lyftoxi.debug"," date---> "+new SimpleDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).format(sdf.parse(startDate.getText().toString())));
+                        Util.addParamToUrl(urlParamaters,"dateTime",new SimpleDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).format(sdf.parse(startDate.getText().toString())));
                     }catch(ParseException pe)
                     {
                         pe.printStackTrace();
@@ -156,14 +157,14 @@ public class FindRideActivity extends BaseActivity {
         autocompleteFragmentSource.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                Log.d("gog.debug", "Source: " + place.getName());
-                Log.d("gog.debug", "Source:" + place.getLatLng().longitude + " ," + place.getLatLng().longitude);
+                Log.d("lyftoxi.debug", "Source: " + place.getName());
+                Log.d("lyftoxi.debug", "Source:" + place.getLatLng().longitude + " ," + place.getLatLng().longitude);
                 source = place.getLatLng();
             }
 
             @Override
             public void onError(Status status) {
-                Log.d("gog.debug", "An error occurred: " + status);
+                Log.d("lyftoxi.debug", "An error occurred: " + status);
             }
         });
 
@@ -175,14 +176,14 @@ public class FindRideActivity extends BaseActivity {
         autocompleteFragmentDestination.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                Log.d("gog.debug", "destination: " + place.getName());
-                Log.d("gog.debug", "destination:"+ place.getLatLng().longitude+" ,"+place.getLatLng().longitude);
+                Log.d("lyftoxi.debug", "destination: " + place.getName());
+                Log.d("lyftoxi.debug", "destination:"+ place.getLatLng().longitude+" ,"+place.getLatLng().longitude);
                 destination = place.getLatLng();
             }
 
             @Override
             public void onError(Status status) {
-                Log.d("gog.debug", "An error occurred: " + status);
+                Log.d("lyftoxi.debug", "An error occurred: " + status);
             }
         });
 

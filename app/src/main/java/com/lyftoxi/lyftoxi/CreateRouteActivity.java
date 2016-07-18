@@ -22,6 +22,7 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
+import com.lyftoxi.lyftoxi.util.Constants;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -51,8 +52,8 @@ public class CreateRouteActivity extends BaseActivity {
 
         changeDate = (ImageButton)findViewById(R.id.createRouteDatePicker);
         changeTime = (ImageButton)findViewById(R.id.createRouteTimePicker);
-        sdf  = new SimpleDateFormat("dd-MM-yyyy h:mm a");
-        sdf1 = new SimpleDateFormat("dd-MM-yyyy");
+        sdf  = new SimpleDateFormat(Constants.DATE_TIME_FORMAT_12HR_FORMAT);
+        sdf1 = new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);
         sdf2 = new SimpleDateFormat("h:mm a");
         sdf.setLenient(false);
         sdf1.setLenient(false);
@@ -188,7 +189,7 @@ public class CreateRouteActivity extends BaseActivity {
             }
             Calendar myTime =  Calendar.getInstance();
             myTime.setTime(startDateTime);
-            Log.d("gog.debug","Time Zone "+myTime.getTimeZone().getDisplayName());
+            Log.d("lyftoxi.debug","Time Zone "+myTime.getTimeZone().getDisplayName());
             rideInfo.setStarTime(startDateTime);
         }
         catch (ParseException pex)

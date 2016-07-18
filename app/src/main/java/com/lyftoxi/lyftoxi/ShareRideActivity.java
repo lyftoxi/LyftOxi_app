@@ -66,7 +66,7 @@ public class ShareRideActivity extends BaseActivity {
         carListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("gog.debug","Item Clicked "+i);
+                Log.d("lyftoxi.debug","Item Clicked "+i);
                 CarInfo selectedCar = (CarInfo)adapterView.getItemAtPosition(i);
                 RideInfo.getInstance().reset();
                 RideInfo.getInstance().setCar(selectedCar);
@@ -168,7 +168,7 @@ public class ShareRideActivity extends BaseActivity {
         List<CarInfo> carInfos = new ArrayList<CarInfo>();
         for(Car car : cars) {
             CarInfo carInfo = new CarInfo();
-            Log.d("gog.debug","car sharing ride "+car.getCarNo());
+            Log.d("lyftoxi.debug","car sharing ride "+car.getCarNo());
             carInfo.setAirbagAvailable(car.isAirbagAvailable());
             carInfo.setMusicAvailable(car.isMusicAvailable());
             carInfo.setAcAvailable(car.isAcAvailable());

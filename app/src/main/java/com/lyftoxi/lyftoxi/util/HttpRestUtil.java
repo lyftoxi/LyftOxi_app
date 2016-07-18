@@ -37,7 +37,7 @@ public class HttpRestUtil {
 
         String usernameAndPassword = API_AUTH_USER_NAME+":"+API_AUTH_PASSWORD;
         String basicAuthHeader = "Basic "+new String(Base64.encodeBase64(usernameAndPassword.getBytes()));
-        Log.d("gog.debug"," basicAuthHeader "+basicAuthHeader);
+        Log.d("lyftoxi.debug"," basicAuthHeader "+basicAuthHeader);
         header = new HttpHeaders();
         header.setAuthorization(basicAuthHeader);
         transport = AndroidHttp.newCompatibleTransport();
@@ -49,11 +49,11 @@ public class HttpRestUtil {
         GenericUrl fullUrl = new GenericUrl(API_BASE_URL+url);
         HttpRequest getRequest  = transport.createRequestFactory().buildGetRequest(fullUrl);
         getRequest.setHeaders(header);
-        Log.d("gog.debug", "input " + fullUrl);
+        Log.d("lyftoxi.debug", "input " + fullUrl);
         HttpResponse httpResponse  = getRequest.execute();
 
         response  =  Util.getStringFromInputStream(httpResponse.getContent());
-        Log.d("gog.debug", "output " + response);
+        Log.d("lyftoxi.debug", "output " + response);
         return response;
     }
 
@@ -65,8 +65,8 @@ public class HttpRestUtil {
             throw new Exception("payload cannot be null");
         }
         GenericUrl fullUrl = new GenericUrl(API_BASE_URL+url);
-        Log.d("gog.debug", "input " + fullUrl);
-        Log.d("gog.debug","info json "+payload.toString());
+        Log.d("lyftoxi.debug", "input " + fullUrl);
+        Log.d("lyftoxi.debug","info json "+payload.toString());
         HttpRequest postRequest  = transport.createRequestFactory().buildPostRequest(fullUrl,
                 ByteArrayContent.fromString("application/json", payload.toString()));
         postRequest.setHeaders(header);
@@ -74,7 +74,7 @@ public class HttpRestUtil {
         HttpResponse httpResponse  = postRequest.execute();
 
         response  =  Util.getStringFromInputStream(httpResponse.getContent());
-        Log.d("gog.debug", "output " + response);
+        Log.d("lyftoxi.debug", "output " + response);
         return response;
     }
 
@@ -85,11 +85,11 @@ public class HttpRestUtil {
         HttpRequest postRequest  = transport.createRequestFactory().buildPostRequest(fullUrl,
                 ByteArrayContent.fromString("text/html",""));
         postRequest.setHeaders(header);
-        Log.d("gog.debug", "input " + fullUrl);
+        Log.d("lyftoxi.debug", "input " + fullUrl);
         HttpResponse   httpResponse = postRequest.execute();
 
         response  =  Util.getStringFromInputStream(httpResponse.getContent());
-        Log.d("gog.debug", "output " + response);
+        Log.d("lyftoxi.debug", "output " + response);
         return response;
     }
 
@@ -101,8 +101,8 @@ public class HttpRestUtil {
             throw new Exception("payload cannot be null");
         }
         GenericUrl fullUrl = new GenericUrl(API_BASE_URL+url);
-        Log.d("gog.debug", "input " + fullUrl);
-        Log.d("gog.debug","signup info json "+payload.toString());
+        Log.d("lyftoxi.debug", "input " + fullUrl);
+        Log.d("lyftoxi.debug","signup info json "+payload.toString());
         HttpRequest putRequest  = transport.createRequestFactory().buildPutRequest(fullUrl,
                 ByteArrayContent.fromString("application/json", payload.toString()));
         putRequest.setHeaders(header);
@@ -110,7 +110,7 @@ public class HttpRestUtil {
         HttpResponse httpResponse  = putRequest.execute();
 
         response  =  Util.getStringFromInputStream(httpResponse.getContent());
-        Log.d("gog.debug", "output " + response);
+        Log.d("lyftoxi.debug", "output " + response);
         return response;
     }
 
@@ -119,11 +119,11 @@ public class HttpRestUtil {
         GenericUrl fullUrl = new GenericUrl(API_BASE_URL+url);
         HttpRequest deleteRequest  = transport.createRequestFactory().buildDeleteRequest(fullUrl);
         deleteRequest.setHeaders(header);
-        Log.d("gog.debug", "input " + fullUrl);
+        Log.d("lyftoxi.debug", "input " + fullUrl);
         HttpResponse httpResponse  = deleteRequest.execute();
 
         response  =  Util.getStringFromInputStream(httpResponse.getContent());
-        Log.d("gog.debug", "output " + response);
+        Log.d("lyftoxi.debug", "output " + response);
         return response;
     }
 

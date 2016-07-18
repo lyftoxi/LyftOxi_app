@@ -25,7 +25,7 @@ public class NavListAdapter extends ArrayAdapter<NavDrawerItem> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-       // Log.d("gog.debug", "Nav Listing Adapter start");
+       // Log.d("lyftoxi.debug", "Nav Listing Adapter start");
         // assign the view we are converting to a local variable
         View v = convertView;
 

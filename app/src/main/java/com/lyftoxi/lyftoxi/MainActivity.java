@@ -142,7 +142,7 @@ public class MainActivity extends BaseActivity {
 
     public void shareRide(View view)
     {
-        Log.d("gog.debug","isLoggedIn "+session.isLoggedIn());
+        Log.d("lyftoxi.debug","isLoggedIn "+session.isLoggedIn());
         Intent shareRideIntent = new Intent(this, ShareRideActivity.class);
         startActivity(shareRideIntent);
 
@@ -151,7 +151,7 @@ public class MainActivity extends BaseActivity {
 
     public void help(View view)
     {
-        Log.d("gog.debug","isLoggedIn "+session.isLoggedIn());
+        Log.d("lyftoxi.debug","isLoggedIn "+session.isLoggedIn());
         Intent helpIntent = new Intent(this, HelpActivity.class);
         startActivity(helpIntent);
 

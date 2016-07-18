@@ -33,6 +33,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.lyftoxi.lyftoxi.dao.User;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
+import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.HttpTransport;
@@ -94,12 +95,12 @@ public class LoginActivity extends Activity {
         if(null!= getIntent().getExtras()) {
             Bundle extras = getIntent().getExtras();
             String classNameStr = extras.getString("activityOnSuccess");
-            Log.d("gog.debug", "classNameReceived " + classNameStr);
+            Log.d("lyftoxi.debug", "classNameReceived " + classNameStr);
             if (null != classNameStr) {
                 try {
                     onSuccessActivity = Class.forName(classNameStr);
                 } catch (ClassNotFoundException ex) {
-                    Log.d("gog.debug", "ClassNotFound " + ex.getMessage());
+                    Log.d("lyftoxi.debug", "ClassNotFound " + ex.getMessage());
                     ex.printStackTrace();
                     onSuccessActivity = null;
                 }
@@ -181,7 +182,7 @@ public class LoginActivity extends Activity {
                 /*RoundImage roundedImage = new RoundImage(bm);
                 profileImage.setImageDrawable(roundedImage);*/
 
-                Log.d("gog.debug"," downloaded profile pic");
+                Log.d("lyftoxi.debug"," downloaded profile pic");
                 ImageUtil imageUtil = new ImageUtil();
                 String filePath = imageUtil.saveToInternalStorage(getBaseContext(),bitmap,"user_avatar.jpg");
                 CurrentUserInfo.getInstance().setProfilePicPath(filePath);
@@ -190,7 +191,7 @@ public class LoginActivity extends Activity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(Exception exception) {
-                Log.d("gog.debug","Firebase: profile pic download failed");
+                Log.d("lyftoxi.debug","Firebase: profile pic download failed");
             }
         });
     }
@@ -299,7 +300,7 @@ public class LoginActivity extends Activity {
         private final String mMobile;
         private final String mPassword;
 
-        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
+        Gson gson = new GsonBuilder().setDateFormat(Constants.SIMPLE_DATE_FORMAT).create();
         UserLoginTask(String email, String password) {
             mMobile = email;
             mPassword = password;
@@ -315,11 +316,11 @@ public class LoginActivity extends Activity {
 
             }catch (IOException ioex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
             }
             catch (Exception ex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
             }
 
             if(null!= userInfo  && null!= userInfo.getId() )
@@ -356,17 +357,17 @@ public class LoginActivity extends Activity {
                     @Override
                     public void onSuccess(byte[] bytes) {
                         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                        Log.d("gog.debug"," downloaded profile pic");
+                        Log.d("lyftoxi.debug"," downloaded profile pic");
                         ImageUtil imageUtil = new ImageUtil();
                         String filePath = imageUtil.saveToInternalStorage(getBaseContext(),bitmap,"user_avatar.jpg");
                         CurrentUserInfo.getInstance().setProfilePicPath(filePath);
                         if(null!=onSuccessActivity) {
-                            Log.d("gog.debug","onSuccessActivity Starting....");
+                            Log.d("lyftoxi.debug","onSuccessActivity Starting....");
                             Intent onSuccessIntent = new Intent(getApplicationContext(), onSuccessActivity);
                             startActivity(onSuccessIntent);
                         }
                         else {
-                            Log.d("gog.debug","onSuccessActivity is null");
+                            Log.d("lyftoxi.debug","onSuccessActivity is null");
                             finish();
                         }
                         showProgress(false);
@@ -375,14 +376,14 @@ public class LoginActivity extends Activity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(Exception exception) {
-                        Log.d("gog.debug","Firebase: profile pic download failed");
+                        Log.d("lyftoxi.debug","Firebase: profile pic download failed");
                         if(null!=onSuccessActivity) {
-                            Log.d("gog.debug","onSuccessActivity Starting....");
+                            Log.d("lyftoxi.debug","onSuccessActivity Starting....");
                             Intent onSuccessIntent = new Intent(getApplicationContext(), onSuccessActivity);
                             startActivity(onSuccessIntent);
                         }
                         else {
-                            Log.d("gog.debug","onSuccessActivity is null");
+                            Log.d("lyftoxi.debug","onSuccessActivity is null");
                             finish();
                         }
                         showProgress(false);

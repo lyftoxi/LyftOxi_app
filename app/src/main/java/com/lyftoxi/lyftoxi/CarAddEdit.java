@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.lyftoxi.lyftoxi.dao.Car;
 import com.lyftoxi.lyftoxi.dao.User;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
+import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.lyftoxi.lyftoxi.util.Util;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -40,13 +41,8 @@ public class CarAddEdit extends BaseActivity {
     private EditText otherBrand, model,number,color;
     private Spinner brand;
     private CheckBox smokingAllowed, luggageAllowed, acAvailable, airbagAvailable, musicAvailable;
-
     private Button saveBtn;
-
     private String[] brands;
-
-    private static final String  CAR_NUMBER_PATTERN = "^[A-Z]{2}[\\s|.|-]*[0-9]+[\\s|.|-]*[A-Z]*[\\s|.|-]*[0-9]{4}$";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -307,7 +303,7 @@ public class CarAddEdit extends BaseActivity {
             return false;
         }
 
-        Pattern pattern = Pattern.compile(CAR_NUMBER_PATTERN);
+        Pattern pattern = Pattern.compile(Constants.CAR_NUMBER_PATTERN);
         Matcher matcher = pattern.matcher(number.getText().toString());
         if(!matcher.matches())
         {
@@ -348,7 +344,7 @@ public class CarAddEdit extends BaseActivity {
     public class SaveCarDetailsTask extends AsyncTask<Void, Void, Boolean> {
 
         HttpTransport transport = AndroidHttp.newCompatibleTransport();
-        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
+        Gson gson = new GsonBuilder().setDateFormat(Constants.SIMPLE_DATE_FORMAT).create();
         User user = new User();
 
         @Override
@@ -364,7 +360,7 @@ public class CarAddEdit extends BaseActivity {
             CurrentUserInfo currentUser = CurrentUserInfo.getInstance();
 
             user.setId(currentUser.getId());
-            Log.d("gog.debug","address "+currentUser.getAddresses());
+            Log.d("lyftoxi.debug","address "+currentUser.getAddresses());
            // user.setAddresses(currentUser.getAddresses());
             user.setCarDetails(currentUser.getCarDetails());
             boolean newCar= true;
@@ -416,11 +412,11 @@ public class CarAddEdit extends BaseActivity {
 
             }catch (IOException ioex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
             }
             catch (Exception ex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
             }
             return false;
         }

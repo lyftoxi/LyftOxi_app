@@ -27,6 +27,7 @@ import com.lyftoxi.lyftoxi.dao.Ride;
 import com.lyftoxi.lyftoxi.dao.User;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.singletons.RideInfo;
+import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.lyftoxi.lyftoxi.util.ImageUtil;
 import com.lyftoxi.lyftoxi.util.Util;
@@ -56,7 +57,7 @@ public class ConfirmRideActivity extends BaseActivity {
     private CheckBox confirmRideDetailsRadioAc,confirmRideDetailsRadioMusic,confirmRideDetailsRadioSmoking,
             confirmRideDetailsRadioAirbag, confirmRideDetailsLuggage;
 
-    private SimpleDateFormat sdf =  new SimpleDateFormat("dd-MM-yyyy h:mm a");
+    private SimpleDateFormat sdf =  new SimpleDateFormat(Constants.DATE_TIME_FORMAT_12HR_FORMAT);
 
     private Button confirmRideDetailsPublish;
 
@@ -181,8 +182,7 @@ public class ConfirmRideActivity extends BaseActivity {
 
     public class SaveRideDetailsTask extends AsyncTask<Void, Void, Boolean> {
 
-
-        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm Z").create();
+        Gson gson = new GsonBuilder().setDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).create();
         @Override
         protected void onPreExecute() {
             showProgress(true);
@@ -196,7 +196,7 @@ public class ConfirmRideActivity extends BaseActivity {
             RideInfo rideInfo = RideInfo.getInstance();
             if(null!=rideInfo.getId())
             {
-                Log.d("gog.debug","rideId "+rideInfo.getId());
+                Log.d("lyftoxi.debug","rideId "+rideInfo.getId());
                 ride.setId(rideInfo.getId());
                 isRideIdAvailable=true;
             }
@@ -223,10 +223,10 @@ public class ConfirmRideActivity extends BaseActivity {
                 String response;
                 if(isRideIdAvailable)
                 {
-                    Log.d("gog.debug","executing put");
+                    Log.d("lyftoxi.debug","executing put");
                     response = httpRestUtil.httpPut("shareRideService/ride", rideInfoJson);
                 }else {
-                    Log.d("gog.debug","executing post");
+                    Log.d("lyftoxi.debug","executing post");
                     response = httpRestUtil.httpPost("shareRideService/ride", rideInfoJson);
                 }
                 if(null!=response)
@@ -237,11 +237,11 @@ public class ConfirmRideActivity extends BaseActivity {
 
             }catch (IOException ioex)
             {
-             Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+             Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
             }
             catch (Exception ex)
             {
-               Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
+               Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
              }
             return false;
         }

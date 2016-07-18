@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import com.lyftoxi.lyftoxi.dao.Car;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.singletons.RideInfo;
+import com.lyftoxi.lyftoxi.util.Constants;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,9 +24,6 @@ public class RentedCarActivity extends BaseActivity {
     private Spinner brand;
     private EditText number, otherBrand, model, color;
     private Button saveBtn;
-
-    private static final String  CAR_NUMBER_PATTERN = "^[A-Z]{2}[\\s|.|-]*[0-9]+[\\s|.|-]*[A-Z]*[\\s|.|-]*[0-9]{4}$";
-
     private String[] brands;
 
     @Override
@@ -132,7 +130,7 @@ public class RentedCarActivity extends BaseActivity {
 
         if(null!=number.getText() && !number.getText().toString().trim().equals(""))
         {
-            Pattern pattern = Pattern.compile(CAR_NUMBER_PATTERN);
+            Pattern pattern = Pattern.compile(Constants.CAR_NUMBER_PATTERN);
             Matcher matcher = pattern.matcher(number.getText().toString());
             if(!matcher.matches())
             {

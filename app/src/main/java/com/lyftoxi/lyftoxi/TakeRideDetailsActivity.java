@@ -34,6 +34,7 @@ import com.lyftoxi.lyftoxi.dao.TakeRide;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInterestedRides;
 import com.lyftoxi.lyftoxi.singletons.RideInfo;
+import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.lyftoxi.lyftoxi.util.LyftoxiFirebase;
 import com.lyftoxi.lyftoxi.util.RoundImage;
@@ -54,7 +55,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
     private CheckBox takeRideDetailsRadioAc,takeRideDetailsRadioMusic,takeRideDetailsRadioSmoking,
             takeRideDetailsRadioAirbag, takeRideDetailsLuggage;
 
-    private SimpleDateFormat sdf =  new SimpleDateFormat("dd-MM-yyyy h:mm a");
+    private SimpleDateFormat sdf =  new SimpleDateFormat(Constants.DATE_TIME_FORMAT_12HR_FORMAT);
 
     private ImageButton takeRideDetailsCall, takeRideDetailSms;
 
@@ -181,7 +182,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
                 }
             });
 
-/*            Log.d("gog.debug","interested "+seletctedRide.isInterested());
+/*            Log.d("lyftoxi.debug","interested "+seletctedRide.isInterested());
             if(seletctedRide.isInterested())
             {
                 takeRideInterested.setText(R.string.not_interested);
@@ -223,7 +224,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(Exception exception) {
-                Log.d("gog.debug","Firebase: profile pic download failed");
+                Log.d("lyftoxi.debug","Firebase: profile pic download failed");
                 Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.profile_pic_placeholder_large);
                 collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(),bitmap));
             }
@@ -237,150 +238,5 @@ public class TakeRideDetailsActivity extends BaseActivity {
         startActivity(myInterestedRides);
     }
 
-
-    /*public class AddInterestedRide extends AsyncTask<Void, Void, Boolean> {
-
-        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm").create();
-        @Override
-        protected void onPreExecute() {
-            showProgress(true);
-        }
-        private TakeRide interestedRide;
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            DecimalFormat df = new DecimalFormat("##.######");
-
-            interestedRide = new TakeRide();
-            interestedRide.setOwnerObjId(seletctedRide.getRideOf().getUID());
-            interestedRide.setOwnerName(seletctedRide.getRideOf().getName());
-            interestedRide.setOwnerMobileNo(seletctedRide.getRideOf().getPhNo());
-            interestedRide.setShareRideObjId(seletctedRide.getId());
-            interestedRide.setRideTime(seletctedRide.getStarTime());
-            interestedRide.setFare(seletctedRide.getFare());
-            interestedRide.setInterestedUserObjId(CurrentUserInfo.getInstance().getId());
-            interestedRide.setInterestedUserName(CurrentUserInfo.getInstance().getName());
-            interestedRide.setInterestedUserMobileNo(CurrentUserInfo.getInstance().getPhNo());
-            Location source = new Location();
-            source.setName(seletctedRide.getSourceName());
-            source.setLatitude(Double.valueOf(df.format(seletctedRide.getSource().latitude)));
-            source.setLongitude(Double.valueOf(df.format(seletctedRide.getSource().longitude)));
-            interestedRide.setSource(source);
-            Location destination = new Location();
-            destination.setName(seletctedRide.getDestinationName());
-            destination.setLatitude(Double.valueOf(df.format(seletctedRide.getDestination().latitude)));
-            destination.setLongitude(Double.valueOf(df.format(seletctedRide.getDestination().longitude)));
-            interestedRide.setDestination(destination);
-
-
-
-            Object interestedRideInfoJson = gson.toJson(interestedRide);
-            try {
-                HttpRestUtil httpRestUtil = new HttpRestUtil();
-                String response = httpRestUtil.httpPost("takeRideService/ride",interestedRideInfoJson);
-                if(null!=response)
-                {
-                    return true;
-                }
-
-
-            }catch (IOException ioex)
-            {
-                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
-            }
-            catch (Exception ex)
-            {
-                Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
-            }
-            return false;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            showProgress(false);
-            Toast toast;
-            if (success) {
-                CurrentUserInterestedRides.getInstance().getRides().add(interestedRide);
-                toast = Toast.makeText(getApplicationContext(), "Marked Interested successfully", Toast.LENGTH_LONG);
-                toast.show();
-                finish();
-                startMyInterestedRideActivity();
-
-
-            } else {
-                toast = Toast.makeText(getApplicationContext(), "Marking Interested failed. Try Again", Toast.LENGTH_LONG);
-                toast.show();
-                finish();
-            }
-        }
-        @Override
-        protected void onCancelled() {
-
-        }
-
-    }
-
-    public class RemoveInterestedRide extends AsyncTask<String, Void, Boolean> {
-
-        String rideId, userId;
-        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm").create();
-
-        @Override
-        protected void onPreExecute() {
-            showProgress(true);
-        }
-
-        @Override
-        protected Boolean doInBackground(String... params) {
-            rideId = params[0];
-            userId = params[1];
-
-
-            try {
-                HttpRestUtil httpRestUtil = new HttpRestUtil();
-                String response = httpRestUtil.httpDelete("takeRideService/ride/rideIdUserId?rideId=" + rideId + "&userId=" + userId);
-                if (null != response) {
-                    return true;
-                }
-
-
-            } catch (IOException ioex) {
-                Log.d("gog.debug", "Error occurred in REST WS call url cannot be reached " + ioex.getMessage());
-            } catch (Exception ex) {
-                Log.d("gog.debug", "Error occurred in REST WS call " + ex.getMessage());
-            }
-            return false;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            showProgress(false);
-            Toast toast;
-            if (success) {
-                for(int i=0; i<CurrentUserInterestedRides.getInstance().getRides().size(); i++)
-                {
-                    if(CurrentUserInterestedRides.getInstance().getRides().get(i).equals(rideId))
-                    {
-                        CurrentUserInterestedRides.getInstance().getRides().remove(i);
-                    }
-                }
-                toast = Toast.makeText(getApplicationContext(), "Un-marked Interested successfully", Toast.LENGTH_LONG);
-                toast.show();
-               // finish();
-                startMyInterestedRideActivity();
-
-
-            } else {
-                toast = Toast.makeText(getApplicationContext(), "Un-marking Interested failed. Try Again", Toast.LENGTH_LONG);
-                toast.show();
-               // finish();
-                startMyInterestedRideActivity();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-
-        }
-    }*/
 
 }

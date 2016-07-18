@@ -52,6 +52,7 @@ import com.google.gson.GsonBuilder;
 import com.lyftoxi.lyftoxi.dao.User;
 import com.lyftoxi.lyftoxi.dao.UserAddress;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
+import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.lyftoxi.lyftoxi.util.ImageUtil;
 import com.lyftoxi.lyftoxi.util.LyftoxiFirebase;
@@ -83,17 +84,10 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
     private FloatingActionButton editProfilePicBtn;
     private Uri mImageCaptureUri;
     private User user = new User();
-    private static final String EMAIL_PATTERN =
-            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-    private static final String MOBIL_PATTERN = "^[0-9]{10}$";
-    private static final String PIN_PATTERN = "^[0-9]{6}$";
-    private SimpleDateFormat sdf =  new SimpleDateFormat("dd-MM-yyyy");
+    private SimpleDateFormat sdf =  new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);
     private Verification mVerification=null;
     private static final int PICK_FROM_CAMERA = 1;
     private static final int PICK_FROM_FILE = 2;
-    private static final int CROP_FROM_CAMERA = 2;
-    private static final int PROFILE_PIC_SIZE = 400;
     private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 0;
     private ImageUtil imageUtil;
     private Calendar dob = Calendar.getInstance();
@@ -124,12 +118,12 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
 
         Bitmap profilePic;
         if(session.isLoggedIn() && null!=CurrentUserInfo.getInstance().getProfilePicPath()) {
-            Log.d("gog.debug","profile pic path "+CurrentUserInfo.getInstance().getProfilePicPath());
+            Log.d("lyftoxi.debug","profile pic path "+CurrentUserInfo.getInstance().getProfilePicPath());
             profilePic = imageUtil.loadImageFromStorage(CurrentUserInfo.getInstance().getProfilePicPath());
         }
         else
         {
-            Log.d("gog.debug","using default pic");
+            Log.d("lyftoxi.debug","using default pic");
             profilePic = BitmapFactory.decodeResource(getResources(),R.drawable.profile_pic_placeholder_large);
         }
         collapsingToolbarLayout.setBackground(new BitmapDrawable(imageUtil.getProfilePic(this)));
@@ -211,7 +205,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
                 boolean mobileNumberNotChanged = true;
                 if(!isValidInputs())
                 {
-                    Log.d("gog.debug","error in field validation");
+                    Log.d("lyftoxi.debug","error in field validation");
                     return;
                 }
                 if(!CurrentUserInfo.getInstance().getPhNo().equalsIgnoreCase(editProfileMobile.getText().toString()))
@@ -396,18 +390,18 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
 
             if (requestCode == PICK_FROM_FILE) {
                 mImageCaptureUri = data.getData();
-                Log.d("gog.debug", " path " + mImageCaptureUri.getPath());
+                Log.d("lyftoxi.debug", " path " + mImageCaptureUri.getPath());
                 path = getRealPathFromURI(mImageCaptureUri); //from Gallery
 
 
                 if (path == null) {
                     path = mImageCaptureUri.getPath(); //from File Manager
-                    Log.d("gog.debug", "real path " + path.toString());
+                    Log.d("lyftoxi.debug", "real path " + path.toString());
                 }
 
                 if (path != null) {
                     bitmap = BitmapFactory.decodeFile(path);
-                    Log.d("gog.debug", "real path 1" + path.toString());
+                    Log.d("lyftoxi.debug", "real path 1" + path.toString());
 
                 }
             } else {
@@ -508,7 +502,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
     private boolean isValidInputs()
     {
 
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Pattern pattern = Pattern.compile(Constants.EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(editProfileEmail.getText().toString());
         if(!matcher.matches())
         {
@@ -517,7 +511,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
             return false;
         }
 
-        pattern = Pattern.compile(MOBIL_PATTERN);
+        pattern = Pattern.compile(Constants.MOBIL_PATTERN);
         matcher = pattern.matcher(editProfileMobile.getText().toString());
         if(!matcher.matches())
         {
@@ -534,7 +528,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
         }
 
         if(null!=editProfilePin.getText() && !("".equals(editProfilePin.getText().toString().trim()))) {
-            pattern = Pattern.compile(PIN_PATTERN);
+            pattern = Pattern.compile(Constants.PIN_PATTERN);
             matcher = pattern.matcher(editProfilePin.getText().toString());
             if (!matcher.matches()) {
                 editProfilePin.setError("PIN must be 6 digits only");
@@ -550,7 +544,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
     @Override
     public void onInitiated(String response) {
         showProgress(false);
-        Log.d("gog.debug", "Initialized!" + response);
+        Log.d("lyftoxi.debug", "Initialized!" + response);
         LayoutInflater li = LayoutInflater.from(this);
         View otpPopup = li.inflate(R.layout.otp_popup, null);
 
@@ -581,7 +575,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
 
     @Override
     public void onInitiationFailed(Exception exception) {
-        Log.e("gog.debug", "Verification initialization failed: " + exception.getMessage());
+        Log.e("lyftoxi.debug", "Verification initialization failed: " + exception.getMessage());
         exception.printStackTrace();
         showProgress(false);
 
@@ -589,19 +583,19 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
 
     @Override
     public void onVerified(String response) {
-        Log.d("gog.debug", "Verified!\n" + response);
+        Log.d("lyftoxi.debug", "Verified!\n" + response);
         showProgress(false);
         new UpdateUserInfoTask().execute(true);
     }
 
     @Override
     public void onVerificationFailed(Exception exception) {
-        Log.e("gog.debug", "Verification failed: " + exception.getMessage());
+        Log.e("lyftoxi.debug", "Verification failed: " + exception.getMessage());
         showProgress(false);
     }
 
     public class UpdateUserInfoTask extends AsyncTask<Boolean, Void, Boolean> {
-        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
+        Gson gson = new GsonBuilder().setDateFormat(Constants.SIMPLE_DATE_FORMAT).create();
 
         @Override
         protected void onPreExecute() {
@@ -634,11 +628,11 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
 
             }catch (IOException ioex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
             }
             catch (Exception ex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
             }
             return false;
         }

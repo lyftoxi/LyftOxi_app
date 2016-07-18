@@ -39,6 +39,7 @@ import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInterestedRides;
 import com.lyftoxi.lyftoxi.singletons.RideInfo;
 import com.lyftoxi.lyftoxi.util.ConnectionDetector;
+import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.lyftoxi.lyftoxi.util.ImageUtil;
 import com.lyftoxi.lyftoxi.util.RoundImage;
@@ -171,15 +172,15 @@ public class BaseActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        Log.d("gog.debug","base activity check user info");
+        Log.d("lyftoxi.debug","base activity check user info");
         //Is user logged in?
         if(session.isLoggedIn())
         {
-            Log.d("gog.debug","base activity user logged in");
+            Log.d("lyftoxi.debug","base activity user logged in");
             //Is user data populated?
             if(null == CurrentUserInfo.getInstance().getId())
             {
-                Log.d("gog.debug","base activity user logged in but id is null");
+                Log.d("lyftoxi.debug","base activity user logged in but id is null");
                 new UserDetailsTask().execute((Void) null);
             }
         }
@@ -211,7 +212,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public void refreshProfileImage()
     {
-        Log.d("gog.debug","executing profile image refresh...");
+        Log.d("lyftoxi.debug","executing profile image refresh...");
         Bitmap profilePic = null;
         if(session.isLoggedIn())
         {
@@ -221,17 +222,17 @@ public class BaseActivity extends AppCompatActivity {
         }
         else
         {
-            Log.d("gog.debug","using default pic");
+            Log.d("lyftoxi.debug","using default pic");
             profilePic = BitmapFactory.decodeResource(getResources(),R.drawable.sample_profile_pic);
         }
         /*Bitmap profilePic;
         if(session.isLoggedIn() && null!=CurrentUserInfo.getInstance().getProfilePicPath()) {
-            Log.d("gog.debug","profile pic path "+CurrentUserInfo.getInstance().getProfilePicPath());
+            Log.d("lyftoxi.debug","profile pic path "+CurrentUserInfo.getInstance().getProfilePicPath());
 
         }
         else
         {
-            Log.d("gog.debug","using default pic");
+            Log.d("lyftoxi.debug","using default pic");
            profilePic = BitmapFactory.decodeResource(getResources(),R.drawable.sample_profile_pic);
         }*/
         if(null!=profilePic) {
@@ -253,13 +254,13 @@ public class BaseActivity extends AppCompatActivity {
 
             User userInfo = null;
             String relativeUrl = "userService/user?id=" + session.getUserDetails().getUID();
-            Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
+            Gson gson = new GsonBuilder().setDateFormat(Constants.SIMPLE_DATE_FORMAT).create();
             HttpRestUtil httpRestUtil = new HttpRestUtil(getApplicationContext());
             try {
                 String response = httpRestUtil.httpGet(relativeUrl);
                 userInfo = gson.fromJson(response, new TypeToken<User>() {}.getType());
             } catch (IOException ioex) {
-                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
             }
 
             if(null!= userInfo)

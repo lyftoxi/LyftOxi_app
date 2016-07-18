@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.lyftoxi.lyftoxi.dao.Ride;
 import com.lyftoxi.lyftoxi.singletons.RideInfo;
+import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.lyftoxi.lyftoxi.util.Util;
 
@@ -44,13 +45,13 @@ public class MySharedRides extends BaseActivity {
     }
 
     private void setRideListView(){
-        final SimpleDateFormat sdf  = new SimpleDateFormat("dd/MM/yyy hh:mm");
+        final SimpleDateFormat sdf  = new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);
         RideListingAdapterNoImage rideListingAdapter = new RideListingAdapterNoImage(this,R.layout.ride_listing_no_user_image,rides);
         rideListing.setAdapter(rideListingAdapter);
         rideListing.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Log.d("gog.debug", "clicked ride position " + position);
+                Log.d("lyftoxi.debug", "clicked ride position " + position);
                 RideListingInfo selectedRide = (RideListingInfo)adapterView.getItemAtPosition(position);
                 RideInfo rideInfo = RideInfo.getInstance();
                 rideInfo.reset();
@@ -66,7 +67,7 @@ public class MySharedRides extends BaseActivity {
                 rideInfo.setUserMessage(selectedRide.getUserMessage());
                 rideInfo.setCar(selectedRide.getCar());
                 rideInfo.setStatus(selectedRide.getStatus());
-                Log.d("gog.debug",rideInfo.toString());
+                Log.d("lyftoxi.debug",rideInfo.toString());
 
                 Intent rideDetails;
                 rideDetails = new Intent(view.getContext(),ConfirmRideActivity.class);
@@ -94,14 +95,14 @@ public class MySharedRides extends BaseActivity {
         protected Boolean doInBackground(LatLng... params) {
             String sourceStr = null;
             String destinationStr = null;
-            Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm").create();
+            Gson gson = new GsonBuilder().setDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).create();
             HttpRestUtil httpRestUtil = new HttpRestUtil(getApplicationContext());
             StringBuffer url = new StringBuffer();
             url.append("shareRideService/rides/ownerId");
             url.append("?id=");
             url.append(session.getUserDetails().getUID());
 
-            Log.d("gog.debug","URL "+url.toString());
+            Log.d("lyftoxi.debug","URL "+url.toString());
             try {
                 String response = httpRestUtil.httpGet(url.toString());
                 if(null!=response)
@@ -113,11 +114,11 @@ public class MySharedRides extends BaseActivity {
 
             }catch (IOException ioex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
             }
             catch (Exception ex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
             }
             return false;
         }

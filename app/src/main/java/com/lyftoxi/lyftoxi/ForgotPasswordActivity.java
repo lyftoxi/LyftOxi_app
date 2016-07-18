@@ -29,6 +29,7 @@ import com.google.gson.GsonBuilder;
 import com.lyftoxi.lyftoxi.exception.LyftoxiClientBusinessException;
 import com.lyftoxi.lyftoxi.exception.LyftoxiClientException;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
+import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.msg91.sendotp.library.Config;
 import com.msg91.sendotp.library.SendOtpVerification;
@@ -111,7 +112,7 @@ public class ForgotPasswordActivity extends BaseActivity implements Verification
     @Override
     public void onInitiated(String response) {
         showProgress(false);
-        Log.d("gog.debug", "Initialized!" + response);
+        Log.d("lyftoxi.debug", "Initialized!" + response);
         LayoutInflater li = LayoutInflater.from(this);
         View otpPopup = li.inflate(R.layout.otp_popup, null);
 
@@ -142,7 +143,7 @@ public class ForgotPasswordActivity extends BaseActivity implements Verification
 
     @Override
     public void onInitiationFailed(Exception exception) {
-        Log.e("gog.debug", "Verification initialization failed: " + exception.getMessage());
+        Log.e("lyftoxi.debug", "Verification initialization failed: " + exception.getMessage());
         exception.printStackTrace();
         showProgress(false);
 
@@ -150,14 +151,14 @@ public class ForgotPasswordActivity extends BaseActivity implements Verification
 
     @Override
     public void onVerified(String response) {
-        Log.d("gog.debug", "Verified!\n" + response);
+        Log.d("lyftoxi.debug", "Verified!\n" + response);
         showProgress(false);
         new ResetPasswordTask().execute(mobile.getText().toString(), password.getText().toString());
     }
 
     @Override
     public void onVerificationFailed(Exception exception) {
-        Log.e("gog.debug", "Verification failed: " + exception.getMessage());
+        Log.e("lyftoxi.debug", "Verification failed: " + exception.getMessage());
         showProgress(false);
     }
 
@@ -173,7 +174,7 @@ public class ForgotPasswordActivity extends BaseActivity implements Verification
 
     public class ResetPasswordTask extends AsyncTask<String, Void, Boolean> {
 
-        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
+        Gson gson = new GsonBuilder().setDateFormat(Constants.SIMPLE_DATE_FORMAT).create();
         private String newUserId;
         private String message;
         @Override
@@ -198,12 +199,12 @@ public class ForgotPasswordActivity extends BaseActivity implements Verification
             }
             catch (IOException ioex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
                 message = "Service returned nothing";
             }
             catch (Exception ex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
                 message = "Something went wrong which should not. Contact support is this persists";
             }
             return false;

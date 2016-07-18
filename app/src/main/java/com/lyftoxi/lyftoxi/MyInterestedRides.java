@@ -21,6 +21,7 @@ import com.lyftoxi.lyftoxi.dao.Ride;
 import com.lyftoxi.lyftoxi.dao.TakeRide;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInterestedRides;
 import com.lyftoxi.lyftoxi.singletons.RideInfo;
+import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.lyftoxi.lyftoxi.util.Util;
 
@@ -60,10 +61,10 @@ public class MyInterestedRides extends BaseActivity {
         rideListing.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Log.d("gog.debug", "clicked ride position " + position);
+                Log.d("lyftoxi.debug", "clicked ride position " + position);
 
                     selectedRide = (RideListingInfo)adapterView.getItemAtPosition(position);
-                Log.d("gog.debug", "selected ride id "+selectedRide.getId());
+                Log.d("lyftoxi.debug", "selected ride id "+selectedRide.getId());
                     new GetRideDetails().execute(selectedRide.getId());
 
             }
@@ -85,21 +86,21 @@ public class MyInterestedRides extends BaseActivity {
 
         @Override
         protected void onPreExecute() {
-            Log.d("gog.debug"," getting ride details");
+            Log.d("lyftoxi.debug"," getting ride details");
             showProgress(true);
         }
 
         @Override
         protected Boolean doInBackground(String... params) {
             String rideId = params[0];
-            Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm").create();
+            Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm Z").create();
             HttpRestUtil httpRestUtil = new HttpRestUtil(getApplicationContext());
             StringBuffer url = new StringBuffer();
             url.append("shareRideService/ride");
             url.append("?id=");
             url.append(rideId);
 
-            Log.d("gog.debug","URL "+url.toString());
+            Log.d("lyftoxi.debug","URL "+url.toString());
             try {
                 String response = httpRestUtil.httpGet(url.toString());
                 if(null!=response)
@@ -111,11 +112,11 @@ public class MyInterestedRides extends BaseActivity {
 
             }catch (IOException ioex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
             }
             catch (Exception ex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
             }
             return false;
         }
@@ -137,11 +138,11 @@ public class MyInterestedRides extends BaseActivity {
             ride.setRideOf(Util.convertUserToUserInfo(ridesReceived.getRideOwner()));
             ride.setInterested(false);
             ride.setStatus(ridesReceived.getRideStatus());
-            Log.d("gog.debug","Interested rides "+CurrentUserInterestedRides.getInstance().getRides());
+            Log.d("lyftoxi.debug","Interested rides "+CurrentUserInterestedRides.getInstance().getRides());
             for(TakeRide tmpInterestedRide : CurrentUserInterestedRides.getInstance().getRides())
             {
-                Log.d("gog.debug","tmpInterestedRide "+tmpInterestedRide.getShareRideObjId());
-                Log.d("gog.debug","tmpRide "+ridesReceived.getId());
+                Log.d("lyftoxi.debug","tmpInterestedRide "+tmpInterestedRide.getShareRideObjId());
+                Log.d("lyftoxi.debug","tmpRide "+ridesReceived.getId());
                 if (tmpInterestedRide.getShareRideObjId().equals(ridesReceived.getId())) {
                     ride.setInterested(true);
                     break;
@@ -159,22 +160,20 @@ public class MyInterestedRides extends BaseActivity {
         @Override
         protected void onPreExecute()
         {
-            Log.d("gog.debug"," getting my interested rides");
+            Log.d("lyftoxi.debug"," getting my interested rides");
             showProgress(true);
         }
 
         @Override
         protected Boolean doInBackground(LatLng... params) {
-            String sourceStr = null;
-            String destinationStr = null;
-            Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm").create();
+            Gson gson = new GsonBuilder().setDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).create();
             HttpRestUtil httpRestUtil = new HttpRestUtil(getApplicationContext());
             StringBuffer url = new StringBuffer();
             url.append("takeRideService/rides/interestedUser");
             url.append("?id=");
             url.append(session.getUserDetails().getUID());
 
-            Log.d("gog.debug","URL "+url.toString());
+            Log.d("lyftoxi.debug","URL "+url.toString());
             try {
                 String response = httpRestUtil.httpGet(url.toString());
                 if(null!=response)
@@ -186,11 +185,11 @@ public class MyInterestedRides extends BaseActivity {
 
             }catch (IOException ioex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
             }
             catch (Exception ex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
             }
             return false;
         }

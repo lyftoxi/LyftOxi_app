@@ -25,17 +25,8 @@ public class OtherRideDetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_other_ride_details);
 
-        //final SimpleDateFormat sdf  = new SimpleDateFormat("dd-MM-yyyy h:mm a");
-
-        //source  = (TextView)findViewById(R.id.otherRideDetailsSource);
-        //via  = (TextView)findViewById(R.id.otherRideDetailsVia);
-        //destination  = (TextView)findViewById(R.id.otherRideDetailsDestination);
-        //carBrand = (TextView)findViewById(R.id.otherRideDetailsCarBrand);
-        //carModel = (TextView)findViewById(R.id.otherRideDetailsCarModel);
-        //carNumber  = (TextView)findViewById(R.id.otherRideDetailsCarNumber);
         userMessage = (TextView)findViewById(R.id.otherRideDetailsUserMessage);
         price = (TextView)findViewById(R.id.otherRideDetailsPrice);
-        //startingTime = (TextView)findViewById(R.id.otherRideDetailsStartTime);
 
         acAvailable = (CheckBox) findViewById(R.id.otherRideDetailsRadioAc);
         airbagAvailable = (CheckBox) findViewById(R.id.otherRideDetailsRadioAirbag);

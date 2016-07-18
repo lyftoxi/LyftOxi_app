@@ -53,11 +53,11 @@ public class RoundedImageView extends ImageView {
             Canvas c = new Canvas();
             c.setBitmap(b);
             drawable.draw(c);
-            Log.d("gog.debug","rounded image "+Build.VERSION.SDK_INT);
+            Log.d("lyftoxi.debug","rounded image "+Build.VERSION.SDK_INT);
         }
         else {
             b = ((BitmapDrawable) drawable).getBitmap();
-            Log.d("gog.debug","rounded image old "+Build.VERSION.SDK_INT);
+            Log.d("lyftoxi.debug","rounded image old "+Build.VERSION.SDK_INT);
         }
 
         Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);

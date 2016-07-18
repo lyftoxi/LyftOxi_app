@@ -21,6 +21,7 @@ import com.lyftoxi.lyftoxi.dao.Location;
 import com.lyftoxi.lyftoxi.dao.TakeRide;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.singletons.RideInfo;
+import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 
 import java.io.IOException;
@@ -60,7 +61,7 @@ public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
         }
 
         final RideListingInfo i = rides.get(position);
-        final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy h:mm a");
+        final SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_TIME_FORMAT_12HR_FORMAT);
         final DecimalFormat df = new DecimalFormat("##.######");
 
         if (i != null) {
@@ -168,7 +169,7 @@ public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
     public class DeleteRideTask extends AsyncTask<String, Void,Boolean>
     {
 
-        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
+        Gson gson = new GsonBuilder().setDateFormat(Constants.SIMPLE_DATE_FORMAT).create();
         View progressBar;
         TextView cancelledText;
         ImageButton cancelBtn, editBtn;
@@ -196,11 +197,11 @@ public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
 
             }catch (IOException ioex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
             }
             catch (Exception ex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
             }
             return false;
         }

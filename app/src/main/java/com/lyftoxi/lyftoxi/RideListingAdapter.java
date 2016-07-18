@@ -33,6 +33,7 @@ import com.lyftoxi.lyftoxi.dao.Ride;
 import com.lyftoxi.lyftoxi.dao.TakeRide;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInterestedRides;
+import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.lyftoxi.lyftoxi.util.LyftoxiFirebase;
 import com.lyftoxi.lyftoxi.util.RoundImage;
@@ -128,16 +129,16 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
         }
 
         final RideListingInfo i = rides.get(position);
-        final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy h:mm a");
+        final SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_TIME_FORMAT_12HR_FORMAT);
         final DecimalFormat df = new DecimalFormat("##.######");
 
 
         if (i.isShowProgress()) {
             holder.progressBar.setVisibility(View.VISIBLE);
-            Log.d("gog.debug","show progress..............");
+            Log.d("lyftoxi.debug","show progress..............");
         } else {
             holder.progressBar.setVisibility(View.GONE);
-            Log.d("gog.debug","hide progress..............");
+            Log.d("lyftoxi.debug","hide progress..............");
         }
 
         if (i != null) {
@@ -150,7 +151,7 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
 
             downloadUserProfilePic(i.getRideOf().getUID(), v);
 
-            Log.d("gog.debug", "ride status " + i.getStatus());
+            Log.d("lyftoxi.debug", "ride status " + i.getStatus());
             if ("C".equals(i.getStatus())) {
                 holder.cancelled.setVisibility(View.VISIBLE);
                 holder.interestedButton.setVisibility(View.GONE);
@@ -177,7 +178,7 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
                     @Override
                     public void onClick(View view) {
 
-                        Log.d("gog.debug", "interested " + i.isInterested());
+                        Log.d("lyftoxi.debug", "interested " + i.isInterested());
                         if (i.isInterested()) {
                             RemoveInterestedRide removeInterestedRide = new RemoveInterestedRide();
                             removeInterestedRide.position = position;
@@ -264,7 +265,7 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(Exception exception) {
-                    Log.d("gog.debug","Firebase: profile pic thumnail download failed");
+                    Log.d("lyftoxi.debug","Firebase: profile pic thumnail download failed");
                     StorageReference profileImageRef = storageRef.child("userProfilePics/"+profilePicFileName);
                     final long ONE_MEGABYTE = 500 * 500;
                     profileImageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
@@ -282,7 +283,7 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(Exception exception) {
-                            Log.d("gog.debug","Firebase: profile pic download failed");
+                            Log.d("lyftoxi.debug","Firebase: profile pic download failed");
 
                         }
                     });
@@ -302,7 +303,7 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
 
 
 
-        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm").create();
+        Gson gson = new GsonBuilder().setDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).create();
         @Override
         protected void onPreExecute() {
             //progressBar.setVisibility(View.VISIBLE);
@@ -326,11 +327,11 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
 
             }catch (IOException ioex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
             }
             catch (Exception ex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
             }
             return false;
         }
@@ -365,7 +366,7 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
         int position;
         ImageButton interestedButton;
         String rideId, userId;
-        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy'T'HH:mm").create();
+        Gson gson = new GsonBuilder().setDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).create();
         @Override
         protected void onPreExecute() {
             //progressBar.setVisibility(View.VISIBLE);
@@ -390,11 +391,11 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
 
             }catch (IOException ioex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
             }
             catch (Exception ex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
             }
             return false;
         }

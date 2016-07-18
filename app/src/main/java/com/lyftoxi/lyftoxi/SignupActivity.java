@@ -45,6 +45,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.lyftoxi.lyftoxi.dao.User;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
+import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.lyftoxi.lyftoxi.util.ImageUtil;
 import com.lyftoxi.lyftoxi.util.LyftoxiFirebase;
@@ -85,11 +86,7 @@ public class SignupActivity extends BaseActivity implements VerificationListener
     private EditText dob;
     private RadioButton signupRadioMale, signupRadioFemale;
 
-    private static final String EMAIL_PATTERN =
-            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
-    private SimpleDateFormat sdf =  new SimpleDateFormat("dd-MM-yyyy");
+    private SimpleDateFormat sdf =  new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);
     private User userInfo = new User();
     private UserLoginTask mSignUpTask = null;
     private Uri mImageCaptureUri;
@@ -98,13 +95,8 @@ public class SignupActivity extends BaseActivity implements VerificationListener
 
     private static final int PICK_FROM_CAMERA = 1;
     private static final int PICK_FROM_FILE = 2;
-    private static final int CROP_FROM_CAMERA = 2;
     private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 0;
     private  Verification mVerification=null;
-
-    // Profile pic image size in pixels
-    private static final int PROFILE_PIC_SIZE = 400;
-
     private ImageUtil imageUtil;
     private Bitmap profilePic, profilePicThumb;
     private Calendar dobValue = Calendar.getInstance();
@@ -296,7 +288,7 @@ public class SignupActivity extends BaseActivity implements VerificationListener
 
        if(!isValidInputs())
        {
-           Log.d("gog.debug","error in field validation");
+           Log.d("lyftoxi.debug","error in field validation");
            return;
        }
 
@@ -309,8 +301,8 @@ public class SignupActivity extends BaseActivity implements VerificationListener
             userInfo.setDob(sdf.parse(dob.getText().toString()));
         }catch(ParseException pe)
         {
-            Log.d("gog.debug","invalid date "+dob.getText().toString());
-            dob.setError("Invalid date. Must be dd/MM/yyyy");
+            Log.d("lyftoxi.debug","invalid date "+dob.getText().toString());
+            dob.setError("Invalid date. Must be "+Constants.SIMPLE_DATE_FORMAT);
             dob.requestFocus();
             return;
         }
@@ -362,18 +354,18 @@ public class SignupActivity extends BaseActivity implements VerificationListener
 
             if (requestCode == PICK_FROM_FILE) {
                 mImageCaptureUri = data.getData();
-                Log.d("gog.debug", " path " + mImageCaptureUri.getPath());
+                Log.d("lyftoxi.debug", " path " + mImageCaptureUri.getPath());
                 path = getRealPathFromURI(mImageCaptureUri);
 
 
                 if (path == null) {
                     path = mImageCaptureUri.getPath();
-                    Log.d("gog.debug", "real path " + path.toString());
+                    Log.d("lyftoxi.debug", "real path " + path.toString());
                 }
 
                 if (path != null) {
                     bitmap = BitmapFactory.decodeFile(path);
-                    Log.d("gog.debug", "real path 1" + path.toString());
+                    Log.d("lyftoxi.debug", "real path 1" + path.toString());
 
                 }
             } else {
@@ -436,7 +428,7 @@ public class SignupActivity extends BaseActivity implements VerificationListener
             return false;
         }
 
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Pattern pattern = Pattern.compile(Constants.EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(email.getText().toString());
         if(!matcher.matches())
         {
@@ -459,7 +451,7 @@ public class SignupActivity extends BaseActivity implements VerificationListener
     @Override
     public void onInitiated(String response) {
         showProgress(false);
-        Log.d("gog.debug", "Initialized!" + response);
+        Log.d("lyftoxi.debug", "Initialized!" + response);
         LayoutInflater li = LayoutInflater.from(this);
         View otpPopup = li.inflate(R.layout.otp_popup, null);
 
@@ -490,7 +482,7 @@ public class SignupActivity extends BaseActivity implements VerificationListener
 
     @Override
     public void onInitiationFailed(Exception exception) {
-        Log.e("gog.debug", "Verification initialization failed: " + exception.getMessage());
+        Log.e("lyftoxi.debug", "Verification initialization failed: " + exception.getMessage());
         exception.printStackTrace();
         showProgress(false);
 
@@ -498,14 +490,14 @@ public class SignupActivity extends BaseActivity implements VerificationListener
 
     @Override
     public void onVerified(String response) {
-        Log.d("gog.debug", "Verified!\n" + response);
+        Log.d("lyftoxi.debug", "Verified!\n" + response);
         showProgress(false);
         new UserLoginTask().execute((Void) null);
     }
 
     @Override
     public void onVerificationFailed(Exception exception) {
-        Log.e("gog.debug", "Verification failed: " + exception.getMessage());
+        Log.e("lyftoxi.debug", "Verification failed: " + exception.getMessage());
         showProgress(false);
     }
 
@@ -513,7 +505,7 @@ public class SignupActivity extends BaseActivity implements VerificationListener
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         HttpTransport transport = AndroidHttp.newCompatibleTransport();
-        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
+        Gson gson = new GsonBuilder().setDateFormat(Constants.SIMPLE_DATE_FORMAT).create();
         private String newUserId;
 
         @Override
@@ -539,11 +531,11 @@ public class SignupActivity extends BaseActivity implements VerificationListener
 
             }catch (IOException ioex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
             }
             catch (Exception ex)
             {
-                Log.d("gog.debug","Error occurred in REST WS call "+ex.getMessage());
+                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
             }
             return false;
         }
