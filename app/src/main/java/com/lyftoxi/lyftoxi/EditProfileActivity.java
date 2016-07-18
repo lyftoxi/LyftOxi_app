@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -339,7 +340,14 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
                     AlertDialog.Builder alert = new AlertDialog.Builder(EditProfileActivity.this);
                     alert.setTitle("Explanation");
                     alert.setMessage(getString(R.string.ext_storage_write_permission_explanation_2));
-                    alert.setPositiveButton("OK",null);
+                    alert.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,int which) {
+                            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                            Uri uri = Uri.fromParts("package", EditProfileActivity.this.getPackageName(), null);
+                            intent.setData(uri);
+                            startActivity(intent);
+                        }
+                    });
                     alert.show();
                 }
                 return;
