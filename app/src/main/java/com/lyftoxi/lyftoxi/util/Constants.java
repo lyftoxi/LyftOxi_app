@@ -2,7 +2,7 @@ package com.lyftoxi.lyftoxi.util;
 
 public class Constants {
 
-    public static final String DATE_TIME_FORMAT_WITH_TIME_ZONE = "dd-MM-yyyy'T'HH:mm zzz";
+    public static final String DATE_TIME_FORMAT_WITH_TIME_ZONE = "dd-MM-yyyy'T'HH:mm zzzz";
     public static final String SIMPLE_DATE_FORMAT = "dd-MM-yyyy";
     public static final String DATE_TIME_FORMAT_12HR_FORMAT = "dd-MM-yyyy h:mm a";
     public static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@ [A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
