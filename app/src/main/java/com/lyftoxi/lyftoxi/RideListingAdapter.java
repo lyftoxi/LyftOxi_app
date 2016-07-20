@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -22,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.core.AndroidSupport;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -166,9 +169,13 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
                     holder.interestedButton.setVisibility(View.INVISIBLE);
                 } else {
                     if (i.isInterested()) {
-                        holder.interestedButton.setImageResource(android.R.drawable.btn_star_big_on);
+                        //holder.interestedButton.setImageResource(android.R.drawable.btn_star_big_on);
+                        holder.interestedButton.setImageResource(R.drawable.ic_thumb_up_black_24dp);
+                        holder.interestedButton.setColorFilter(Color.parseColor("#2E86C1"));
                     } else {
-                        holder.interestedButton.setImageResource(android.R.drawable.btn_star_big_off);
+                        //holder.interestedButton.setImageResource(android.R.drawable.btn_star_big_off);
+                        holder.interestedButton.setImageResource(R.drawable.ic_thumb_up_black_24dp);
+                        holder.interestedButton.setColorFilter(Color.parseColor("#CACBC7"));
                     }
                 }
 

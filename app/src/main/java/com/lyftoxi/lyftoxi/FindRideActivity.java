@@ -103,14 +103,25 @@ public class FindRideActivity extends BaseActivity {
                 }
                 if(null!=startDate.getText())
                 {
-                   // Util.addParamToUrl(urlParamaters,"dateTime",startDate.getText().toString());
-                    try {
-                        Log.d("lyftoxi.debug"," date---> "+new SimpleDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).format(sdf.parse(startDate.getText().toString())));
-                        Util.addParamToUrl(urlParamaters,"dateTime",new SimpleDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).format(sdf.parse(startDate.getText().toString())));
-                    }catch(ParseException pe)
+                    Log.d("lyftoxi.debug","start date:" +startDate.getText().toString());
+                    Log.d("lyftoxi.debug","current date:" +new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT).format(new Date()));
+                    if((new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT).format(new Date())).equals(startDate.getText().toString()))
                     {
-                        pe.printStackTrace();
+                        Log.d("lyftoxi.debug"," date1---> "+new SimpleDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).format(new Date()));
+                        Util.addParamToUrl(urlParamaters,"dateTime",new SimpleDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).format(new Date()));
                     }
+                    else
+                    {
+                        // Util.addParamToUrl(urlParamaters,"dateTime",startDate.getText().toString());
+                        try {
+                            Log.d("lyftoxi.debug"," date2---> "+new SimpleDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).format(sdf.parse(startDate.getText().toString())));
+                            Util.addParamToUrl(urlParamaters,"dateTime",new SimpleDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).format(sdf.parse(startDate.getText().toString())));
+                        }catch(ParseException pe)
+                        {
+                            pe.printStackTrace();
+                        }
+                    }
+
                 }
 
                 if(ac.isChecked())

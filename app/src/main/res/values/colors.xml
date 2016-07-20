@@ -69,4 +69,6 @@
     <item name="carDetailsBackground" type="color">#dbdcdc</item>
     <item name="ownCar" type="color">#2b89ab</item>
     <item name="rentedCar" type="color">#F4D03F</item>
+    <item name="interestedOff" type="color">#CACBC7</item>
+    <item name="interestedOn" type="color">#46EF24</item>
 </resources>
