@@ -46,7 +46,6 @@ public class HttpRestUtil {
 
     public String httpGet(String url) throws IOException {
         String response = null;
-        url=url.replace("+","%2b");
         GenericUrl fullUrl = new GenericUrl(API_BASE_URL+url);
         HttpRequest getRequest  = transport.createRequestFactory().buildGetRequest(fullUrl);
         getRequest.setHeaders(header);

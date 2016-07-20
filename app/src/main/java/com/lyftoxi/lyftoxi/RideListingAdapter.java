@@ -171,11 +171,11 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
                     if (i.isInterested()) {
                         //holder.interestedButton.setImageResource(android.R.drawable.btn_star_big_on);
                         holder.interestedButton.setImageResource(R.drawable.ic_thumb_up_black_24dp);
-                        holder.interestedButton.setColorFilter(Color.parseColor("#2E86C1"));
+                        holder.interestedButton.setColorFilter(v.getResources().getColor(R.color.interestedOn));
                     } else {
                         //holder.interestedButton.setImageResource(android.R.drawable.btn_star_big_off);
                         holder.interestedButton.setImageResource(R.drawable.ic_thumb_up_black_24dp);
-                        holder.interestedButton.setColorFilter(Color.parseColor("#CACBC7"));
+                        holder.interestedButton.setColorFilter(v.getResources().getColor(R.color.interestedOff));
                     }
                 }
 
