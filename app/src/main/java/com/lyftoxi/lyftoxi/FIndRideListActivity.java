@@ -87,7 +87,25 @@ public class FindRideListActivity extends BaseActivity {
                             }
                         }
                        Log.d("lyftoxi.debug","selected options "+filterOptionParams.toString());
-                        String tmpUrl = searchRequestParams.substring(0,searchRequestParams.indexOf("dateTime")+25);
+                        String tmpUrl;
+                        int postOfQuestionMark = searchRequestParams.indexOf("?");
+                        if(postOfQuestionMark<0)
+                        {
+                            tmpUrl = searchRequestParams;
+                        }
+                        else {
+                            tmpUrl =  searchRequestParams.substring(0,postOfQuestionMark);
+                            String[] params = searchRequestParams.substring(postOfQuestionMark).split("&");
+                            if (params.length != 0) {
+                                for(String param : params)
+                                {
+                                    if(param.contains("dateTime")|| param.contains("source") || param.contains("destination"))
+                                        tmpUrl = tmpUrl+param+"&";
+                                }
+                                tmpUrl = tmpUrl.substring(0,tmpUrl.length()-1);
+
+                            }
+                        }
                         searchRequestParams = tmpUrl+filterOptionParams.toString();
                         Log.d("lyftoxi.debug","final url "+searchRequestParams);
                         new GetRidesBasedOnLocationTask().execute();
