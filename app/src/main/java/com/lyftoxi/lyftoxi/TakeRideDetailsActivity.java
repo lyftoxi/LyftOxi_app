@@ -135,7 +135,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
                     id= getResources().getIdentifier("rented", "drawable",getPackageName());
                 }
                 else {
-                    id = getResources().getIdentifier(seletctedRide.getCar().getCarBrand().toLowerCase(), "drawable", getPackageName());
+                    id = getResources().getIdentifier(Util.getResourceNameFromDisplayName(seletctedRide.getCar().getCarBrand()), "drawable", getPackageName());
                 }
                 carLogo = BitmapFactory.decodeResource(getResources(),id);
                 if(null==carLogo)

@@ -129,9 +129,9 @@
         android:clickable="true"
         android:src="@drawable/ic_create_black_24dp"
         android:tint="@color/iconBlue"
-        android:layout_above="@+id/rideListingNoImageTo"
-        android:layout_alignLeft="@+id/rideListingNoImageCancel"
-        android:layout_alignStart="@+id/rideListingNoImageCancel" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <ProgressBar android:id="@+id/rideListingNoImageProgress"
         style="?android:attr/progressBarStyleSmall"
@@ -139,7 +139,7 @@
         android:layout_height="50dp"
         android:visibility="gone"
         android:layout_gravity="right"
-        android:layout_below="@+id/rideListingNoImageCancel"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
 

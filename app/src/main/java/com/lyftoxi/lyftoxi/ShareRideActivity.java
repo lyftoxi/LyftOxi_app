@@ -191,12 +191,12 @@ public class ShareRideActivity extends BaseActivity {
 
     private void showRentedCars()
     {
-        RideInfo rideInfo = RideInfo.getInstance();
+        RideInfo.reset();
         CarInfo rentedCar =  new CarInfo();
         rentedCar.setCarBrand("(Rented)");
         rentedCar.setCarModel("Car");
         rentedCar.setCarNo("");
-        rideInfo.setCar(rentedCar);
+        RideInfo.getInstance().setCar(rentedCar);
 
         Intent rentedCarIntent = new Intent(this,RentedCarActivity.class);
         startActivity(rentedCarIntent);
