@@ -117,7 +117,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
 
         changeDob = (ImageButton)findViewById(R.id.editProfileDatePicker);
 
-        Bitmap profilePic;
+       /* Bitmap profilePic;
         if(session.isLoggedIn() && null!=CurrentUserInfo.getInstance().getProfilePicPath()) {
             Log.d("lyftoxi.debug","profile pic path "+CurrentUserInfo.getInstance().getProfilePicPath());
             profilePic = imageUtil.loadImageFromStorage(CurrentUserInfo.getInstance().getProfilePicPath());
@@ -126,7 +126,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
         {
             Log.d("lyftoxi.debug","using default pic");
             profilePic = BitmapFactory.decodeResource(getResources(),R.drawable.profile_pic_placeholder_large);
-        }
+        }*/
         collapsingToolbarLayout.setBackground(new BitmapDrawable(imageUtil.getProfilePic(this)));
         //collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(), profilePic));
 
@@ -232,13 +232,14 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
                     addresses.add(userAddress);
                     user.setAddresses(addresses);
 
-
-               if("M".equalsIgnoreCase(currentUser.getGender())){
-                   user.setGender(editProfileRadioMale.getText().toString());}
-                   //editProfileRadioMale.setChecked(true);}
-                else if("F".equalsIgnoreCase(currentUser.getGender())){
-                   user.setGender(editProfileRadioFemale.getText().toString());}
-                   //editProfileRadioFemale.setChecked(true);}
+                if(editProfileRadioMale.isChecked())
+                {
+                    user.setGender("M");
+                }
+                if(editProfileRadioFemale.isChecked())
+                {
+                    user.setGender("F");
+                }
 
 
                 if(mobileNumberNotChanged) {
