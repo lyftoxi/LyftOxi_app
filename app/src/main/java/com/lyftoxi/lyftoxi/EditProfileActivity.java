@@ -234,9 +234,11 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
 
 
                if("M".equalsIgnoreCase(currentUser.getGender())){
-                    editProfileRadioMale.setChecked(true);}
+                   user.setGender(editProfileRadioMale.getText().toString());}
+                   //editProfileRadioMale.setChecked(true);}
                 else if("F".equalsIgnoreCase(currentUser.getGender())){
-                    editProfileRadioFemale.setChecked(true);}
+                   user.setGender(editProfileRadioFemale.getText().toString());}
+                   //editProfileRadioFemale.setChecked(true);}
 
 
                 if(mobileNumberNotChanged) {
@@ -660,6 +662,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
                 currentUser.setName(user.getName());
                 currentUser.setEmail(user.getEmail());
                 currentUser.setDob(user.getDob());
+                currentUser.setGender(user.getGender());
                 currentUser.setAddresses(user.getAddresses());
                 toast = Toast.makeText(getApplicationContext(), "Updating profile successful", Toast.LENGTH_LONG);
                // startHomeActivity();
