@@ -144,7 +144,8 @@ public class BaseActivity extends AppCompatActivity {
                     ContextCompat.getDrawable(this, R.drawable.ic_drive_eta_black_24dp)));
             navList.add(new NavDrawerItem(getString(R.string.my_interested_rides),
                     ContextCompat.getDrawable(this, R.drawable.ic_drive_eta_black_24dp)));
-
+            navList.add(new NavDrawerItem(getString(R.string.title_activity_help),
+                    ContextCompat.getDrawable(this, R.drawable.ic_live_help_black_24dp)));
             navList.add(new NavDrawerItem(getString(R.string.log_out),
                     ContextCompat.getDrawable(this, R.drawable.ic_power_settings_new_black_24dp)));
 
@@ -160,6 +161,8 @@ public class BaseActivity extends AppCompatActivity {
                     ContextCompat.getDrawable(this, R.drawable.ic_search_black_24dp)));
             navList.add(new NavDrawerItem(getString(R.string.share_your_ride),
                     ContextCompat.getDrawable(this, R.drawable.ic_share_black_24dp)));
+            navList.add(new NavDrawerItem(getString(R.string.title_activity_help),
+                    ContextCompat.getDrawable(this, R.drawable.ic_live_help_black_24dp)));
             navList.add(new NavDrawerItem(getString(R.string.action_sign_in),
                     ContextCompat.getDrawable(this, R.drawable.ic_perm_identity_black_24dp)));
         }
@@ -327,6 +330,9 @@ public class BaseActivity extends AppCompatActivity {
                         contentIntent = new Intent(this.callingActivity, MyInterestedRides.class);
                         break;
                     case 5:
+                        contentIntent = new Intent(this.callingActivity, HelpActivity.class);
+                        break;
+                    case 6:
                         session.logoutUser();
                         CurrentUserInfo.reset();
                         CurrentUserInterestedRides.reset();
@@ -353,6 +359,9 @@ public class BaseActivity extends AppCompatActivity {
                         contentIntent = new Intent(this.callingActivity, ShareRideActivity.class);
                         break;
                     case 3:
+                        contentIntent = new Intent(this.callingActivity, HelpActivity.class);
+                        break;
+                    case 4:
                         contentIntent = new Intent(this.callingActivity, LoginActivity.class);
                         Bundle b = new Bundle();
                         b.putString("activityOnSuccess", MainActivity.class.getName());

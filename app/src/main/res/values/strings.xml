@@ -76,7 +76,7 @@
     <string name="going_somewhere">Let\'s Go \nTogether...!</string>
     <string name="no_internet_connection">No Internet !</string>
     <string name="no_internet_connection_please_try_again">Please check your Network connectivity</string>
-
+    <string name="tnc">Terms and Conditions</string>
 
     <string name="marked_interested">Marked as Interested</string>
     <string name="marked_uninterested">Marked as Uninterested</string>

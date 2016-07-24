@@ -364,6 +364,7 @@ public class LoginActivity extends Activity {
                         if(null!=onSuccessActivity) {
                             Log.d("lyftoxi.debug","onSuccessActivity Starting....");
                             Intent onSuccessIntent = new Intent(getApplicationContext(), onSuccessActivity);
+                            onSuccessIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(onSuccessIntent);
                         }
                         else {

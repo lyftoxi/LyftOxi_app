@@ -15,6 +15,7 @@ import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -406,18 +407,36 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
 
 
                 if (path == null) {
-                    path = mImageCaptureUri.getPath(); //from File Manager
-                    Log.d("lyftoxi.debug", "real path " + path.toString());
+                    //This is a temporary work arround
+                    showProgress(false);
+                    Toast.makeText(this,"Please use Gallery to select image. We are working in fixing this",Toast.LENGTH_LONG).show();
+                    return;
+                    /*path = mImageCaptureUri.getPath(); //from File Manager
+                    Log.d("lyftoxi.debug", "real path from file manager" + path.toString());*/
                 }
 
                 if (path != null) {
-                    bitmap = BitmapFactory.decodeFile(path);
+                    Log.d("lyftoxi.debug", "real path from something else" + path.toString());
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inJustDecodeBounds = true;
+                    BitmapFactory.decodeFile(path,options);
+                    options.inSampleSize = imageUtil.calculateInSampleSize(options, 400, 400);
+                    options.inJustDecodeBounds = false;
+                    bitmap = BitmapFactory.decodeFile(path,options);
+                    //bitmap = BitmapFactory.decodeFile(path);
                     Log.d("lyftoxi.debug", "real path 1" + path.toString());
 
                 }
             } else {
                 path = mImageCaptureUri.getPath();
-                bitmap = BitmapFactory.decodeFile(path);
+                Log.d("lyftoxi.debug", "path from camera" + path.toString());
+               // bitmap = BitmapFactory.decodeFile(path);
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(path,options);
+                options.inSampleSize = imageUtil.calculateInSampleSize(options, 400, 400);
+                options.inJustDecodeBounds = false;
+                bitmap = BitmapFactory.decodeFile(path,options);
 
             }
             int nh = (int) (bitmap.getHeight() * (512.0 / bitmap.getWidth())); // scaling captured image
@@ -496,6 +515,10 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
             res = cursor.getString(column_index);
         }
         cursor.close();
+        if(null==res)
+        {
+
+        }
         return res;
 
     }

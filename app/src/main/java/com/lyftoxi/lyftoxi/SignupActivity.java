@@ -24,12 +24,15 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -85,6 +88,7 @@ public class SignupActivity extends BaseActivity implements VerificationListener
     private EditText name;
     private EditText dob;
     private RadioButton signupRadioMale, signupRadioFemale;
+    private CheckBox tncAccept;
 
     private SimpleDateFormat sdf =  new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);
     private User userInfo = new User();
@@ -119,7 +123,10 @@ public class SignupActivity extends BaseActivity implements VerificationListener
         dob = (EditText)findViewById(R.id.signupDob);
         signupRadioMale = (RadioButton)findViewById(R.id.signupRadioMale);
         signupRadioFemale = (RadioButton)findViewById(R.id.signupRadioFemale);
+        tncAccept =(CheckBox) findViewById(R.id.signupTnCaccept);
 
+        tncAccept.setText(Html.fromHtml("Accept&nbsp;<a href=\"http://www.lyftoxi.com/terms-and-conditions.html\">"+getString(R.string.tnc)+"</a>"));
+        tncAccept.setMovementMethod(LinkMovementMethod.getInstance());
 
         imageUtil = new ImageUtil();
 
@@ -359,18 +366,32 @@ public class SignupActivity extends BaseActivity implements VerificationListener
 
 
                 if (path == null) {
-                    path = mImageCaptureUri.getPath();
-                    Log.d("lyftoxi.debug", "real path " + path.toString());
+                    //This is a temporary work arround
+                    showProgress(false);
+                    Toast.makeText(this,"Please use Gallery to select image. We are working in fixing this",Toast.LENGTH_LONG).show();
+                    return;
+                    /*path = mImageCaptureUri.getPath(); //from File Manager
+                    Log.d("lyftoxi.debug", "real path from file manager" + path.toString());*/
                 }
 
                 if (path != null) {
-                    bitmap = BitmapFactory.decodeFile(path);
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inJustDecodeBounds = true;
+                    BitmapFactory.decodeFile(path,options);
+                    options.inSampleSize = imageUtil.calculateInSampleSize(options, 400, 400);
+                    options.inJustDecodeBounds = false;
+                    bitmap = BitmapFactory.decodeFile(path,options);
                     Log.d("lyftoxi.debug", "real path 1" + path.toString());
 
                 }
             } else {
                 path = mImageCaptureUri.getPath();
-                bitmap = BitmapFactory.decodeFile(path);
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(path,options);
+                options.inSampleSize = imageUtil.calculateInSampleSize(options, 400, 400);
+                options.inJustDecodeBounds = false;
+                bitmap = BitmapFactory.decodeFile(path,options);
 
             }
             int nh = (int) (bitmap.getHeight() * (512.0 / bitmap.getWidth()));
@@ -397,6 +418,13 @@ public class SignupActivity extends BaseActivity implements VerificationListener
 
     private boolean isValidInputs()
     {
+        if(!tncAccept.isChecked())
+        {
+            tncAccept.setError("Please accept the Terms and Conditions");
+            tncAccept.requestFocus();
+            return false;
+        }
+
         if(null == userInfo){    return false; }
 
 
