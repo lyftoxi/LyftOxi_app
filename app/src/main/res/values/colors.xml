@@ -42,6 +42,7 @@
     <item name="background" type="color">#ffffff</item>
     <item name="primary" type="color">#2b89ab</item>
     <item name="primaryDark" type="color">#267997</item>
+    <item name="primaryVeryDark" type="color">#123745</item>
     <item name="accent" type="color">#ff6c8a97</item>
     <item name="primaryButtonBackgroundColor" type="color">#0d1f2d</item>
     <item name="primaryButtonTextColor" type="color">#2b89ab</item>
@@ -58,14 +59,13 @@
     <item name="checkboxDisabled" type="color">#71858e</item>
     <item name="checkboxEnabled" type="color">#3498DB</item>
     <item name="header" type="color">#85C1E9</item>
-    <item name="comment" type="color">#21618C</item>
+    <item name="comment" type="color">#EDEEE8</item>
     <item name="contactOwner" type="color">#85C1E9</item>
     <item name="primaryGrey" type="color">#D7DBDD</item>
     <item name="primaryYellow" type="color">#F4D03F</item>
     <item name="disclaimer" type="color">#A39D9C</item>
     <item name="borderBackground" type="color">#2b89ab</item>
     <item name="border" type="color">#2b89ab</item>
-    <!--<item name="carDetailsBackground" type="color">#EDEEE8</item>-->
     <item name="carDetailsBackground" type="color">#dbdcdc</item>
     <item name="ownCar" type="color">#2b89ab</item>
     <item name="rentedCar" type="color">#F4D03F</item>

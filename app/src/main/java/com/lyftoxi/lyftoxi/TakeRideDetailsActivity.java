@@ -57,7 +57,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
 
     private SimpleDateFormat sdf =  new SimpleDateFormat(Constants.DATE_TIME_FORMAT_12HR_FORMAT);
 
-    private ImageButton takeRideDetailsCall, takeRideDetailSms;
+    private Button takeRideDetailsCall, takeRideDetailSms;
 
     private ImageView takeRideDetailsCarLogo;
 
@@ -94,8 +94,8 @@ public class TakeRideDetailsActivity extends BaseActivity {
         takeRideDetailsLuggage = (CheckBox) findViewById(R.id.takeRideDetailsLuggage);
         takeRideDetailsLuggage.setEnabled(false);
 
-        takeRideDetailsCall = (ImageButton) findViewById(R.id.takeRideDetailsCall);
-        takeRideDetailSms = (ImageButton) findViewById(R.id.takeRideDetailsSms);
+        takeRideDetailsCall = (Button) findViewById(R.id.takeRideDetailsCall);
+        takeRideDetailSms = (Button) findViewById(R.id.takeRideDetailsSms);
 
         // takeRideInterested = (Button) findViewById(R.id.takeRideInterested);
 
@@ -106,7 +106,8 @@ public class TakeRideDetailsActivity extends BaseActivity {
         if (null != seletctedRide) {
 
             downloadUserProfilePic(seletctedRide.getRideOf().getUID());
-
+            getSupportActionBar().setTitle(seletctedRide.getRideOf().getName()+" ("+
+                    Constants.genderLookup.get(seletctedRide.getRideOf().getSex())+")");
             takeRideDetailsPrice.setText(seletctedRide.getFare() + "");
             takeRideDetailsSource.setText(seletctedRide.getSourceName());
             takeRideDetailsDestination.setText(seletctedRide.getDestinationName());
