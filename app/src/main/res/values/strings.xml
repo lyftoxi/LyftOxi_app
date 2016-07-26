@@ -23,8 +23,8 @@
     <string name="cancelled">Cancelled</string>
     <string name="users_message">Comment of Ride Owner</string>
 
-    <string name="male">He</string>
-    <string name="female">She</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
     <string name="you_can_also..">You Can join with your existing profile. \n Nothing will be posted.</string>
     <string name="mobile">Mobile</string>
     <string name="password">Password</string>

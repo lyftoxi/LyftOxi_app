@@ -12,5 +12,5 @@ public class Constants {
     public static final String MOBIL_PATTERN = "^[0-9]{10}$";
     public static final String PIN_PATTERN = "^[0-9]{6}$";
     public static final String CAR_NUMBER_PATTERN = "^[A-Z]{2}[\\s|.|-]*[0-9]+[\\s|.|-]*[A-Z]*[\\s|.|-]*[0-9]{4}$";
-    public static final Map<String,String> genderLookup= ImmutableMap.of("M", "He", "F", "She");
+    public static final Map<String,String> genderLookup= ImmutableMap.of("M", "Male", "F", "Female");
 }

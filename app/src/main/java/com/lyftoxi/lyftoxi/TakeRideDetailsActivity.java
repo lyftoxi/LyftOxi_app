@@ -106,8 +106,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
         if (null != seletctedRide) {
 
             downloadUserProfilePic(seletctedRide.getRideOf().getUID());
-            getSupportActionBar().setTitle(seletctedRide.getRideOf().getName()+" ("+
-                    Constants.genderLookup.get(seletctedRide.getRideOf().getSex())+")");
+            getSupportActionBar().setTitle(seletctedRide.getRideOf().getName());
             takeRideDetailsPrice.setText(seletctedRide.getFare() + "");
             takeRideDetailsSource.setText(seletctedRide.getSourceName());
             takeRideDetailsDestination.setText(seletctedRide.getDestinationName());
