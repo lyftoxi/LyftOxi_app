@@ -22,6 +22,12 @@
         </LinearLayout>
 
     <Button
+        style="@style/button"
+        android:id="@+id/sharingRideAddCar"
+        android:text="@string/add_car"
+        app:layout_anchor="@id/sharingRideRootLayout"
+        app:layout_anchorGravity="bottom|end"/>
+    <!--<Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/sharingRideAddCar"
@@ -32,7 +38,6 @@
         app:layout_anchor="@id/sharingRideRootLayout"
         app:layout_anchorGravity="bottom|end"
         android:layout_margin="10dp"
-        />
-
+        />-->
 
 </android.support.design.widget.CoordinatorLayout>

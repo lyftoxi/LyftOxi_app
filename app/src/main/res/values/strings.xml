@@ -3,9 +3,9 @@
 
     <string name="tagline">R I D E \tS H A R I N G \t A P P</string>
     <string name="action_settings">Settings</string>
-    <string name="share">Share your Ride</string>
-    <string name="new_to_lyftoxi">New to Lyftoxi?</string>
-    <string name="take">Find a Ride</string>
+    <string name="share">Share Your Ride</string>
+    <string name="new_to_lyftoxi">New to LyftOxi?</string>
+    <string name="take">Find A Ride</string>
     <string name="home">Home</string>
     <string name="title_activity_take_ride">Take A Ride</string>
     <string name="title_add_edit_car">Car Details</string>

@@ -63,7 +63,7 @@
             android:textStyle="italic"
             android:textSize="20sp"
             android:text="@string/carFeatureText"
-            android:textColor="@color/header"
+            android:textColor="@color/commentheader"
             android:layout_marginLeft="20dp"/>
 
     <LinearLayout
@@ -119,15 +119,9 @@
         </LinearLayout>
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/button"
             android:id="@+id/otherRideDetailsSave"
-            android:text="@string/proceed"
-            android:background="@color/primaryButtonBackgroundColor"
-            android:textColor="@color/primaryButtonTextColor"
-            android:textSize="15sp"
-            android:layout_margin="10dp"
-            />
+            android:text="@string/proceed"/>
 
     </LinearLayout>
 

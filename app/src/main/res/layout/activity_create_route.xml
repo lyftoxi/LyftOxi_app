@@ -105,13 +105,9 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
             />
         </LinearLayout>
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/button"
             android:id="@+id/createRouteSave"
             android:text="@string/proceed"
-            android:background="@color/primaryButtonBackgroundColor"
-            android:textColor="@color/primaryButtonTextColor"
-            android:textSize="15sp"
             android:layout_marginTop="30dp"
         />
 
