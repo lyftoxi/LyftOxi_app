@@ -134,6 +134,12 @@
             />
 
         <Button
+            style="@style/button"
+            android:id="@+id/buttonSighup"
+            android:text="@string/save"
+            android:onClick="signUp"
+            />
+        <!--<Button
             android:id="@+id/buttonSighup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -143,7 +149,7 @@
             android:textColor="@color/primaryButtonTextColor"
             android:textSize="15sp"
             android:onClick="signUp"
-            />
+            />-->
  <!--       </ScrollView>-->
 
     </LinearLayout>

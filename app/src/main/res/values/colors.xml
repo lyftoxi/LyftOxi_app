@@ -45,7 +45,9 @@
     <item name="primaryVeryDark" type="color">#123745</item>
     <item name="accent" type="color">#ff6c8a97</item>
     <item name="primaryButtonBackgroundColor" type="color">#0d1f2d</item>
-    <item name="primaryButtonTextColor" type="color">#2b89ab</item>
+    <item name="primaryButtonTextColor" type="color">#ffffff</item>
+    <!--<item name="primaryButtonBackgroundColor" type="color">#0d1f2d</item>
+    <item name="primaryButtonTextColor" type="color">#2b89ab</item>-->
     <item name="mainScreenBackground" type="color">#ffffff</item>
     <item name="primaryTextColor" type="color">#000000</item>
     <item name="bannerTextColor" type="color">#ffffff</item>
@@ -58,8 +60,9 @@
     <!--<item name="checkboxDisabled" type="color">#85C1E9</item>-->
     <item name="checkboxDisabled" type="color">#71858e</item>
     <item name="checkboxEnabled" type="color">#3498DB</item>
-    <item name="header" type="color">#85C1E9</item>
-    <item name="comment" type="color">#EDEEE8</item>
+    <item name="commentBkg" type="color">#D1EDF9</item>
+    <item name="commentheader" type="color">#050505</item>
+    <item name="comment" type="color">#050505</item>
     <item name="contactOwner" type="color">#85C1E9</item>
     <item name="primaryGrey" type="color">#D7DBDD</item>
     <item name="primaryYellow" type="color">#F4D03F</item>

@@ -64,13 +64,9 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/button"
         android:text="@string/back"
         android:id="@+id/selectCarTypeBack"
-        android:background="@color/primaryButtonBackgroundColor"
-        android:textColor="@color/primaryButtonTextColor"
-        android:textSize="15sp"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
