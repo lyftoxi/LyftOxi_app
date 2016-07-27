@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/tagline"
-            android:textColor="@color/primaryButtonTextColor"
+            android:textColor="@color/primaryDark"
             android:textSize="8sp" />
         <!-- Login progress -->
         <ProgressBar android:id="@+id/login_progress"
@@ -80,16 +80,12 @@
                 android:maxLines="1"
                 android:singleLine="true" />
             </android.support.design.widget.TextInputLayout>
-            <Button android:id="@+id/email_sign_in_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+            <Button
+                style="@style/button"
+                android:id="@+id/email_sign_in_button"
+
                 android:text="@string/action_sign_in"
-                android:background="@color/primaryButtonBackgroundColor"
-                android:textColor="@color/primaryButtonTextColor"
-                android:textSize="15sp"
-                android:layout_margin="5dp"
+
                 />
 
         <LinearLayout
@@ -103,7 +99,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/signup"
-                android:textColor="@color/primaryButtonTextColor"
+                android:textAllCaps="false"
+                android:textColor="@color/primaryDark"
                 android:id="@+id/buttonSignup"
                 android:padding="15sp"
                 android:layout_marginEnd="30dp"
@@ -116,7 +113,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/forgot_password"
-                android:textColor="@color/primaryButtonTextColor"
+                android:textAllCaps="false"
+                android:textColor="@color/primaryDark"
                 android:id="@+id/buttonForgotPassword"
                 android:padding="5sp"
                 android:layout_marginStart="30dp"
