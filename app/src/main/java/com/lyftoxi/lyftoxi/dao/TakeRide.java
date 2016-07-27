@@ -2,13 +2,10 @@ package com.lyftoxi.lyftoxi.dao;
 
 import java.util.Date;
 
-/**
- * Created by DhimanZ on 6/4/2016.
- */
 public class TakeRide {
     private String id;
     private String shareRideObjId;
-    private Date rideTime;;
+    private Date rideTime;
     private int fare;
     private String ownerObjId;
     private String ownerName;

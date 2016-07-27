@@ -11,9 +11,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by DhimanZ on 5/6/2016.
- */
 public class NavListAdapter extends ArrayAdapter<NavDrawerItem> {
 
     private List<NavDrawerItem> items;

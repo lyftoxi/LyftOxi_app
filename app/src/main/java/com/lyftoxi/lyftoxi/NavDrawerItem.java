@@ -2,9 +2,6 @@ package com.lyftoxi.lyftoxi;
 
 import android.graphics.drawable.Drawable;
 
-/**
- * Created by DhimanZ on 5/18/2016.
- */
 public class NavDrawerItem {
 
     private String name;
