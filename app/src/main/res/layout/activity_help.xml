@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/primaryButtonTextColor"
+            android:textColor="@color/primaryDark"
             android:textSize="20sp"
             android:layout_marginBottom="10dp"
             android:text="@string/what_is_lyftoxi"/>
@@ -28,14 +28,11 @@
             android:textColor="@color/primaryButtonBackgroundColor"
             android:text="@string/what_is_lyftoxi_desc"/>
 
-
-
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/primaryButtonTextColor"
+            android:textColor="@color/primaryDark"
             android:textSize="20sp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="20dp"
@@ -47,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/primaryButtonTextColor"
+            android:textColor="@color/primaryDark"
             android:textSize="15sp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
@@ -65,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/primaryButtonTextColor"
+            android:textColor="@color/primaryDark"
             android:textSize="15sp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
@@ -82,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/primaryButtonTextColor"
+            android:textColor="@color/primaryDark"
             android:textSize="15sp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
@@ -99,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/primaryButtonTextColor"
+            android:textColor="@color/primaryDark"
             android:textSize="15sp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
@@ -115,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/primaryButtonTextColor"
+            android:textColor="@color/primaryDark"
             android:textSize="15sp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
