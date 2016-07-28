@@ -31,6 +31,7 @@ import com.lyftoxi.lyftoxi.exception.LyftoxiClientException;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
+import com.lyftoxi.lyftoxi.util.PasswordUtil;
 import com.msg91.sendotp.library.Config;
 import com.msg91.sendotp.library.SendOtpVerification;
 import com.msg91.sendotp.library.Verification;
@@ -153,7 +154,7 @@ public class ForgotPasswordActivity extends BaseActivity implements Verification
     public void onVerified(String response) {
         Log.d("lyftoxi.debug", "Verified!\n" + response);
         showProgress(false);
-        new ResetPasswordTask().execute(mobile.getText().toString(), password.getText().toString());
+        new ResetPasswordTask().execute(mobile.getText().toString(),password.getText().toString());
     }
 
     @Override
@@ -185,7 +186,7 @@ public class ForgotPasswordActivity extends BaseActivity implements Verification
         protected Boolean doInBackground(String... params) {
 
             String mobileNumber = params[0];
-            String newPassword = params[1];
+            String newPassword =  PasswordUtil.encryptPassword(params[1]);
 
             try {
 

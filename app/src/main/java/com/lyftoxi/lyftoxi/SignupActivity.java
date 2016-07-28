@@ -52,6 +52,7 @@ import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
 import com.lyftoxi.lyftoxi.util.ImageUtil;
 import com.lyftoxi.lyftoxi.util.LyftoxiFirebase;
+import com.lyftoxi.lyftoxi.util.PasswordUtil;
 import com.lyftoxi.lyftoxi.util.Util;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.ByteArrayContent;
@@ -303,7 +304,7 @@ public class SignupActivity extends BaseActivity implements VerificationListener
         userInfo.setEmail(email.getText().toString());
         userInfo.setName(name.getText().toString());
         userInfo.setPhNo(mobile.getText().toString());
-        userInfo.setPassword(password.getText().toString());
+        userInfo.setPassword(PasswordUtil.encryptPassword(password.getText().toString()));
         try {
             userInfo.setDob(sdf.parse(dob.getText().toString()));
         }catch(ParseException pe)
