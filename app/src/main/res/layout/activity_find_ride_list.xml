@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:clickable="true"
-        android:src="@android:drawable/ic_menu_edit"
+        android:src="@drawable/ic_filter_24_dp"
         app:layout_anchor="@id/findRidesRootLayout"
         app:layout_anchorGravity="bottom|right|end"
         app:backgroundTint="@color/primaryButtonBackgroundColor"/>
