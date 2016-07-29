@@ -575,62 +575,71 @@ public class SignupActivity extends BaseActivity implements VerificationListener
 
             Toast toast;
             if (success) {
-                final ByteArrayOutputStream fullStream = new ByteArrayOutputStream();
-                profilePic.compress(Bitmap.CompressFormat.JPEG, 100, fullStream);
 
-                ByteArrayOutputStream thumbStream = new ByteArrayOutputStream();
-                profilePicThumb.compress(Bitmap.CompressFormat.JPEG, 100, thumbStream);
+                if(null!=profilePic && null!=profilePicThumb) {
 
-                final StorageMetadata metadata = new StorageMetadata.Builder()
-                        .setContentType("image/jpg")
-                        .build();
-                final String profilePicFileName = newUserId+"_profile_pic.jpg";
-                final String profilePicThumbsFileName = newUserId+"_profile_pic_thumb.jpg";
+                    final ByteArrayOutputStream fullStream = new ByteArrayOutputStream();
+                    profilePic.compress(Bitmap.CompressFormat.JPEG, 100, fullStream);
 
-                StorageReference storageRef = LyftoxiFirebase.storageRef;
-                UploadTask thumbUploadTask = storageRef.child("userProfilePicThumbs/"+profilePicThumbsFileName).putBytes(thumbStream.toByteArray(),metadata);
-                thumbUploadTask.addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(Exception exception) {
-                        showProgress(false);
-                        collapsingToolbarLayout.setBackground(getResources().getDrawable(R.drawable.profile_pic_placeholder_large));
-                        Toast toast = Toast.makeText(getApplicationContext(), "Image upload Failed. Try Again", Toast.LENGTH_LONG);
-                        toast.show();
-                        exception.printStackTrace();
-                    }
-                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        showProgress(false);
-                        String filePath =  imageUtil.saveToInternalStorage(getBaseContext(),profilePicThumb,profilePicThumbsFileName);
-                        CurrentUserInfo.getInstance().setProfilePicPath(filePath);
-                        collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(),profilePicThumb));
-                        refreshProfileImage();
-                        Toast toast = Toast.makeText(getApplicationContext(), "Sign Up Successful", Toast.LENGTH_LONG);
-                        toast.show();
+                    ByteArrayOutputStream thumbStream = new ByteArrayOutputStream();
+                    profilePicThumb.compress(Bitmap.CompressFormat.JPEG, 100, thumbStream);
 
-                        StorageReference storageRef = LyftoxiFirebase.storageRef;
-                        UploadTask uploadTaskFullPic = storageRef.child("userProfilePics/"+profilePicFileName).putBytes(fullStream.toByteArray(),metadata);
-                        uploadTaskFullPic.addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(Exception exception) {
-                                //showProgress(false);
-                                exception.printStackTrace();
-                            }
-                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                String filePath =  imageUtil.saveToInternalStorage(getApplicationContext(),profilePic,profilePicFileName);
-                                CurrentUserInfo.getInstance().setProfilePicPath(filePath);
-                                collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(),profilePic));
-                                refreshProfileImage();
-                                //showProgress(false);
-                            }
-                        });
+                    final StorageMetadata metadata = new StorageMetadata.Builder()
+                            .setContentType("image/jpg")
+                            .build();
+                    final String profilePicFileName = newUserId + "_profile_pic.jpg";
+                    final String profilePicThumbsFileName = newUserId + "_profile_pic_thumb.jpg";
+
+                    StorageReference storageRef = LyftoxiFirebase.storageRef;
+                    UploadTask thumbUploadTask = storageRef.child("userProfilePicThumbs/" + profilePicThumbsFileName).putBytes(thumbStream.toByteArray(), metadata);
+                    thumbUploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(Exception exception) {
+                            showProgress(false);
+                            collapsingToolbarLayout.setBackground(getResources().getDrawable(R.drawable.profile_pic_placeholder_large));
+                            Toast toast = Toast.makeText(getApplicationContext(), "Image upload Failed. Try Again", Toast.LENGTH_LONG);
+                            toast.show();
+                            exception.printStackTrace();
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            showProgress(false);
+                            String filePath = imageUtil.saveToInternalStorage(getBaseContext(), profilePicThumb, profilePicThumbsFileName);
+                            CurrentUserInfo.getInstance().setProfilePicPath(filePath);
+                            collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(), profilePicThumb));
+                            refreshProfileImage();
+                            Toast toast = Toast.makeText(getApplicationContext(), "Sign Up Successful", Toast.LENGTH_LONG);
+                            toast.show();
+
+                            StorageReference storageRef = LyftoxiFirebase.storageRef;
+                            UploadTask uploadTaskFullPic = storageRef.child("userProfilePics/" + profilePicFileName).putBytes(fullStream.toByteArray(), metadata);
+                            uploadTaskFullPic.addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(Exception exception) {
+                                    //showProgress(false);
+                                    exception.printStackTrace();
+                                }
+                            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    String filePath = imageUtil.saveToInternalStorage(getApplicationContext(), profilePic, profilePicFileName);
+                                    CurrentUserInfo.getInstance().setProfilePicPath(filePath);
+                                    collapsingToolbarLayout.setBackground(new BitmapDrawable(getResources(), profilePic));
+                                    refreshProfileImage();
+                                    //showProgress(false);
+                                }
+                            });
 
 
-                    }
-                });
+                        }
+                    });
+                }
+                else{
+                    showProgress(false);
+                    toast = Toast.makeText(getApplicationContext(), "Sign Up Successful. Please upload profile picture from Edit profile", Toast.LENGTH_LONG);
+                    toast.show();
+                }
 
 
             } else {
