@@ -190,8 +190,6 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
                             RemoveInterestedRide removeInterestedRide = new RemoveInterestedRide();
                             removeInterestedRide.position = position;
                             removeInterestedRide.execute(i.getId(), CurrentUserInfo.getInstance().getId());
-                            Toast toast =  Toast.makeText(view.getContext(),view.getResources().getString(R.string.marked_uninterested),Toast.LENGTH_SHORT);
-                            toast.show();
                             return;
                         }
 
@@ -219,8 +217,6 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
                         AddInterestedRide addInterestedRide = new AddInterestedRide();
                         addInterestedRide.position = position;
                         addInterestedRide.execute(interestedRide);
-                        Toast toast =  Toast.makeText(view.getContext(),view.getResources().getString(R.string.marked_interested),Toast.LENGTH_SHORT);
-                        toast.show();
                     }
                 });
             }
@@ -347,12 +343,13 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
         protected void onPostExecute(final Boolean success) {
             //progressBar.setVisibility(View.GONE);
             rides.get(position).setShowProgress(false);
-            Toast toast;
             if (success) {
                 // startMyInterestedRideActivity();
                 //interestedButton.setImageResource(android.R.drawable.btn_star_big_on);
                 rides.get(position).setInterested(true);
                 CurrentUserInterestedRides.getInstance().getRides().add(interestedRide);
+                Toast toast =  Toast.makeText(RideListingAdapter.this.getContext(),RideListingAdapter.this.getContext().getResources().getString(R.string.marked_interested),Toast.LENGTH_SHORT);
+                toast.show();
             }
             else
             {
@@ -411,7 +408,6 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
         protected void onPostExecute(final Boolean success) {
             //progressBar.setVisibility(View.GONE);
             rides.get(position).setShowProgress(false);
-            Toast toast;
             if (success) {
                 // startMyInterestedRideActivity();
                 rides.get(position).setInterested(false);
@@ -423,6 +419,8 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
                     }
                 }
                 //interestedButton.setImageResource(android.R.drawable.btn_star_big_off);
+                Toast toast =  Toast.makeText(RideListingAdapter.this.getContext(),RideListingAdapter.this.getContext().getResources().getString(R.string.marked_uninterested),Toast.LENGTH_SHORT);
+                toast.show();
             }
             else
             {
