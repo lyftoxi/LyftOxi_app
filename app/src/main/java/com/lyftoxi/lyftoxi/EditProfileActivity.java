@@ -663,6 +663,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
             }catch (IOException ioex)
             {
                 Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                ioex.printStackTrace();
             }
             catch (Exception ex)
             {
