@@ -126,6 +126,26 @@ public class SignupActivity extends BaseActivity implements VerificationListener
         signupRadioFemale = (RadioButton)findViewById(R.id.signupRadioFemale);
         tncAccept =(CheckBox) findViewById(R.id.signupTnCaccept);
 
+        signupRadioMale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(signupRadioMale.isChecked())
+                {
+                    userInfo.setGender("M");
+                }
+            }
+        });
+
+        signupRadioFemale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(signupRadioFemale.isChecked())
+                {
+                    userInfo.setGender("F");
+                }
+            }
+        });
+
         tncAccept.setText(Html.fromHtml("Accept&nbsp;<a href=\"http://www.lyftoxi.com/terms-and-conditions.html\">"+getString(R.string.tnc)+"</a>"));
         tncAccept.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -274,25 +294,7 @@ public class SignupActivity extends BaseActivity implements VerificationListener
     {
 
 
-        signupRadioMale.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(signupRadioMale.isChecked())
-                {
-                    userInfo.setGender("M");
-                }
-            }
-        });
 
-        signupRadioFemale.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(signupRadioFemale.isChecked())
-                {
-                    userInfo.setGender("F");
-                }
-            }
-        });
 
        if(!isValidInputs())
        {

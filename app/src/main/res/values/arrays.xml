@@ -16,7 +16,7 @@
     </string-array>
 
     <string-array name="car_brands" >
-        <item>Car Brand</item>
+        <item>Select Brand</item>
         <item>Chevrolet</item>
         <item>Datsun</item>
         <item>Fiat</item>

@@ -14,7 +14,7 @@
 
     <string name="share_your_ride">Share Your Ride</string>
     <string name="my_suggested_rides">My Suggested Rides</string>
-    <string name="my_shared_rides">My Shared Rides</string>
+    <string name="my_shared_rides">My Upcoming Shared Rides</string>
     <string name="my_interested_rides">My Interested Rides</string>
     <string name="take_a_ride">Take A Ride</string>
     <string name="title_activity_share_ride">Share Your Ride</string>
@@ -117,7 +117,7 @@
     <string name="car_color">Car Color</string>
     <string name="route_name">Route Name</string>
     <string name="title_activity_take_ride_details">Take Ride Details</string>
-    <string name="title_activity_my_shared_rides">My Shared Rides</string>
+    <string name="title_activity_my_shared_rides">My Upcoming Shared Rides</string>
     <string name="title_activity_my_interested_rides">My Interested Rides</string>
     <string name="title_activity_my_suggested_rides">My Suggested Rides</string>
     <string name="title_activity_other_ride_details">Other Ride Details</string>

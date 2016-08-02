@@ -1,5 +1,6 @@
 package com.lyftoxi.lyftoxi;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
@@ -63,6 +64,7 @@ public class CarAddEdit extends BaseActivity {
         luggageAllowed = (CheckBox) findViewById(R.id.carAddEditRadioLuggage);
 
         brands =  getResources().getStringArray(R.array.car_brands);
+
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.car_brands, android.R.layout.simple_spinner_item);
@@ -266,15 +268,14 @@ public class CarAddEdit extends BaseActivity {
 
     private boolean isValidInputs() {
 
-        /*if(null==brand.getText() || brand.getText().toString().trim().equals(""))
-        {
-            brand.setError("Brand cannot be blank");
-            brand.requestFocus();
-            return false;
-        }*/
 
-        if(carInfo!=null && carInfo.getCarBrand().equalsIgnoreCase("NA") )
+
+        if(carInfo!=null && carInfo.getCarBrand().equalsIgnoreCase("Select Brand") )
         {
+            TextView errorText = (TextView)brand.getSelectedView();
+            errorText.setError("");
+            errorText.setTextColor(Color.RED);
+            errorText.setText("Please select a Brand");
             brand.requestFocus();
             return false;
         }
@@ -314,7 +315,7 @@ public class CarAddEdit extends BaseActivity {
 
         for(Car tmpCar :CurrentUserInfo.getInstance().getCarDetails())
         {
-            if(tmpCar.getCarNo().equals(number))
+            if(tmpCar.getCarNo().equals(number.getText().toString()))
             {
                 number.setError("Car with this number already exists");
                 number.requestFocus();
