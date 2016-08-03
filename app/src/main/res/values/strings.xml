@@ -54,6 +54,7 @@
     <string name="seat">Seat</string>
     <string name="ride_of">Ride of </string>
     <string name="ac">AC</string>
+    <string name="travellers_interested">Travellers Interested</string>
     <string name="priceText">Ride Fare (in \u20B9)</string>
     <string name="anything_else">Specific Ride Instructions</string>
     <string name="carFeatureText">Car Features for this Ride</string>

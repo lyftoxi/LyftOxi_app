@@ -154,4 +154,41 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+
+
+ <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        android:layout_below="@id/rideListingNoImageFare">
+
+     <ImageView
+         android:id="@+id/rideListingNoImageInterested"
+         android:layout_width="20dp"
+         android:layout_height="20dp"
+         android:tint="@color/iconBlue"
+         android:src="@drawable/ic_thumb_up_black_24dp"
+         android:layout_marginRight="10dp"
+         android:background="#00000000" />
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:textSize="15sp"
+         android:textStyle="bold"
+         android:id="@+id/rideListingNoImageInterestedUserCount"
+         android:textColor="@color/iconBlue"
+         android:layout_centerHorizontal="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="@string/travellers_interested"
+            android:textColor="@color/iconBlue"
+            android:layout_centerHorizontal="true" />
+
+
+    </LinearLayout>
+
 </RelativeLayout>

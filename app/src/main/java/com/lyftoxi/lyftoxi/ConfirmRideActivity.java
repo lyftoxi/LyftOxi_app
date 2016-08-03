@@ -25,6 +25,8 @@ import com.lyftoxi.lyftoxi.dao.Car;
 import com.lyftoxi.lyftoxi.dao.Location;
 import com.lyftoxi.lyftoxi.dao.Ride;
 import com.lyftoxi.lyftoxi.dao.User;
+import com.lyftoxi.lyftoxi.exception.LyftoxiClientBusinessException;
+import com.lyftoxi.lyftoxi.exception.LyftoxiClientException;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.singletons.RideInfo;
 import com.lyftoxi.lyftoxi.util.Constants;
@@ -173,7 +175,6 @@ public class ConfirmRideActivity extends BaseActivity {
         }
     }
 
-
     private void startMySharedRideActivity()
     {
         Intent mySharedRides = new Intent(this,MySharedRides.class);
@@ -183,6 +184,7 @@ public class ConfirmRideActivity extends BaseActivity {
     public class SaveRideDetailsTask extends AsyncTask<Void, Void, Boolean> {
 
         Gson gson = new GsonBuilder().setDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).create();
+        String errorMessage;
         @Override
         protected void onPreExecute() {
             showProgress(true);
@@ -216,6 +218,7 @@ public class ConfirmRideActivity extends BaseActivity {
             ride.setDestination(destination);
             ride.setStartTime(rideInfo.getStarTime());
             ride.setRideOwner(Util.convertUserInfoToUser(CurrentUserInfo.getInstance()));
+            ride.setInterestedUserCount(rideInfo.getInterestedUserCount());
 
             Object rideInfoJson = gson.toJson(ride);
             try {
@@ -235,15 +238,22 @@ public class ConfirmRideActivity extends BaseActivity {
                 }
 
 
-            }catch (IOException ioex)
-            {
-             Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
-                ioex.printStackTrace();
+            }catch (IOException ioex) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                errorMessage = "Service Unavailable";
             }
-            catch (Exception ex)
-            {
-               Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
-             }
+            catch (LyftoxiClientBusinessException e) {
+                Log.e("lyftoxi.error","Business Exception occurred in REST WS call "+e.getMessage());
+                errorMessage = e.getMessage();
+            }
+            catch (LyftoxiClientException e) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call "+e.getMessage());
+                errorMessage = "Some thing wrong happened.Contact support";
+            }
+            catch (Exception e) {
+                Log.e("lyftoxi.error","Something really went wrong "+e.getMessage());
+                errorMessage = "OMG you got us a defect. Contact support with screenshot";
+            }
             return false;
         }
 
@@ -259,7 +269,7 @@ public class ConfirmRideActivity extends BaseActivity {
 
 
             } else {
-                toast = Toast.makeText(getApplicationContext(), "Ride saving failed. Try Again", Toast.LENGTH_LONG);
+                toast = Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG);
                 toast.show();
                 finish();
             }

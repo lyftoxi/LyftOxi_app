@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.googleapis.util.Utils;
 import com.google.api.client.http.ByteArrayContent;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpHeaders;
@@ -44,25 +45,28 @@ public class HttpRestUtil {
     }
 
 
-    public String httpGet(String url) throws IOException {
+    public String httpGet(String url) throws LyftoxiClientException,IOException {
         String response = null;
         GenericUrl fullUrl = new GenericUrl(API_BASE_URL+url);
         HttpRequest getRequest  = transport.createRequestFactory().buildGetRequest(fullUrl);
         getRequest.setHeaders(header);
         Log.d("lyftoxi.debug", "input " + fullUrl);
         HttpResponse httpResponse  = getRequest.execute();
-
+        if(202 == httpResponse.getStatusCode())
+        {
+            throw new LyftoxiClientBusinessException(Util.getStringFromInputStream(httpResponse.getContent()));
+        }
         response  =  Util.getStringFromInputStream(httpResponse.getContent());
         Log.d("lyftoxi.debug", "output " + response);
         return response;
     }
 
-    public String httpPost(String url, Object payload) throws IOException,Exception {
+    public String httpPost(String url, Object payload) throws LyftoxiClientException,IOException {
         String response = null;
 
         if(null == payload)
         {
-            throw new Exception("payload cannot be null");
+            throw new LyftoxiClientException("payload cannot be null");
         }
         GenericUrl fullUrl = new GenericUrl(API_BASE_URL+url);
         Log.d("lyftoxi.debug", "input " + fullUrl);
@@ -70,15 +74,18 @@ public class HttpRestUtil {
         HttpRequest postRequest  = transport.createRequestFactory().buildPostRequest(fullUrl,
                 ByteArrayContent.fromString("application/json", payload.toString()));
         postRequest.setHeaders(header);
+        HttpResponse httpResponse  = postRequest.execute().setLoggingEnabled(true);
 
-        HttpResponse httpResponse  = postRequest.execute();
-
+        if(202 == httpResponse.getStatusCode())
+        {
+            throw new LyftoxiClientBusinessException(Util.getStringFromInputStream(httpResponse.getContent()));
+        }
         response  =  Util.getStringFromInputStream(httpResponse.getContent());
         Log.d("lyftoxi.debug", "output " + response);
         return response;
     }
 
-    public String httpPostSimple(String url) throws IOException,Exception {
+    public String httpPostSimple(String url) throws LyftoxiClientException,IOException {
         String response = null;
 
         GenericUrl fullUrl = new GenericUrl(API_BASE_URL+url);
@@ -87,18 +94,21 @@ public class HttpRestUtil {
         postRequest.setHeaders(header);
         Log.d("lyftoxi.debug", "input " + fullUrl);
         HttpResponse   httpResponse = postRequest.execute();
-
+        if(202 == httpResponse.getStatusCode())
+        {
+            throw new LyftoxiClientBusinessException(Util.getStringFromInputStream(httpResponse.getContent()));
+        }
         response  =  Util.getStringFromInputStream(httpResponse.getContent());
         Log.d("lyftoxi.debug", "output " + response);
         return response;
     }
 
-    public String httpPut(String url, Object payload) throws IOException,Exception {
+    public String httpPut(String url, Object payload) throws LyftoxiClientException,IOException {
         String response = null;
 
         if(null == payload)
         {
-            throw new Exception("payload cannot be null");
+            throw new LyftoxiClientException("payload cannot be null");
         }
         GenericUrl fullUrl = new GenericUrl(API_BASE_URL+url);
         Log.d("lyftoxi.debug", "input " + fullUrl);
@@ -108,20 +118,27 @@ public class HttpRestUtil {
         putRequest.setHeaders(header);
 
         HttpResponse httpResponse  = putRequest.execute();
+        if(202 == httpResponse.getStatusCode())
+        {
+            throw new LyftoxiClientBusinessException(Util.getStringFromInputStream(httpResponse.getContent()));
+        }
 
         response  =  Util.getStringFromInputStream(httpResponse.getContent());
         Log.d("lyftoxi.debug", "output " + response);
         return response;
     }
 
-    public String httpDelete(String url) throws IOException {
+    public String httpDelete(String url) throws LyftoxiClientException,IOException {
         String response = null;
         GenericUrl fullUrl = new GenericUrl(API_BASE_URL+url);
         HttpRequest deleteRequest  = transport.createRequestFactory().buildDeleteRequest(fullUrl);
         deleteRequest.setHeaders(header);
         Log.d("lyftoxi.debug", "input " + fullUrl);
         HttpResponse httpResponse  = deleteRequest.execute();
-
+        if(202 == httpResponse.getStatusCode())
+        {
+            throw new LyftoxiClientBusinessException(Util.getStringFromInputStream(httpResponse.getContent()));
+        }
         response  =  Util.getStringFromInputStream(httpResponse.getContent());
         Log.d("lyftoxi.debug", "output " + response);
         return response;

@@ -53,6 +53,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.lyftoxi.lyftoxi.dao.User;
 import com.lyftoxi.lyftoxi.dao.UserAddress;
+import com.lyftoxi.lyftoxi.exception.LyftoxiClientBusinessException;
+import com.lyftoxi.lyftoxi.exception.LyftoxiClientException;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
@@ -630,7 +632,7 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
 
     public class UpdateUserInfoTask extends AsyncTask<Boolean, Void, Boolean> {
         Gson gson = new GsonBuilder().setDateFormat(Constants.SIMPLE_DATE_FORMAT).create();
-
+        String errorMessage;
         @Override
         protected void onPreExecute() {
             showProgress(true);
@@ -660,14 +662,21 @@ public class EditProfileActivity extends BaseActivity implements VerificationLis
                     return true;
                 }
 
-            }catch (IOException ioex)
-            {
-                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
-                ioex.printStackTrace();
+            }catch (IOException ioex) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                errorMessage = "Service Unavailable";
             }
-            catch (Exception ex)
-            {
-                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
+            catch (LyftoxiClientBusinessException e) {
+                Log.e("lyftoxi.error","Business Exception occurred in REST WS call "+e.getMessage());
+                errorMessage = e.getMessage();
+            }
+            catch (LyftoxiClientException e) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call "+e.getMessage());
+                errorMessage = "Some thing wrong happened.Contact support";
+            }
+            catch (Exception e) {
+                Log.e("lyftoxi.error","Something really went wrong "+e.getMessage());
+                errorMessage = "OMG you got us a defect. Contact support with screenshot";
             }
             return false;
         }

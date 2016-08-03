@@ -15,9 +15,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lyftoxi.lyftoxi.dao.Car;
 import com.lyftoxi.lyftoxi.dao.User;
+import com.lyftoxi.lyftoxi.exception.LyftoxiClientBusinessException;
+import com.lyftoxi.lyftoxi.exception.LyftoxiClientException;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
@@ -133,6 +136,7 @@ public class CarListAdapter extends ArrayAdapter<CarInfo> {
         View progressBar;
         ImageButton deleteBtn;
         private String carNumber;
+        String errorMessage;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -175,13 +179,21 @@ public class CarListAdapter extends ArrayAdapter<CarInfo> {
                     return true;
                 }
 
-            }catch (IOException ioex)
-            {
-                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+            }catch (IOException ioex) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                errorMessage = "Service Unavailable";
             }
-            catch (Exception ex)
-            {
-                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
+            catch (LyftoxiClientBusinessException e) {
+                Log.e("lyftoxi.error","Business Exception occurred in REST WS call "+e.getMessage());
+                errorMessage = e.getMessage();
+            }
+            catch (LyftoxiClientException e) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call "+e.getMessage());
+                errorMessage = "Some thing wrong happened.Contact support";
+            }
+            catch (Exception e) {
+                Log.e("lyftoxi.error","Something really went wrong "+e.getMessage());
+                errorMessage = "OMG you got us a defect. Contact support with screenshot";
             }
             return false;
         }

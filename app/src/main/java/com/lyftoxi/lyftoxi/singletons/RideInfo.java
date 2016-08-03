@@ -14,9 +14,10 @@ public class RideInfo {
     private CarInfo car;
     private LatLng source,via,destination;
     private Date starTime;
-    private int fare;
+    private int fare, interestedUserCount;
     private boolean interested;
     private String status;
+
     private RideInfo()
     {
 
@@ -149,6 +150,14 @@ public class RideInfo {
         this.status = status;
     }
 
+    public int getInterestedUserCount() {
+        return interestedUserCount;
+    }
+
+    public void setInterestedUserCount(int interestedUserCount) {
+        this.interestedUserCount = interestedUserCount;
+    }
+
     @Override
     public String toString() {
         return "RideInfo{" +
@@ -167,26 +176,9 @@ public class RideInfo {
                 ", fare=" + fare +
                 ", status=" + status +
                 ", interested=" + interested +
+                ", interestedUserCount=" + interestedUserCount +
                 '}';
     }
-
-   /* public void reset()
-    {
-        rideOf=null;
-        id=null;
-        name=null;
-        sourceName=null;
-        viaName=null;
-        DestinationName=null;
-        userMessage=null;
-        car = null;
-        source=null;
-        via=null;
-        destination =null;
-        starTime=null;
-        fare=0;
-        interested=false;
-    }*/
 
     public static void reset()
     {

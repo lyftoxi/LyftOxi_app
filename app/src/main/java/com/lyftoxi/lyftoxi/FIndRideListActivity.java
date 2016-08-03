@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.common.reflect.TypeToken;
@@ -21,6 +22,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.lyftoxi.lyftoxi.dao.Ride;
 import com.lyftoxi.lyftoxi.dao.TakeRide;
+import com.lyftoxi.lyftoxi.exception.LyftoxiClientBusinessException;
+import com.lyftoxi.lyftoxi.exception.LyftoxiClientException;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInterestedRides;
 import com.lyftoxi.lyftoxi.singletons.RideInfo;
 import com.lyftoxi.lyftoxi.util.Constants;
@@ -202,7 +205,7 @@ public class FindRideListActivity extends BaseActivity {
 
     private class GetRidesBasedOnLocationTask extends AsyncTask<LatLng, Void, Boolean>
     {
-
+        String errorMessage;
         List<Ride> ridesReceived = null;
         @Override
         protected void onPreExecute()
@@ -210,7 +213,6 @@ public class FindRideListActivity extends BaseActivity {
             showProgress(true);
 
         }
-
 
         private void fetchInterestedRides()
         {
@@ -233,13 +235,21 @@ public class FindRideListActivity extends BaseActivity {
                 }
 
 
-            }catch (IOException ioex)
-            {
-                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+            }catch (IOException ioex) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                errorMessage = "Service Unavailable";
             }
-            catch (Exception ex)
-            {
-                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
+            catch (LyftoxiClientBusinessException e) {
+                Log.e("lyftoxi.error","Business Exception occurred in REST WS call "+e.getMessage());
+                errorMessage = e.getMessage();
+            }
+            catch (LyftoxiClientException e) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call "+e.getMessage());
+                errorMessage = "Some thing wrong happened.Contact support";
+            }
+            catch (Exception e) {
+                Log.e("lyftoxi.error","Something really went wrong "+e.getMessage());
+                errorMessage = "OMG you got us a defect. Contact support with screenshot";
             }
         }
 
@@ -269,13 +279,21 @@ public class FindRideListActivity extends BaseActivity {
                 }
 
 
-            }catch (IOException ioex)
-            {
-                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+            }catch (IOException ioex) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                errorMessage = "Service Unavailable";
             }
-            catch (Exception ex)
-            {
-                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
+            catch (LyftoxiClientBusinessException e) {
+                Log.e("lyftoxi.error","Business Exception occurred in REST WS call "+e.getMessage());
+                errorMessage = e.getMessage();
+            }
+            catch (LyftoxiClientException e) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call "+e.getMessage());
+                errorMessage = "Some thing wrong happened.Contact support";
+            }
+            catch (Exception e) {
+                Log.e("lyftoxi.error","Something really went wrong "+e.getMessage());
+                errorMessage = "OMG you got us a defect. Contact support with screenshot";
             }
             return false;
         }

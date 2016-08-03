@@ -16,7 +16,7 @@ public class Ride {
 	private int fare;
 	private String comment;
 	private String rideStatus;
-	private List<User> interestedUsers;
+	private int interestedUserCount;
 	public String getId() {
 		return id;
 	}
@@ -67,12 +67,6 @@ public class Ride {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public List<User> getInterestedUsers() {
-		return interestedUsers;
-	}
-	public void setInterestedUsers(List<User> interestedUsers) {
-		this.interestedUsers = interestedUsers;
-	}
 
 	public String getRideStatus() {
 		return rideStatus;
@@ -82,7 +76,15 @@ public class Ride {
 		this.rideStatus = rideStatus;
 	}
 
-	@Override
+    public int getInterestedUserCount() {
+        return interestedUserCount;
+    }
+
+    public void setInterestedUserCount(int interestedUserCount) {
+        this.interestedUserCount = interestedUserCount;
+    }
+
+    @Override
 	public String toString() {
 		return "Ride{" +
 				"id='" + id + '\'' +
@@ -94,7 +96,7 @@ public class Ride {
 				", fare=" + fare +
 				", comment='" + comment + '\'' +
 				", rideStatus='" + rideStatus + '\'' +
-				", interestedUsers=" + interestedUsers +
+				", interestedUserCount=" + interestedUserCount +
 				'}';
 	}
 }

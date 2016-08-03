@@ -178,6 +178,7 @@ public class ForgotPasswordActivity extends BaseActivity implements Verification
         Gson gson = new GsonBuilder().setDateFormat(Constants.SIMPLE_DATE_FORMAT).create();
         private String newUserId;
         private String message;
+        String errorMessage;
         @Override
         protected void onPreExecute() {
             showProgress(true);
@@ -197,16 +198,21 @@ public class ForgotPasswordActivity extends BaseActivity implements Verification
                     return true;
                 }
 
+            }catch (IOException ioex) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                errorMessage = "Service Unavailable";
             }
-            catch (IOException ioex)
-            {
-                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
-                message = "Service returned nothing";
+            catch (LyftoxiClientBusinessException e) {
+                Log.e("lyftoxi.error","Business Exception occurred in REST WS call "+e.getMessage());
+                errorMessage = e.getMessage();
             }
-            catch (Exception ex)
-            {
-                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
-                message = "Something went wrong which should not. Contact support is this persists";
+            catch (LyftoxiClientException e) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call "+e.getMessage());
+                errorMessage = "Some thing wrong happened.Contact support";
+            }
+            catch (Exception e) {
+                Log.e("lyftoxi.error","Something really went wrong "+e.getMessage());
+                errorMessage = "OMG you got us a defect. Contact support with screenshot";
             }
             return false;
         }

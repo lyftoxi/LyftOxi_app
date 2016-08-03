@@ -34,6 +34,8 @@ import com.google.gson.GsonBuilder;
 import com.lyftoxi.lyftoxi.dao.Location;
 import com.lyftoxi.lyftoxi.dao.Ride;
 import com.lyftoxi.lyftoxi.dao.TakeRide;
+import com.lyftoxi.lyftoxi.exception.LyftoxiClientBusinessException;
+import com.lyftoxi.lyftoxi.exception.LyftoxiClientException;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInterestedRides;
 import com.lyftoxi.lyftoxi.util.Constants;
@@ -303,7 +305,7 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
 
         TakeRide  interestedRide;
         int position;
-
+        String errorMessage;
 
 
         Gson gson = new GsonBuilder().setDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).create();
@@ -328,13 +330,21 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
                 }
 
 
-            }catch (IOException ioex)
-            {
-                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+            }catch (IOException ioex) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                errorMessage = "Service Unavailable";
             }
-            catch (Exception ex)
-            {
-                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
+            catch (LyftoxiClientBusinessException e) {
+                Log.e("lyftoxi.error","Business Exception occurred in REST WS call "+e.getMessage());
+                errorMessage = e.getMessage();
+            }
+            catch (LyftoxiClientException e) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call "+e.getMessage());
+                errorMessage = "Some thing wrong happened.Contact support";
+            }
+            catch (Exception e) {
+                Log.e("lyftoxi.error","Something really went wrong "+e.getMessage());
+                errorMessage = "OMG you got us a defect. Contact support with screenshot";
             }
             return false;
         }
@@ -367,6 +377,7 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
     public class RemoveInterestedRide extends AsyncTask<String, Void, Boolean> {
 
         ////View progressBar;
+        String errorMessage;
         int position;
         ImageButton interestedButton;
         String rideId, userId;
@@ -393,13 +404,21 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
                 }
 
 
-            }catch (IOException ioex)
-            {
-                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+            }catch (IOException ioex) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                errorMessage = "Service Unavailable";
             }
-            catch (Exception ex)
-            {
-                Log.d("lyftoxi.debug","Error occurred in REST WS call "+ex.getMessage());
+            catch (LyftoxiClientBusinessException e) {
+                Log.e("lyftoxi.error","Business Exception occurred in REST WS call "+e.getMessage());
+                errorMessage = e.getMessage();
+            }
+            catch (LyftoxiClientException e) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call "+e.getMessage());
+                errorMessage = "Some thing wrong happened.Contact support";
+            }
+            catch (Exception e) {
+                Log.e("lyftoxi.error","Something really went wrong "+e.getMessage());
+                errorMessage = "OMG you got us a defect. Contact support with screenshot";
             }
             return false;
         }

@@ -29,12 +29,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.lyftoxi.lyftoxi.dao.User;
+import com.lyftoxi.lyftoxi.exception.LyftoxiClientBusinessException;
+import com.lyftoxi.lyftoxi.exception.LyftoxiClientException;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInterestedRides;
 import com.lyftoxi.lyftoxi.singletons.RideInfo;
@@ -252,6 +255,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public class UserDetailsTask extends AsyncTask<Void, Void, Boolean> {
 
+        String errorMessage;
         @Override
         protected Boolean doInBackground(Void... params) {
 
@@ -263,7 +267,20 @@ public class BaseActivity extends AppCompatActivity {
                 String response = httpRestUtil.httpGet(relativeUrl);
                 userInfo = gson.fromJson(response, new TypeToken<User>() {}.getType());
             } catch (IOException ioex) {
-                Log.d("lyftoxi.debug","Error occurred in REST WS call url cannot be reached "+ioex.getMessage());
+                errorMessage ="Error occurred in REST WS call url cannot be reached ";
+                Toast.makeText(getApplicationContext(),"Service Unavailable",Toast.LENGTH_LONG).show();
+            }
+            catch (LyftoxiClientBusinessException e) {
+                Log.e("lyftoxi.error","Business Exception occurred in REST WS call "+e.getMessage());
+                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+            }
+            catch (LyftoxiClientException e) {
+                Log.e("lyftoxi.error","Error occurred in REST WS call "+e.getMessage());
+                Toast.makeText(getApplicationContext(),"Some thing wrong happened.Contact support",Toast.LENGTH_LONG).show();
+            }
+            catch (Exception e) {
+                Log.e("lyftoxi.error","Something really went wrong "+e.getMessage());
+                Toast.makeText(getApplicationContext(),"OMG you got us a defect. Contact support with screenshot",Toast.LENGTH_LONG).show();
             }
 
             if(null!= userInfo)
