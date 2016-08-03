@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -56,6 +57,7 @@ public class CarAddEdit extends BaseActivity {
         otherBrand= (EditText) findViewById(R.id.carAddEditCarBrandOther);
         model= (EditText) findViewById(R.id.carAddEditCarModel);
         number= (EditText) findViewById(R.id.carAddEditCarNumber);
+        number.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
         color= (EditText) findViewById(R.id.carAddEditCarColor);
         airbagAvailable = (CheckBox) findViewById(R.id.carAddEditRadioAirbag);
         smokingAllowed = (CheckBox) findViewById(R.id.carAddEditRadioSmoking);
