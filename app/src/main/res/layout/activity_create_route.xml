@@ -69,7 +69,7 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="#ffffffff"
+            android:background="@android:color/transparent"
             android:src="@drawable/ic_date_range_black_24dp"
             android:tint="@color/iconBlue"
 
@@ -95,7 +95,7 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:baselineAlignBottom="true"
-                android:background="#ffffffff"
+                android:background="@android:color/transparent"
                 android:src="@drawable/ic_access_time_black_24dp"
                 android:tint="@color/iconBlue"
             />
