@@ -139,40 +139,30 @@
     <string name="ext_storage_write_permission_explanation_2">Highly recommended to get better response from co-travellers\n Please enable from device settings </string>
 
 
-    <string name="what_is_lyftoxi">What is Lyftoxi</string>
-    <string name="what_is_lyftoxi_desc">
-        "Time is over to look for your co-passengers!!! \n\n"
-        "LyftOxi is here to let you offer or take ride in a flexible and convenient way."
-        "Search, talk and decide your journey with a trusted friend and save money on your travel, "
-        "even at the last minute."
-    </string>
-    <string name="how_lyftoxi_makes_you_happy">How LyftOxi makes you happy</string>
-    <string name="travel_safely">Travel safely</string>
-    <string name="travel_safely_desc">Reliability and confidence are important to us.
-        Therefore all LyftOxi users are registered with an e-mail address and phone number.
-    </string>
-    <string name="drive_from_door_to_door">Drive from door to door</string>
-    <string name="drive_from_door_to_door_desc">Free to choose cars with ac, music, luggage and others.
-        You are free to chat discussing start-end point and travel timing with your co-passengers.
-        Drivers find more suitable passengers due to the section negotiation at LyftOxi.
-    </string>
-    <string name="save_money_and_go_green">Save money and Go Green</string>
-    <string name="save_money_and_go_green_desc">Confused with odd-even rule.
-        Share your own car or just leave it at home.
-        That way you can save several thousand per month, depending on your route.
-        Let’s think something green. Good for you…Good for the planet.
-    </string>
+    <string name ="help_text">
+        "What is this app\n"
+        "LyftOxi app is a platform to share your owned or rented car with other co-passengers travelling to same destination.\n"
+        "You need to Sign Up and start enjoying unlimited number of share/find rides without any charge from LyftOxi.\n\n"
 
-    <string name="easy_ride_negotoation">Easy ride negotiation</string>
-    <string name="easy_ride_negotoation_desc">Passengers request you directly via LyftOxi.
-        You will be notified via text message, phone or push notification.
-        You just press a button to confirm the request with pickup location and time.
-    </string>
-    <string name="flexible">Flexible</string>
-    <string name="flexible_desc">Ride/Share now or later with flexible options. Online hired cab can also be shared to
-        make your budget flexible.
-        You can choose one of the proposed drivers, request the ride with the push of a button. Y
-        ou can also request several drivers at the same time and the first one that accepts your request will be your driver
+        "Such concept is very popular in other part of world. Time to fly with same concept here in India.\n\n"
+
+        "- It's your decision - Travel cost is mutually decided by Car Owner and Co-traveller(s).\n"
+        "- Safe &amp; Enjoyable   - You can view your co-traveller's profile, call him/her before travel.\n"
+        "- Economical         - Cheaper than any online shared cab facilities. Your cost is simply divided by number of travllers.\n"
+        "- No surcharge       - No need to check whether 2X or 2.5X.\n"
+        "- Free Free Free     - LyftOxi doesn't charge anything from anyone. No hidden cost.\n"
+        "- Eco Friendly       - Produce less CO2. Gift greener worl to your bloodline.\n\n"
+
+        "Still concerned? Let's have some more useful information.\n"
+
+        "- It is legal to offer lift in private vehicle. The Motor Vehicles Act 1988 does not specifically disallow ride sharing or lift giving or carpooling.\n"
+        "Visit http://www.tn.gov.in/sta/Mvact1988.pdf\n\n"
+
+        "- For rented cab, The cab owner/cab driver has no technical or legal ground to restrict you from offering lift to your friends/family/acquaintance.\n"
+
+        "We are always ready to provide you more help please visit\n\n"
+
+        "\t\t https://www.lyftoxi.com"
     </string>
     <string name="faq">FAQ</string>
 

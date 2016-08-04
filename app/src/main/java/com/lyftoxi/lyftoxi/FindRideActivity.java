@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -40,7 +41,8 @@ public class FindRideActivity extends BaseActivity {
     private CheckBox ac,music,airBag,luggage,smoking;
     private Button saveRoute;
     private ImageButton changeDate;
-    private EditText startDate, sourcePlaceholderText, destinationPlaceholderText;
+    private EditText sourcePlaceholderText, destinationPlaceholderText;
+    private TextView startDate;
     private static final int DATE_PICKER_ID = 1111;
     private RideInfo rideInfo = RideInfo.getInstance();
 
@@ -60,7 +62,7 @@ public class FindRideActivity extends BaseActivity {
         changeDate = (ImageButton)findViewById(R.id.findRideDatePicker);
         sdf  = new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);
         sdf.setLenient(false);
-        startDate = (EditText)findViewById(R.id.findRideDate);
+        startDate = (TextView)findViewById(R.id.findRideDate);
 
 
         //startDate.setText(sdf.format(startDateTime.getTime()));

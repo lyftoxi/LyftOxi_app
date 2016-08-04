@@ -52,18 +52,16 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="horizontal"
-        android:gravity="left"
-        android:paddingTop="10dp">
+        android:gravity="bottom">
 
-        <EditText
+        <TextView
             android:id="@+id/createRouteDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:inputType="datetime"
             android:textStyle="italic"
-            android:hint="Ride Start Date"
+            android:text="@string/starting_at"
             android:textSize="20sp"
             />
         <ImageButton
@@ -71,7 +69,7 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@android:color/transparent"
+            android:background="#ffffffff"
             android:src="@drawable/ic_date_range_black_24dp"
             android:tint="@color/iconBlue"
 
@@ -80,17 +78,15 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="horizontal"
-            android:gravity="left"
-            android:paddingTop="5dp">
-            <EditText
+            android:gravity="bottom">
+            <TextView
                 android:id="@+id/createRouteTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:inputType="datetime"
                 android:textStyle="italic"
-                android:hint="Ride Start Time"
+                android:hint="@string/time"
                 android:textSize="20sp"
                 />
             <ImageButton
@@ -99,7 +95,7 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:baselineAlignBottom="true"
-                android:background="@android:color/transparent"
+                android:background="#ffffffff"
                 android:src="@drawable/ic_access_time_black_24dp"
                 android:tint="@color/iconBlue"
             />

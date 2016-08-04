@@ -17,112 +17,22 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/primaryDark"
-            android:textSize="20sp"
             android:layout_marginBottom="10dp"
-            android:text="@string/what_is_lyftoxi"/>
+            android:text="@string/help_text"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:singleLine="false"
+            android:textAlignment="textStart"
+            android:typeface="normal" />
+
         <TextView
+            android:id="@+id/helpMvact1988WebLink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp"
             android:textColor="@color/primaryButtonBackgroundColor"
-            android:text="@string/what_is_lyftoxi_desc"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/primaryDark"
-            android:textSize="20sp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/how_lyftoxi_makes_you_happy"/>
-
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/primaryDark"
-            android:textSize="15sp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/travel_safely"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/primaryButtonBackgroundColor"
-            android:text="@string/travel_safely_desc"/>
-
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/primaryDark"
-            android:textSize="15sp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/drive_from_door_to_door"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/primaryButtonBackgroundColor"
-            android:text="@string/drive_from_door_to_door_desc"/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/primaryDark"
-            android:textSize="15sp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/save_money_and_go_green"/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/primaryButtonBackgroundColor"
-            android:text="@string/save_money_and_go_green_desc"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/primaryDark"
-            android:textSize="15sp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/easy_ride_negotoation"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/primaryButtonBackgroundColor"
-            android:text="@string/easy_ride_negotoation_desc"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/primaryDark"
-            android:textSize="15sp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/flexible"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/primaryButtonBackgroundColor"
-            android:text="@string/flexible_desc"/>
+            />
 
         <TextView
             android:id="@+id/helpLyftoxiWebLink"

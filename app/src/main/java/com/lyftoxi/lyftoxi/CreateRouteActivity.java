@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -39,7 +40,8 @@ public class CreateRouteActivity extends BaseActivity {
 
     private Button saveRoute;
     private ImageButton changeDate, changeTime;
-    private EditText startDate, startTime, sourcePlaceholderText, destinationPlaceholderText;
+    private EditText  sourcePlaceholderText, destinationPlaceholderText;
+    private TextView startDate, startTime;
     private static final int DATE_PICKER_ID = 1111;
     private static final int TIME_PICKER_ID = 1112;
     private RideInfo rideInfo = RideInfo.getInstance();
@@ -58,8 +60,8 @@ public class CreateRouteActivity extends BaseActivity {
         sdf.setLenient(false);
         sdf1.setLenient(false);
         sdf2.setLenient(false);
-        startDate = (EditText)findViewById(R.id.createRouteDate);
-        startTime = (EditText)findViewById(R.id.createRouteTime);
+        startDate = (TextView)findViewById(R.id.createRouteDate);
+        startTime = (TextView)findViewById(R.id.createRouteTime);
         Log.i("Lyftoxi.info","startDate:"+startDate);
         Log.i("Lyftoxi.info","startTime:"+startTime);
 

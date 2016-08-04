@@ -440,7 +440,7 @@ public class SignupActivity extends BaseActivity implements VerificationListener
             return false;
         }
 
-        if(null == password || password.getText().equals(""))
+        if(null == password || password.getText().toString().equals(""))
         {
             password.setError("Password is blank");
             password.requestFocus();
@@ -450,6 +450,13 @@ public class SignupActivity extends BaseActivity implements VerificationListener
         if(password.getText().length()<6)
         {
             password.setError("Password must be 6 or more charecters");
+            password.requestFocus();
+            return false;
+        }
+
+        if(password.getText().toString().contains(" "))
+        {
+            password.setError("Password cannot have spaces");
             password.requestFocus();
             return false;
         }

@@ -100,6 +100,13 @@ public class ForgotPasswordActivity extends BaseActivity implements Verification
             return false;
         }
 
+        if(password.getText().toString().contains(" "))
+        {
+            password.setError("Password cannot have spaces");
+            password.requestFocus();
+            return false;
+        }
+
         if(!password.getText().toString().equals(confirmPassword.getText().toString()))
         {
             confirmPassword.setError("Password and Retype password does not match");
