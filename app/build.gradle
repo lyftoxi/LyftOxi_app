@@ -9,8 +9,8 @@ android {
         applicationId "com.lyftoxi.lyftoxi"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 6
-        versionName "release-1.0"
+        versionCode 7
+        versionName "release-2.0"
 
     }
     buildTypes {
