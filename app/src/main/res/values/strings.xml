@@ -43,6 +43,8 @@
     <string name="owner_comment">Comment</string>
     <string name="phone_number_sample">0000000000</string>
     <string name="starting_at">Starting @</string>
+    <string name="start_date">Ride Start Date</string>
+    <string name="start_time">Ride Start Time</string>
     <string name="interested">interested?</string>
     <string name="not_interested">Not interested?</string>
     <string name="source">Source</string>

@@ -40,8 +40,8 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
         card_view:cardPreventCornerOverlap="true"
         card_view:cardUseCompatPadding="true"
         card_view:cardBackgroundColor="@color/fragmentBackground"
-        card_view:contentPaddingLeft="5dp"
-        card_view:contentPaddingTop="10dp">
+        card_view:contentPaddingLeft="5dp">
+
         <fragment
             android:id="@+id/createRouteDestination"
             android:layout_width="match_parent"
@@ -49,57 +49,83 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
             android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
         />
     </android.support.v7.widget.CardView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        android:gravity="bottom">
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/RideStartDate_card_view"
+        android:layout_gravity="left"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardPreventCornerOverlap="true"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardBackgroundColor="@color/fragmentBackground"
+        card_view:contentPaddingLeft="5dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            android:gravity="left">
 
         <TextView
             android:id="@+id/createRouteDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="italic"
-            android:text="@string/starting_at"
-            android:textSize="20sp"
+            android:text="@string/start_date"
+            android:textSize="18sp"
             />
         <ImageButton
             android:id="@+id/createRouteDatePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_date_range_black_24dp"
             android:tint="@color/iconBlue"
 
             />
         </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/RideStartTime_card_view"
+        android:layout_gravity="left"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardPreventCornerOverlap="true"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardBackgroundColor="@color/fragmentBackground"
+        card_view:contentPaddingLeft="5dp"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="8dp"
             android:orientation="horizontal"
-            android:gravity="bottom">
+            android:gravity="left">
             <TextView
                 android:id="@+id/createRouteTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
-                android:hint="@string/time"
-                android:textSize="20sp"
+                android:hint="@string/start_time"
+                android:textSize="18sp"
                 />
             <ImageButton
                 android:id="@+id/createRouteTimePicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:baselineAlignBottom="true"
+                android:layout_marginStart="15dp"
                 android:background="@android:color/transparent"
+
                 android:src="@drawable/ic_access_time_black_24dp"
                 android:tint="@color/iconBlue"
             />
         </LinearLayout>
+    </android.support.v7.widget.CardView>
         <Button
             style="@style/button"
             android:id="@+id/createRouteSave"

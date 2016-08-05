@@ -48,39 +48,54 @@
             android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
             />
         </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/findRideStartDate_card_view"
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardPreventCornerOverlap="true"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardBackgroundColor="@color/fragmentBackground"
+            card_view:contentPaddingLeft="5dp"
+            >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:orientation="horizontal"
-            android:gravity="bottom">
+            android:gravity="left">
             <!--<android.support.design.widget.TextInputLayout
                 android:id="@+id/layout_findRideDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">-->
+
+
             <TextView
                 android:id="@+id/findRideDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
-                android:text="@string/starting_at"
-                android:textSize="20sp"
+                android:text="@string/start_date"
+                android:textSize="18sp"
                 />
             <!--</android.support.design.widget.TextInputLayout>-->
             <ImageButton
                 android:id="@+id/findRideDatePicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:background="@android:color/transparent"
+
+
+                android:layout_marginStart="10dp"
+
                 android:src="@drawable/ic_date_range_black_24dp"
                 android:tint="@color/iconBlue"/>
             <!--android:layout_gravity="right" />-->
 
 
         </LinearLayout>
+    </android.support.v7.widget.CardView>
         <View android:id="@+id/dividerAfterUserComment"
             style="@style/HorizontalDivider"
             android:layout_marginTop="5dp"/>
