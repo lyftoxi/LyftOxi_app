@@ -15,34 +15,10 @@
         android:layout_margin="@dimen/text_margin" >
 
         <TextView
+            android:id="@+id/help_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="@string/help_text"
-            android:autoLink="web"
-            android:linksClickable="true"
-            android:singleLine="false"
-            android:textAlignment="textStart"
-            android:typeface="normal" />
-
-        <TextView
-            android:id="@+id/helpMvact1988WebLink"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:paddingTop="10dp"
-            android:textColor="@color/primaryButtonBackgroundColor"
-            />
-
-        <TextView
-            android:id="@+id/helpLyftoxiWebLink"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:paddingTop="10dp"
-            android:textColor="@color/primaryButtonBackgroundColor"
-            />
-
+            android:autoLink="web" />
 
 
     </LinearLayout>
