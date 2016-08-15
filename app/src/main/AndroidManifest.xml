@@ -98,8 +98,13 @@
             android:name=".FindRideListActivity"
             android:label="@string/title_activity_rides"
             android:theme="@style/AppTheme" />
-        <activity android:name=".RentedCarActivity"
+        <activity
+            android:name=".RentedCarActivity"
             android:label="@string/title_activity_rented_car"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MyRideDetails"
+            android:label="@string/title_my_ride_details"
             android:theme="@style/AppTheme" />
     </application>
 

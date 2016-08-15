@@ -73,12 +73,8 @@ public class MySharedRides extends BaseActivity {
                 rideInfo.setInterestedUserCount(selectedRide.getInterestedUserCount());
                 Log.d("lyftoxi.debug",rideInfo.toString());
 
-                Intent rideDetails;
-                rideDetails = new Intent(view.getContext(),ConfirmRideActivity.class);
-                Bundle b = new Bundle();
-                b.putBoolean("showConfirmButton",false);
-                rideDetails.putExtras(b);
-                view.getContext().startActivity(rideDetails);
+                Intent myRideDetails = new Intent(view.getContext(),MyRideDetails.class);
+                view.getContext().startActivity(myRideDetails);
 
             }
         });

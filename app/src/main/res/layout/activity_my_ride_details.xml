@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.lyftoxi.lyftoxi.MyRideDetails">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+    <ImageView
+        android:id="@+id/sourceLocation_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_place_black_24dp"
+        android:tint="@color/locationGreen"/>
+
+    <TextView
+        android:id="@+id/myRideDetailsSource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@id/sourceLocation_icon"
+        android:layout_toRightOf="@id/sourceLocation_icon"
+        android:textSize="18sp"
+        android:text="@string/source"
+        android:textColor="@color/locationGreen" />
+
+
+    <ImageView
+        android:id="@+id/myRideDetailsTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/myRideDetailsSource"
+        android:layout_alignLeft="@id/myRideDetailsSource"
+        android:src="@drawable/ic_access_time_black_24dp"
+        android:tint="@color/iconBlue"/>
+    <TextView
+        android:id="@+id/myRideDetailsStartTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/starting_at"
+        android:layout_below="@id/myRideDetailsSource"
+        android:layout_toEndOf="@id/myRideDetailsTime"
+        android:layout_toRightOf="@id/myRideDetailsTime"
+
+        />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dotted_line"
+        android:textSize="15sp"
+        android:layout_below="@+id/myRideDetailsTime"
+        android:layout_alignLeft="@+id/myRideDetailsTime"
+        android:layout_alignStart="@+id/myRideDetailsTime"
+        android:textStyle="bold"/>
+    <ImageView
+        android:id="@+id/destinationLocation_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_place_black_24dp"
+        android:tint="@color/locationRed"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/sourceLocation_icon"
+        android:layout_alignStart="@+id/sourceLocation_icon"/>
+
+    <TextView
+        android:id="@+id/myRideDetailsDestination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/destinationLocation_icon"
+        android:layout_below="@+id/textView"
+        android:layout_toEndOf="@id/destinationLocation_icon"
+        android:layout_toRightOf="@id/destinationLocation_icon"
+        android:textSize="18sp"
+        android:text="@string/destination"
+        android:textColor="@color/locationRed" />
+
+    <TextView
+        android:id="@+id/rideFareText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fare"
+        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:textColor="#ff335a50"
+        android:layout_alignLeft="@id/myRideDetailsDestination"
+        android:layout_below="@id/myRideDetailsDestination"
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/takeRideRupeeSymbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rupee"
+        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:textColor="#ff335a50"
+        android:layout_below="@id/myRideDetailsDestination"
+        android:layout_toEndOf="@id/rideFareText"
+        android:layout_toRightOf="@id/rideFareText"
+        android:layout_alignBaseline="@id/rideFareText"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/myRideDetailsPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:textColor="#ff335a50"
+        android:layout_below="@id/myRideDetailsDestination"
+        android:layout_toEndOf="@id/takeRideRupeeSymbol"
+        android:layout_toRightOf="@id/takeRideRupeeSymbol"
+        android:layout_alignBaseline="@id/rideFareText"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/takeRideFareDisclaimer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/price_decided_by_owner"
+        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:textColor="@color/disclaimer"
+        android:layout_below="@id/myRideDetailsDestination"
+        android:layout_toEndOf="@id/myRideDetailsPrice"
+        android:layout_toRightOf="@id/myRideDetailsPrice"
+        android:layout_alignBaseline="@id/rideFareText"
+        android:textSize="9sp"
+        android:textStyle="italic"
+        />
+    <View android:id="@+id/dividerAfterRideDetail"
+        style="@style/HorizontalDivider"
+        android:layout_below="@id/rideFareText"
+        android:layout_marginTop="10dp"/>
+
+    <RelativeLayout
+        android:id="@+id/takeRidesCarDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dividerAfterRideDetail"
+        android:background="@color/carDetailsBackground"
+        >
+
+        <ImageView
+            android:id="@+id/myRideDetailsCarLogo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/my_brand" />
+        <TextView
+            android:id="@+id/myRideDetailsCarBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/myRideDetailsCarLogo"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text="@string/car_brand"
+            android:textSize="17sp"
+            />
+        <TextView
+            android:id="@+id/myRideDetailsCarModel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/myRideDetailsCarBrand"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignBaseline="@id/myRideDetailsCarBrand"
+            android:textStyle="bold"
+            android:text="@string/car_model"
+            android:textSize="15sp"
+            />
+        <TextView
+            android:id="@+id/hyphen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_toRightOf="@id/myRideDetailsCarModel"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text=" - "
+            android:textSize="17sp"
+            />
+        <TextView
+            android:id="@+id/myRideDetailsCarColor"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_toRightOf="@id/hyphen"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text="@string/car_color"
+            android:textSize="17sp"
+            />
+        <TextView
+            android:id="@+id/myRideDetailsCarNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/myRideDetailsCarColor"
+            android:layout_toRightOf="@id/myRideDetailsCarLogo"
+            android:layout_alignLeft="@id/myRideDetailsCarBrand"
+            android:layout_marginTop="1dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/accent"
+            android:text="@string/car_number"/>
+
+        <CheckBox android:id="@+id/myRideDetailsRadioAc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/myRideDetailsCarLogo"
+
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="30dp"
+            android:text="@string/ac"
+            android:textColor="@color/checkboxDisabled"
+            android:buttonTint="@color/checkboxDisabled"
+            />
+        <CheckBox android:id="@+id/myRideDetailsRadioMusic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/myRideDetailsRadioAc"
+
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="30dp"
+            android:text="@string/music"
+            android:textColor="@color/checkboxDisabled"
+            android:buttonTint="@color/checkboxDisabled"
+            />
+        <CheckBox android:id="@+id/myRideDetailsRadioSmoking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/myRideDetailsRadioMusic"
+
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="30dp"
+            android:text="@string/smoking"
+            android:textColor="@color/checkboxDisabled"
+            android:buttonTint="@color/checkboxDisabled"
+            />
+        <CheckBox android:id="@+id/myRideDetailsRadioAirbag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/myRideDetailsCarLogo"
+            android:layout_toRightOf="@id/myRideDetailsRadioAc"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="70dp"
+            android:text="@string/air_bag"
+            android:textColor="@color/checkboxDisabled"
+            android:buttonTint="@color/checkboxDisabled"
+            />
+
+        <CheckBox android:id="@+id/myRideDetailsLuggage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/myRideDetailsRadioAirbag"
+            android:layout_toRightOf="@id/myRideDetailsRadioAc"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="70dp"
+            android:text="@string/luggage"
+            android:textColor="@color/checkboxDisabled"
+            android:buttonTint="@color/checkboxDisabled"
+            />
+
+        <View android:id="@+id/dividerAfterCarDetail"
+            style="@style/HorizontalDivider"
+            android:layout_below="@id/myRideDetailsRadioSmoking"
+            android:layout_marginTop="10dp"/>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/myRideDetailsInstructionSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/takeRidesCarDetails"
+        android:background="@color/commentBkg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/myRideDetailsUserMessageHeading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:layout_marginLeft="2dp"
+
+            android:text="@string/anything_else"
+            android:textColor="@color/commentheader"
+            android:textSize="17sp"
+            android:textStyle="normal"/>
+
+        <TextView
+            android:id="@+id/myRideDetailsUserMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:singleLine="false"
+            android:text="test"
+            android:textColor="@color/comment"
+            android:textSize="15sp"
+            android:textStyle="italic"/>
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/myRideDetailsInterestedUserRecycler"
+        android:layout_below="@id/myRideDetailsInstructionSection"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+
+    <TextView
+        android:id="@+id/myRideDetailsInterestedUserListEmpty"
+        android:visibility="gone"
+        android:layout_below="@id/myRideDetailsInstructionSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

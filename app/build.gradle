@@ -38,6 +38,7 @@ dependencies {
     }
     compile 'com.google.code.gson:gson:1.7.2'
     compile 'com.msg91.sendotp.library:library:2.5'
+    compile 'com.android.support:recyclerview-v7:23.3.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

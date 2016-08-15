@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:paddingLeft="@dimen/list_horizontal_margin"
+    android:paddingRight="@dimen/list_horizontal_margin"
+    android:paddingTop="@dimen/list_vertical_margin"
+    android:paddingBottom="@dimen/list_vertical_margin"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants"
+    >
+    <ImageView
+        android:id="@+id/userListingUserImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/sample_profile_pic"
+        android:scaleType="fitCenter"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="4dp"/>
+
+    <TextView
+        android:id="@+id/userListingName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textStyle="bold"
+        android:textColor="@color/primaryVeryDark"
+        android:layout_alignTop="@+id/userListingUserImage"
+        android:layout_alignLeft="@+id/userListingPhone"
+        android:layout_alignStart="@+id/userListingPhone" />
+
+    <TextView
+        android:id="@+id/userListingPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/phone_number_sample"
+        android:layout_below="@+id/userListingName"
+        android:layout_toRightOf="@+id/userListingUserImage"
+        android:layout_toEndOf="@+id/userListingUserImage"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp" />
+    <TextView
+        android:id="@+id/userListingGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/male"
+        android:textColor="@color/iconBlue"
+        android:textSize="10sp"
+        android:layout_below="@+id/userListingPhone"
+        android:layout_alignLeft="@+id/userListingPhone"
+        android:layout_alignStart="@+id/userListingPhone" />
+
+    <TextView
+        android:id="@+id/userListingAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25 Years"
+        android:textSize="10sp"
+        android:textColor="@color/iconBlue"
+        android:layout_below="@+id/userListingPhone"
+        android:layout_toRightOf="@+id/userListingName"
+        android:layout_toEndOf="@+id/userListingName" />
+
+    <ImageButton
+        android:id="@+id/userListingCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_call_black_30dp"
+        android:tint="@color/iconBlue"
+        android:background="@android:color/transparent"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <ImageButton
+        android:id="@+id/userListingMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_message_black_30dp"
+        android:tint="@color/iconBlue"
+        android:background="@android:color/transparent"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/userListingCall"
+        android:layout_toStartOf="@+id/userListingCall" />
+
+</RelativeLayout>

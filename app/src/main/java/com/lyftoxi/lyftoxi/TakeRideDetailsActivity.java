@@ -182,24 +182,6 @@ public class TakeRideDetailsActivity extends BaseActivity {
                 }
             });
 
-/*            Log.d("lyftoxi.debug","interested "+seletctedRide.isInterested());
-            if(seletctedRide.isInterested())
-            {
-                takeRideInterested.setText(R.string.not_interested);
-            }
-
-            takeRideInterested.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(seletctedRide.isInterested())
-                    {
-                      new  RemoveInterestedRide().execute(seletctedRide.getId(),CurrentUserInfo.getInstance().getId());
-                    }
-                    else {
-                        new AddInterestedRide().execute();
-                    }
-                }
-            });*/
         }
     }
 
