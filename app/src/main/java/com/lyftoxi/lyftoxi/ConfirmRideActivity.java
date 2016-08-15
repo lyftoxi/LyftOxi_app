@@ -230,7 +230,14 @@ public class ConfirmRideActivity extends BaseActivity {
                     response = httpRestUtil.httpPut("shareRideService/ride", rideInfoJson);
                 }else {
                     Log.d("lyftoxi.debug","executing post");
-                    response = httpRestUtil.httpPost("shareRideService/ride", rideInfoJson);
+                    if(rideInfo.getDaysToRepeat()>0)
+                    {
+                        Log.d("lyftoxi.debug","recurring for "+rideInfo.getDaysToRepeat()+" days");
+                        response = httpRestUtil.httpPost("shareRideService/ride?recurring="+rideInfo.getDaysToRepeat(), rideInfoJson);
+                    }
+                    else {
+                        response = httpRestUtil.httpPost("shareRideService/ride", rideInfoJson);
+                    }
                 }
                 if(null!=response)
                 {

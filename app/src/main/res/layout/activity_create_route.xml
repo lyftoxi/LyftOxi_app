@@ -4,6 +4,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
 tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
 
 <LinearLayout android:layout_width="match_parent"
@@ -12,7 +13,6 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
     android:padding="10dp">
 
     <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/source_card_view"
         android:layout_gravity="left"
         android:layout_width="match_parent"
@@ -31,7 +31,6 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/destination_card_view"
         android:layout_gravity="left"
         android:layout_width="match_parent"
@@ -50,7 +49,6 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
         />
     </android.support.v7.widget.CardView>
     <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/RideStartDate_card_view"
         android:layout_gravity="left"
         android:layout_width="wrap_content"
@@ -81,6 +79,7 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_date_range_black_24dp"
             android:tint="@color/iconBlue"
@@ -89,7 +88,6 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
         </LinearLayout>
     </android.support.v7.widget.CardView>
     <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/RideStartTime_card_view"
         android:layout_gravity="left"
         android:layout_width="wrap_content"
@@ -119,12 +117,54 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
                 android:background="@android:color/transparent"
 
                 android:src="@drawable/ic_access_time_black_24dp"
                 android:tint="@color/iconBlue"
             />
         </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_repeat_black_24dp"
+        android:tint="@color/iconBlue"
+        />
+        <CheckBox
+            android:id="@+id/createRouteRepeatCheckbox"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:text="@string/repeat_till"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/createRouteRepeatSpinnerCardView"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardPreventCornerOverlap="true"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardBackgroundColor="@color/fragmentBackground"
+        card_view:contentPaddingLeft="5dp">
+            <Spinner
+                android:id="@+id/createRouteRepeatSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
     </android.support.v7.widget.CardView>
         <Button
             style="@style/button"
@@ -135,13 +175,7 @@ tools:context="com.lyftoxi.lyftoxi.CreateRouteActivity">
 
 </LinearLayout>
 
-  <!--  <fragmentd
-        android:id="@+id/createRouteMapView"
-        class="com.google.android.gms.maps.MapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_anchor="@id/createRouteBodyView"
-        app:layout_anchorGravity="bottom"/>-->
+
 
 
 

@@ -6,12 +6,17 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -36,8 +41,11 @@ public class CreateRouteActivity extends BaseActivity {
     private LatLng source, destination;
     private String sourceName, destinationName;
     private PlaceAutocompleteFragment autocompleteFragmentSource, autocompleteFragmentDestination;
-    private SimpleDateFormat sdf,sdf1,sdf2;
+    private SimpleDateFormat sdf,sdf1,sdf2,sdf3;
+    private CardView createRouteRepeatSpinnerCardView;
 
+    private Spinner repeatSpinner;
+    private CheckBox repeatCheckbox;
     private Button saveRoute;
     private ImageButton changeDate, changeTime;
     private EditText  sourcePlaceholderText, destinationPlaceholderText;
@@ -45,6 +53,7 @@ public class CreateRouteActivity extends BaseActivity {
     private static final int DATE_PICKER_ID = 1111;
     private static final int TIME_PICKER_ID = 1112;
     private RideInfo rideInfo = RideInfo.getInstance();
+    private int daysToRepeat=0;
 
     private Calendar startDateTime = Calendar.getInstance();
     @Override
@@ -56,16 +65,65 @@ public class CreateRouteActivity extends BaseActivity {
         changeTime = (ImageButton)findViewById(R.id.createRouteTimePicker);
         sdf  = new SimpleDateFormat(Constants.DATE_TIME_FORMAT_12HR_FORMAT);
         sdf1 = new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);
-        sdf2 = new SimpleDateFormat("h:mm a");
+        sdf2 = new SimpleDateFormat(Constants.TIME_FORMAT);
+        sdf3 = new SimpleDateFormat(Constants.DATE_FORMAT_WITH_DAY_FORMAT);
         sdf.setLenient(false);
         sdf1.setLenient(false);
         sdf2.setLenient(false);
         startDate = (TextView)findViewById(R.id.createRouteDate);
         startTime = (TextView)findViewById(R.id.createRouteTime);
+        repeatSpinner = (Spinner) findViewById(R.id.createRouteRepeatSpinner);
+        repeatCheckbox = (CheckBox) findViewById(R.id.createRouteRepeatCheckbox);
+        createRouteRepeatSpinnerCardView = (CardView) findViewById(R.id.createRouteRepeatSpinnerCardView);
         Log.i("Lyftoxi.info","startDate:"+startDate);
         Log.i("Lyftoxi.info","startTime:"+startTime);
 
-        //startDate.setText(sdf.format(startDateTime.getTime()));
+        String [] spinnerLabels = new String[Constants.RIDE_REPEAT_MAX_NO_DAYS];
+        Calendar spinnerDate =  Calendar.getInstance();
+        for(int i=0; i<Constants.RIDE_REPEAT_MAX_NO_DAYS; i++)
+        {
+            spinnerDate.add(Calendar.DATE,1);
+            spinnerLabels[i] = sdf3.format(spinnerDate.getTime());
+        }
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,spinnerLabels);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        repeatSpinner.setAdapter(spinnerAdapter);
+        repeatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                daysToRepeat = position+1;
+                Toast.makeText(view.getContext(),"Repeat for "+daysToRepeat+" days",Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        if(repeatCheckbox.isChecked())
+        {
+            createRouteRepeatSpinnerCardView.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            createRouteRepeatSpinnerCardView.setVisibility(View.GONE);
+        }
+        repeatCheckbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(repeatCheckbox.isChecked())
+                {
+                    createRouteRepeatSpinnerCardView.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    createRouteRepeatSpinnerCardView.setVisibility(View.GONE);
+                }
+            }
+        });
+
+
+
 
         saveRoute = (Button) findViewById(R.id.createRouteSave);
         saveRoute.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +139,7 @@ public class CreateRouteActivity extends BaseActivity {
                 rideInfo.setDestination(destination);
                 rideInfo.setDestinationName(destinationName);
                 rideInfo.setRideOf(session.getUserDetails());
+                rideInfo.setDaysToRepeat(daysToRepeat);
                 try {
                     String startingTIme = startDate.getText().toString()+" "+startTime.getText().toString();
                     Log.d("lyftoxi.debug","startingTIme "+startingTIme);

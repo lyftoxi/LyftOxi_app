@@ -83,6 +83,7 @@
     <string name="tnc">Terms and Conditions</string>
     <string name="call">Call</string>
     <string name="msg">Message</string>
+    <string name="repeat_till">Repeat till</string>
 
     <string name="marked_interested">Marked as Interested</string>
     <string name="marked_uninterested">Marked as Uninterested</string>

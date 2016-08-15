@@ -14,7 +14,7 @@ public class RideInfo {
     private CarInfo car;
     private LatLng source,via,destination;
     private Date starTime;
-    private int fare, interestedUserCount;
+    private int fare, interestedUserCount, daysToRepeat;
     private boolean interested;
     private String status;
 
@@ -158,11 +158,18 @@ public class RideInfo {
         this.interestedUserCount = interestedUserCount;
     }
 
+    public int getDaysToRepeat() {
+        return daysToRepeat;
+    }
+
+    public void setDaysToRepeat(int daysToRepeat) {
+        this.daysToRepeat = daysToRepeat;
+    }
+
     @Override
     public String toString() {
         return "RideInfo{" +
-                "rideOf=" + rideOf +
-                ", id='" + id + '\'' +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", sourceName='" + sourceName + '\'' +
                 ", viaName='" + viaName + '\'' +
@@ -174,9 +181,10 @@ public class RideInfo {
                 ", destination=" + destination +
                 ", starTime=" + starTime +
                 ", fare=" + fare +
-                ", status=" + status +
-                ", interested=" + interested +
                 ", interestedUserCount=" + interestedUserCount +
+                ", daysToRepeat=" + daysToRepeat +
+                ", interested=" + interested +
+                ", status='" + status + '\'' +
                 '}';
     }
 
