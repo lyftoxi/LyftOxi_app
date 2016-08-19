@@ -46,6 +46,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -117,13 +118,31 @@ public class ConfirmRideActivity extends BaseActivity {
             confirmRideDetailsPrice.setText(ride.getFare() + "");
             confirmRideDetailsSource.setText(ride.getSourceName());
             confirmRideDetailsDestination.setText(ride.getDestinationName());
-            confirmRideDetailsStartTime.setText(sdf.format(ride.getStarTime()));
             confirmRideDetailsCarBrand.setText(ride.getCar().getCarBrand());
             confirmRideDetailsCarModel.setText(ride.getCar().getCarModel());
             confirmRideDetailsCarNumber.setText(ride.getCar().getCarNo());
             confirmRideDetailsCarColor.setText(ride.getCar().getCarColor());
             confirmRideDetailsUserMessage.setText(ride.getUserMessage());
-            //confirmRideDetailsPhone.setText(ride.getRideOf().getPhNo());
+            if(ride.getDaysToRepeat()>0)
+            {
+                SimpleDateFormat dateFormat= new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);
+                SimpleDateFormat timeFormat= new SimpleDateFormat(Constants.TIME_FORMAT);
+                Calendar startTime = Calendar.getInstance();
+                startTime.setTime(ride.getStarTime());
+                StringBuilder sb = new StringBuilder();
+                sb.append("[");
+                sb.append(dateFormat.format(startTime.getTime()));
+                sb.append(" to ");
+                startTime.add(Calendar.DATE,ride.getDaysToRepeat());
+                sb.append(dateFormat.format(startTime.getTime()));
+                sb.append("] ");
+                sb.append(timeFormat.format(startTime.getTime()));
+
+                confirmRideDetailsStartTime.setText(sb.toString());
+
+            }else{
+                confirmRideDetailsStartTime.setText(sdf.format(ride.getStarTime()));
+            }
 
             Bitmap carLogo;
             if(null!=ride.getCar().getCarBrand() && !ride.getCar().getCarBrand().trim().equals(""))

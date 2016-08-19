@@ -9,7 +9,7 @@
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-
+        android:padding="10dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@id/sourceLocation_icon"
+                android:layout_toRightOf="@id/sourceLocation_icon"
                 android:textSize="18sp"
                 android:text="@string/source"
                 android:textColor="@color/locationGreen" />
@@ -40,31 +41,32 @@
 
             <ImageView
                 android:id="@+id/confirmRideDetailsTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/confirmRideDetailsSource"
-                android:layout_alignLeft="@id/confirmRideDetailsSource"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:src="@drawable/ic_access_time_black_24dp"
-                android:tint="@color/iconBlue"/>
+                android:tint="@color/iconBlue"
+                android:layout_below="@+id/sourceLocation_icon"
+                android:layout_toLeftOf="@+id/confirmRideDetailsStartTime"
+                android:layout_toStartOf="@+id/confirmRideDetailsStartTime" />
             <TextView
                 android:id="@+id/confirmRideDetailsStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/starting_at"
-                android:layout_below="@id/confirmRideDetailsSource"
-                android:layout_toEndOf="@id/confirmRideDetailsTime"
 
-                />
+                android:layout_alignBottom="@+id/confirmRideDetailsTime"
+                android:layout_toRightOf="@+id/sourceLocation_icon"
+                android:layout_toEndOf="@+id/sourceLocation_icon" />
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dotted_line"
                 android:textSize="15sp"
+                android:textStyle="bold"
                 android:layout_below="@+id/confirmRideDetailsTime"
-                android:layout_alignLeft="@+id/confirmRideDetailsTime"
-                android:layout_alignStart="@+id/confirmRideDetailsTime"
-                android:textStyle="bold"/>
+                android:layout_alignRight="@+id/confirmRideDetailsTime"
+                android:layout_alignEnd="@+id/confirmRideDetailsTime" />
             <ImageView
                 android:id="@+id/destinationLocation_icon"
                 android:layout_width="wrap_content"
@@ -82,6 +84,7 @@
                 android:layout_alignTop="@id/destinationLocation_icon"
                 android:layout_below="@+id/textView"
                 android:layout_toEndOf="@id/destinationLocation_icon"
+                android:layout_toRightOf="@id/destinationLocation_icon"
                 android:textSize="18sp"
                 android:text="@string/destination"
                 android:textColor="@color/locationRed" />
@@ -109,6 +112,7 @@
                 android:textColor="#ff335a50"
                 android:layout_below="@id/confirmRideDetailsDestination"
                 android:layout_toEndOf="@id/rideFareText"
+                android:layout_toRightOf="@id/rideFareText"
                 android:layout_alignBaseline="@id/rideFareText"
                 android:textSize="12sp"
                 android:textStyle="bold"
@@ -122,6 +126,7 @@
                 android:textColor="#ff335a50"
                 android:layout_below="@id/confirmRideDetailsDestination"
                 android:layout_toEndOf="@id/confirmRideRupeeSymbol"
+                android:layout_toRightOf="@id/confirmRideRupeeSymbol"
                 android:layout_alignBaseline="@id/rideFareText"
                 android:textSize="15sp"
                 android:textStyle="bold"

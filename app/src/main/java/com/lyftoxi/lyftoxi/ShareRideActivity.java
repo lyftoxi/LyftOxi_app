@@ -7,7 +7,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -29,20 +32,17 @@ import java.util.List;
 
 public class ShareRideActivity extends BaseActivity {
 
-    private int carType;
-    private ListView carListView;
-
+    private RecyclerView shareRideCarRecyclerView;
     static final int OWN_CAR=0;
     static final int RENTED_CAR=1;
-
     private Button addCarBtn;
-
     private Dialog dialog;
+    private CarListingRecyclerAdapter mAdapter;
+    private List<CarInfo> carInfos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        isScrollable=false;
         setContentView(R.layout.activity_share_ride);
         if(!session.isLoggedIn())
         {
@@ -53,6 +53,7 @@ public class ShareRideActivity extends BaseActivity {
             startActivity(loginIntent);
             finish();
         }
+        List<Car> cars = CurrentUserInfo.getInstance().getCarDetails();
         addCarBtn = (Button)findViewById(R.id.sharingRideAddCar);
         addCarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,8 +63,7 @@ public class ShareRideActivity extends BaseActivity {
             }
         });
 
-        carListView = (ListView) findViewById(R.id.shareRideCarList);
-        carListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*carListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("lyftoxi.debug","Item Clicked "+i);
@@ -73,8 +73,7 @@ public class ShareRideActivity extends BaseActivity {
                 Intent intent = new Intent(view.getContext(),CreateRouteActivity.class);
                 startActivity(intent);
             }
-        });
-
+        });*/
         if(null!= getIntent().getExtras()) {
             Bundle b = getIntent().getExtras();
             showCarsByType(b.getInt("carType"));
@@ -82,52 +81,27 @@ public class ShareRideActivity extends BaseActivity {
         else{
             selectCarType(this);
         }
-
-
-
-
     }
-
 
     private void selectCarType(final Context context)
     {
-        /*final String [] items           = new String [] {getString(R.string.own_cars), getString(R.string.rented_cars), getString(R.string.back)};
-        ArrayAdapter<String> adapter  = new ArrayAdapter<String> (this, android.R.layout.select_dialog_item,items);
-        AlertDialog.Builder builder     = new AlertDialog.Builder(this);
-
-        builder.setTitle(getString(R.string.select_car_type));
-        builder.setAdapter( adapter, new DialogInterface.OnClickListener() {
-            public void onClick( DialogInterface dialog, int item ) {
-                carType = item;
-                showCarsByType(carType);
-            }
-        } );
-
-        final AlertDialog dialog = builder.create();*/
         dialog = new Dialog(context);
         dialog.setContentView(R.layout.select_car_type_layout);
-        //dialog.setTitle(getString(R.string.select_car_type));
-
-
         Button ownCars = (Button) dialog.findViewById(R.id.selectCarTypeOwnCar);
         Button rentedCars = (Button) dialog.findViewById(R.id.selectCarTypeRentedCar);
         Button back = (Button) dialog.findViewById(R.id.selectCarTypeBack);
-
         ownCars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showCarsByType(OWN_CAR);
             }
         });
-
         rentedCars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showCarsByType(RENTED_CAR);
             }
         });
-
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,7 +139,7 @@ public class ShareRideActivity extends BaseActivity {
         CarListAdapter carListAdapter;
         getSupportActionBar().setTitle(getText(R.string.own_cars));
         List<Car> cars = CurrentUserInfo.getInstance().getCarDetails();
-        List<CarInfo> carInfos = new ArrayList<CarInfo>();
+        carInfos = new ArrayList<CarInfo>();
         for(Car car : cars) {
             CarInfo carInfo = new CarInfo();
             Log.d("lyftoxi.debug","car sharing ride "+car.getCarNo());
@@ -182,11 +156,17 @@ public class ShareRideActivity extends BaseActivity {
 
             carInfos.add(carInfo);
         }
-        carListAdapter = new CarListAdapter(this,R.layout.car_listing, carInfos);
-        carListView.setAdapter(carListAdapter);
         if(null!=dialog) {
             dialog.dismiss();
         }
+        shareRideCarRecyclerView = (RecyclerView) findViewById(R.id.shareRideCarRecyclerView);
+        mAdapter = new CarListingRecyclerAdapter(carInfos);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        shareRideCarRecyclerView.setLayoutManager(mLayoutManager);
+        shareRideCarRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        shareRideCarRecyclerView.setAdapter(mAdapter);
+        shareRideCarRecyclerView.setNestedScrollingEnabled(false);
+        mAdapter.notifyDataSetChanged();
     }
 
     private void showRentedCars()
@@ -197,13 +177,8 @@ public class ShareRideActivity extends BaseActivity {
         rentedCar.setCarModel("Car");
         rentedCar.setCarNo("");
         RideInfo.getInstance().setCar(rentedCar);
-
         Intent rentedCarIntent = new Intent(this,RentedCarActivity.class);
         startActivity(rentedCarIntent);
     }
-
-
-
-
 
 }

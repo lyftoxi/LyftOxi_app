@@ -16,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -43,6 +44,7 @@ public class CreateRouteActivity extends BaseActivity {
     private PlaceAutocompleteFragment autocompleteFragmentSource, autocompleteFragmentDestination;
     private SimpleDateFormat sdf,sdf1,sdf2,sdf3;
     private CardView createRouteRepeatSpinnerCardView;
+    private LinearLayout createRouteRepeatLayout;
 
     private Spinner repeatSpinner;
     private CheckBox repeatCheckbox;
@@ -75,30 +77,9 @@ public class CreateRouteActivity extends BaseActivity {
         repeatSpinner = (Spinner) findViewById(R.id.createRouteRepeatSpinner);
         repeatCheckbox = (CheckBox) findViewById(R.id.createRouteRepeatCheckbox);
         createRouteRepeatSpinnerCardView = (CardView) findViewById(R.id.createRouteRepeatSpinnerCardView);
+        createRouteRepeatLayout = (LinearLayout) findViewById(R.id.createRouteRepeatLayout);
         Log.i("Lyftoxi.info","startDate:"+startDate);
         Log.i("Lyftoxi.info","startTime:"+startTime);
-
-        String [] spinnerLabels = new String[Constants.RIDE_REPEAT_MAX_NO_DAYS];
-        Calendar spinnerDate =  Calendar.getInstance();
-        for(int i=0; i<Constants.RIDE_REPEAT_MAX_NO_DAYS; i++)
-        {
-            spinnerDate.add(Calendar.DATE,1);
-            spinnerLabels[i] = sdf3.format(spinnerDate.getTime());
-        }
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,spinnerLabels);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        repeatSpinner.setAdapter(spinnerAdapter);
-        repeatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                daysToRepeat = position+1;
-                Toast.makeText(view.getContext(),"Repeat for "+daysToRepeat+" days",Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
         if(repeatCheckbox.isChecked())
         {
@@ -118,6 +99,7 @@ public class CreateRouteActivity extends BaseActivity {
                 else
                 {
                     createRouteRepeatSpinnerCardView.setVisibility(View.GONE);
+                    daysToRepeat=0;
                 }
             }
         });
@@ -315,6 +297,8 @@ public class CreateRouteActivity extends BaseActivity {
 
             startDateTime.set(selectedYear,selectedMonth,selectedDay);
             startDate.setText(sdf1.format(startDateTime.getTime()));
+            createRouteRepeatLayout.setVisibility(View.VISIBLE);
+            populateRepeatSpinner(startDateTime);
 
         }
     };
@@ -331,5 +315,30 @@ public class CreateRouteActivity extends BaseActivity {
         }
 
     };
+
+
+    private void populateRepeatSpinner(Calendar spinnerDate)
+    {
+        String [] spinnerLabels = new String[Constants.RIDE_REPEAT_MAX_NO_DAYS];
+        for(int i=0; i<Constants.RIDE_REPEAT_MAX_NO_DAYS; i++)
+        {
+            spinnerDate.add(Calendar.DATE,1);
+            spinnerLabels[i] = sdf3.format(spinnerDate.getTime());
+        }
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,spinnerLabels);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        repeatSpinner.setAdapter(spinnerAdapter);
+        repeatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                daysToRepeat = position+1;
+                Toast.makeText(view.getContext(),"Repeat for "+daysToRepeat+" days",Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
 
 }

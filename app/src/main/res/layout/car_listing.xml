@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
     android:paddingLeft="@dimen/list_horizontal_margin"
     android:paddingRight="@dimen/list_horizontal_margin"
     android:paddingTop="@dimen/list_vertical_margin"
     android:paddingBottom="@dimen/list_vertical_margin"
-    android:gravity="left"
-    android:descendantFocusability="blocksDescendants"
-    android:weightSum="1">
+    android:descendantFocusability="blocksDescendants">
 
 
     <ImageView
@@ -18,31 +15,23 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:scaleType="fitCenter"
+        android:layout_marginRight="5dp"
+        android:layout_marginEnd="5dp"
         android:src="@drawable/ic_directions_car_black_48dp"
-        android:layout_marginTop="6dp"
-        android:layout_weight="0.14" />
-
-
-    <Space
-        android:layout_width="10dp"
-        android:layout_height="match_parent"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-
-        android:layout_weight="0.66">
-
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignLeft="@+id/carListingProgress"
+        android:layout_alignStart="@+id/carListingProgress" />
         <TextView
             android:id="@+id/carListingBrand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25sp"
             android:text="@string/car_brand"
-            android:textColor="@color/primaryTextColor"/>
-
-
+            android:textColor="@color/primaryTextColor"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/carListImage"
+            android:layout_toEndOf="@+id/carListImage" />
 
         <TextView
             android:id="@+id/carListingModel"
@@ -50,9 +39,9 @@
             android:layout_height="wrap_content"
             android:text="@string/car_model"
             android:textSize="15sp"
-            />
-
-
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/carListImage"
+            android:layout_toEndOf="@+id/carListImage" />
         <TextView
             android:id="@+id/carListingNumber"
             android:layout_width="wrap_content"
@@ -61,43 +50,42 @@
             android:textSize="15sp"
             android:textStyle="bold"
             android:textColor="@color/primaryTextColor"
-            />
+            android:layout_below="@+id/carListImage"
+            android:layout_toRightOf="@+id/carListImage"
+            android:layout_toEndOf="@+id/carListImage" />
 
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:orientation="vertical">
         <ImageButton
             android:id="@+id/carListingEditCar"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
             android:clickable="true"
             android:src="@drawable/ic_create_black_24dp"
             android:tint="@color/iconBlue"
-            />
+            android:layout_toLeftOf="@id/carListingBrand"
+            android:layout_toStartOf="@id/carListingBrand"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
         <ImageButton
             android:id="@+id/carListingDeleteCar"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
             android:clickable="true"
             android:src="@drawable/ic_delete_black_24dp"
-            android:tint="@color/iconBlue"/>
+            android:tint="@color/iconBlue"
+            android:layout_below="@+id/carListingEditCar"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <ProgressBar android:id="@+id/carListingProgress"
             style="?android:attr/progressBarStyleSmall"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:visibility="gone"
-            android:layout_gravity="right"/>
-    </LinearLayout>
+            android:layout_below="@+id/carListingEditCar"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+ />
 
-
-
-</LinearLayout>
+</RelativeLayout>

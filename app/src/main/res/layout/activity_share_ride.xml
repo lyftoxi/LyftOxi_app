@@ -1,43 +1,20 @@
-<android.support.design.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="10dp">
 
+      <android.support.v7.widget.RecyclerView
+          android:id="@+id/shareRideCarRecyclerView"
+          android:scrollbars="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          />
+      <Button
+          style="@style/button"
+          android:id="@+id/sharingRideAddCar"
+          android:text="@string/add_car"
+          android:layout_below="@id/shareRideCarRecyclerView"/>
 
-  <LinearLayout android:layout_width="match_parent"
-        android:id="@+id/sharingRideRootLayout"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/shareRideCarList"
-            android:layout_marginBottom="50dp"
-            />
-
-
-        </LinearLayout>
-
-    <Button
-        style="@style/button"
-        android:id="@+id/sharingRideAddCar"
-        android:text="@string/add_car"
-        app:layout_anchor="@id/sharingRideRootLayout"
-        app:layout_anchorGravity="bottom|end"/>
-    <!--<Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/sharingRideAddCar"
-        android:text="@string/add_car"
-        android:background="@color/primaryButtonBackgroundColor"
-        android:textColor="@color/primaryButtonTextColor"
-        android:textSize="15sp"
-        app:layout_anchor="@id/sharingRideRootLayout"
-        app:layout_anchorGravity="bottom|end"
-        android:layout_margin="10dp"
-        />-->
-
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

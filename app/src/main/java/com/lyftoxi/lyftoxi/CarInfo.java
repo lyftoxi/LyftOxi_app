@@ -12,6 +12,8 @@ public class CarInfo {
     private boolean musicAvailable;
     private boolean smokingAllowed;
     private boolean luggageAllowed;
+    private boolean showDeleteButton = true;
+    private boolean showProgress = false;
     public String getCarNo() {
         return carNo;
     }
@@ -72,12 +74,38 @@ public class CarInfo {
     public void setLuggageAllowed(boolean luggageAllowed) {
         this.luggageAllowed = luggageAllowed;
     }
-    @Override
-    public String toString() {
-        return "Car [carNo=" + carNo + ", carColor=" + carColor + ", carModel=" + carModel + ", carBrand=" + carBrand
-                + ", noOfSeat=" + noOfSeat + ", acAvailable=" + acAvailable + ", airbagAvailable=" + airbagAvailable
-                + ", musicAvailable=" + musicAvailable + ", smokingAllowed=" + smokingAllowed + ", luggageAllowed="
-                + luggageAllowed + "]";
+
+    public boolean isShowDeleteButton() {
+        return showDeleteButton;
     }
 
+    public void setShowDeleteButton(boolean showDeleteButton) {
+        this.showDeleteButton = showDeleteButton;
+    }
+
+    public boolean isShowProgress() {
+        return showProgress;
+    }
+
+    public void setShowProgress(boolean showProgress) {
+        this.showProgress = showProgress;
+    }
+
+    @Override
+    public String toString() {
+        return "CarInfo{" +
+                "carNo='" + carNo + '\'' +
+                ", carColor='" + carColor + '\'' +
+                ", carModel='" + carModel + '\'' +
+                ", carBrand='" + carBrand + '\'' +
+                ", noOfSeat=" + noOfSeat +
+                ", acAvailable=" + acAvailable +
+                ", airbagAvailable=" + airbagAvailable +
+                ", musicAvailable=" + musicAvailable +
+                ", smokingAllowed=" + smokingAllowed +
+                ", luggageAllowed=" + luggageAllowed +
+                ", showDeleteButton=" + showDeleteButton +
+                ", showProgress=" + showProgress +
+                '}';
+    }
 }
