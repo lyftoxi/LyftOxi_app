@@ -288,7 +288,6 @@
         android:id="@+id/myRideDetailsInstructionSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_below="@id/takeRidesCarDetails"
         android:background="@color/commentBkg"
         android:gravity="center_horizontal"
@@ -301,7 +300,6 @@
             android:layout_marginTop="10dp"
             android:gravity="left"
             android:layout_marginLeft="2dp"
-
             android:text="@string/anything_else"
             android:textColor="@color/commentheader"
             android:textSize="17sp"
@@ -316,15 +314,27 @@
             android:singleLine="false"
             android:text="test"
             android:textColor="@color/comment"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:textStyle="italic"/>
 
 
     </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/myRideDetailsInterestedUserHeading"
+            android:layout_below="@id/myRideDetailsInstructionSection"
+            android:textColor="@color/carDetailsBackground"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:background="@color/primaryButtonBackgroundColor"
+            android:text="People interested in this ride"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/myRideDetailsInterestedUserRecycler"
-        android:layout_below="@id/myRideDetailsInstructionSection"
+        android:layout_below="@id/myRideDetailsInterestedUserHeading"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

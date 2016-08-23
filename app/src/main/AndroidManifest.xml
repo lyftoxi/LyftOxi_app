@@ -31,33 +31,40 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
+            android:theme="@style/AppTheme"
+            />
         <activity
             android:name=".ShareRideActivity"
             android:label="@string/title_activity_share_ride"
+            android:theme="@style/AppTheme"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SignupActivity"
-            android:label="@string/title_activity_signup" />
+            android:label="@string/title_activity_signup"
+            android:theme="@style/AppTheme"
+            />
         <activity
             android:name=".BaseActivity"
-            android:label="@string/title_activity_base" />
+            android:label="@string/title_activity_base"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".CarAddEdit"
-            android:label="@string/title_add_edit_car" />
+            android:label="@string/title_add_edit_car"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".CreateRouteActivity"
-            android:label="@string/title_create_route" />
+            android:label="@string/title_create_route"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".ConfirmRideActivity"
-            android:label="@string/title_confirm_ride" />
+            android:label="@string/title_confirm_ride"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".TakeRideDetailsActivity"
             android:label="@string/title_activity_take_ride_details"
@@ -65,7 +72,8 @@
         <activity
             android:name=".EditProfileActivity"
             android:label="@string/title_activity_edit_profile"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+        />
         <activity
             android:name=".OtherRideDetailsActivity"
             android:label="@string/title_activity_other_ride_details"
