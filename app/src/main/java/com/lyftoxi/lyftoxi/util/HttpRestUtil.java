@@ -13,6 +13,7 @@ import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.util.Base64;
 import com.lyftoxi.lyftoxi.R;
+import com.lyftoxi.lyftoxi.SessionManager;
 import com.lyftoxi.lyftoxi.exception.LyftoxiClientBusinessException;
 import com.lyftoxi.lyftoxi.exception.LyftoxiClientException;
 
@@ -36,11 +37,20 @@ public class HttpRestUtil {
         API_AUTH_USER_NAME = context.getString(R.string.lyftoxi_api_auth_header_user_name);
         API_AUTH_PASSWORD = context.getString(R.string.lyftoxi_api_auth_header_user_password);
 
+        String loggedInUserId = null;
+        SessionManager sessionManager = new SessionManager(context);
+        if(sessionManager.isLoggedIn()){
+            loggedInUserId = sessionManager.getUserDetails().getUID();
+        }
+
         String usernameAndPassword = API_AUTH_USER_NAME+":"+API_AUTH_PASSWORD;
         String basicAuthHeader = "Basic "+new String(Base64.encodeBase64(usernameAndPassword.getBytes()));
         Log.d("lyftoxi.debug"," basicAuthHeader "+basicAuthHeader);
         header = new HttpHeaders();
         header.setAuthorization(basicAuthHeader);
+        if(null!=loggedInUserId) {
+            header.set(Constants.HTTP_HEADER_USER_ID, loggedInUserId);
+        }
         transport = AndroidHttp.newCompatibleTransport();
     }
 

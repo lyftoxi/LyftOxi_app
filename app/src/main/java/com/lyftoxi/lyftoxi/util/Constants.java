@@ -16,4 +16,5 @@ public class Constants {
     public static final String CAR_NUMBER_PATTERN = "^[A-Z]{2}[\\s|.|-]*[0-9]+[\\s|.|-]*[A-Z]*[\\s|.|-]*[0-9]{4}$";
     public static final Map<String,String> genderLookup= ImmutableMap.of("M", "Male", "F", "Female");
     public static final int RIDE_REPEAT_MAX_NO_DAYS = 4;
+    public static final String HTTP_HEADER_USER_ID="userId";
 }
