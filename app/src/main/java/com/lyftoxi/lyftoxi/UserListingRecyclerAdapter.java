@@ -17,9 +17,11 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.StorageReference;
+import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.LyftoxiFirebase;
 import com.lyftoxi.lyftoxi.util.RoundImage;
 
+import java.util.Date;
 import java.util.List;
 
 public class UserListingRecyclerAdapter extends RecyclerView.Adapter<UserListingRecyclerAdapter.UserViewHolder>{
@@ -83,6 +85,9 @@ public class UserListingRecyclerAdapter extends RecyclerView.Adapter<UserListing
             downloadUserProfilePic(i.getUID(), holder.userImage);
             holder.name.setText(i.getName());
             holder.phone.setText(i.getPhNo());
+            if(null!=i.getDob()){
+            holder.age.setText((new Date().getYear() - i.getDob().getYear())+" years");}
+            holder.gender.setText(Constants.genderLookup.get(i.getSex()));
 
 
             holder.call.setOnClickListener(new View.OnClickListener() {

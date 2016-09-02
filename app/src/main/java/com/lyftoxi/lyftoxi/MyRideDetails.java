@@ -155,6 +155,8 @@ public class MyRideDetails extends BaseActivity {
                             interestedUserInfo.setUID(tmpRide.getInterestedUserObjId());
                             interestedUserInfo.setName(tmpRide.getInterestedUserName());
                             interestedUserInfo.setPhNo(tmpRide.getInterestedUserMobileNo());
+                            interestedUserInfo.setDob(tmpRide.getInterestedUserDob());
+                            interestedUserInfo.setSex(tmpRide.getInterestedUserGender());
                             interestedUsers.add(interestedUserInfo);
                         }
                         return true;

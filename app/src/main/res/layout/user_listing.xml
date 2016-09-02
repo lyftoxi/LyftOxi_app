@@ -68,7 +68,7 @@
         android:id="@+id/userListingAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="25 Years"
+        android:text=" Years"
         android:textSize="10sp"
         android:textColor="@color/iconBlue"
         android:layout_below="@+id/userListingPhone"

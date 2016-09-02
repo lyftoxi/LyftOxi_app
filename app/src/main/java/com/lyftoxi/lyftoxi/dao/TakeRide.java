@@ -16,6 +16,8 @@ public class TakeRide {
     private String interestedUserName;
     private String interestedUserMobileNo;
     private String shareRideStatus = "A";
+    private String interestedUserGender;
+    private Date interestedUserDob;
 
     public String getId() {
         return id;
@@ -121,6 +123,22 @@ public class TakeRide {
         this.shareRideStatus = shareRideStatus;
     }
 
+    public String getInterestedUserGender() {
+        return interestedUserGender;
+    }
+
+    public void setInterestedUserGender(String interestedUserGender) {
+        this.interestedUserGender = interestedUserGender;
+    }
+
+    public Date getInterestedUserDob() {
+        return interestedUserDob;
+    }
+
+    public void setInterestedUserDob(Date interestedUserDob) {
+        this.interestedUserDob = interestedUserDob;
+    }
+
     @Override
     public String toString() {
         return "TakeRide{" +
@@ -137,6 +155,8 @@ public class TakeRide {
                 ", interestedUserName='" + interestedUserName + '\'' +
                 ", interestedUserMobileNo='" + interestedUserMobileNo + '\'' +
                 ", shareRideStatus='" + shareRideStatus + '\'' +
+                ", interestedUserGender='" + interestedUserGender + '\'' +
+                ", interestedUserDob=" + interestedUserDob +
                 '}';
     }
 }

@@ -205,6 +205,8 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
                         interestedRide.setInterestedUserObjId(CurrentUserInfo.getInstance().getId());
                         interestedRide.setInterestedUserName(CurrentUserInfo.getInstance().getName());
                         interestedRide.setInterestedUserMobileNo(CurrentUserInfo.getInstance().getPhNo());
+                        interestedRide.setInterestedUserGender(CurrentUserInfo.getInstance().getGender());
+                        interestedRide.setInterestedUserDob(CurrentUserInfo.getInstance().getDob());
                         Location source = new Location();
                         source.setName(i.getSourceName());
                         source.setLatitude(Double.valueOf(df.format(i.getSource().latitude)));
