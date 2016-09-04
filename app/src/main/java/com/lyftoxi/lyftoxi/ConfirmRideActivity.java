@@ -133,7 +133,7 @@ public class ConfirmRideActivity extends BaseActivity {
                 sb.append("[");
                 sb.append(dateFormat.format(startTime.getTime()));
                 sb.append(" to ");
-                startTime.add(Calendar.DATE,ride.getDaysToRepeat());
+                startTime.add(Calendar.DATE,ride.getDaysToRepeat()-1);
                 sb.append(dateFormat.format(startTime.getTime()));
                 sb.append("] ");
                 sb.append(timeFormat.format(startTime.getTime()));

@@ -331,7 +331,7 @@ public class CreateRouteActivity extends BaseActivity {
         repeatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                daysToRepeat = position+1;
+                daysToRepeat = position+2;
                 Toast.makeText(view.getContext(),"Repeat for "+daysToRepeat+" days",Toast.LENGTH_SHORT).show();
             }
             @Override
