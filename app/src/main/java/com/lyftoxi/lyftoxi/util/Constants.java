@@ -17,4 +17,6 @@ public class Constants {
     public static final Map<String,String> genderLookup= ImmutableMap.of("M", "Male", "F", "Female");
     public static final int RIDE_REPEAT_MAX_NO_DAYS = 4;
     public static final String HTTP_HEADER_USER_ID="userId";
+    public static final String APP_PACAKGE = "net.one97.paytm";
+    public static final String APP_LINK = "https://paytm.com/";
 }

@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Message;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -71,10 +72,12 @@ public class BaseActivity extends AppCompatActivity {
     protected ImageButton navProfilePicBtn;
     protected CollapsingToolbarLayout collapsingToolbarLayout;
     protected boolean isScrollable = true;
+    protected CoordinatorLayout coordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorlayout);
         ConnectionDetector connectionDetector =  new ConnectionDetector(getApplicationContext());
         if(!connectionDetector.isConnectingToInternet())
         {
