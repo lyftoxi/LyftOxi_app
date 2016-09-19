@@ -1,6 +1,8 @@
 package com.lyftoxi.lyftoxi;
 
 import android.content.ActivityNotFoundException;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -204,11 +206,16 @@ public class TakeRideDetailsActivity extends BaseActivity {
                 takeRideDetailsPaytm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        /*if(!openApp(Constants.APP_PACAKGE))
-                        {
-                            Snackbar.make(coordinatorLayout,"Could not open Paytm", Snackbar.LENGTH_LONG)
-                                    .setAction("Action", null).show();
-                        }*/
+
+                        ClipboardManager  lyftoxiClipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+                        ClipData rideOwnerPhoneNumber;
+                        String text = "hello world";
+                        rideOwnerPhoneNumber = ClipData.newPlainText("text", seletctedRide.getRideOf().getPhNo());
+                        lyftoxiClipboard.setPrimaryClip(rideOwnerPhoneNumber);
+                        Toast toast = Toast.makeText(view.getContext(),
+                                view.getResources().getString(R.string.number_copied_to_clipboard),
+                                Toast.LENGTH_SHORT);
+                        toast.show();
                         Promo promo = new Promo();
                         promo.setUserId(session.getUserDetails().getUID());
                         promo.setRideId(seletctedRide.getId());
