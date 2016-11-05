@@ -31,6 +31,7 @@ import com.lyftoxi.lyftoxi.exception.LyftoxiClientException;
 import com.lyftoxi.lyftoxi.singletons.CurrentUserInfo;
 import com.lyftoxi.lyftoxi.util.Constants;
 import com.lyftoxi.lyftoxi.util.HttpRestUtil;
+import com.lyftoxi.lyftoxi.util.LyftoxiFirebase;
 import com.lyftoxi.lyftoxi.util.PasswordUtil;
 import com.msg91.sendotp.library.Config;
 import com.msg91.sendotp.library.SendOtpVerification;
@@ -67,13 +68,17 @@ public class ForgotPasswordActivity extends BaseActivity implements Verification
         {
             return;
         }
-       Config config = SendOtpVerification.config().context(getApplicationContext())
-                .build();
-        mVerification = SendOtpVerification.createSmsVerification(config, mobile.getText().toString(), this, "91");
-        showProgress(true);
-        mVerification.initiate();
 
-        //new ResetPasswordTask().execute(mobile.getText().toString(), password.getText().toString());
+        if(LyftoxiFirebase.sendOTP) {
+            Config config = SendOtpVerification.config().context(getApplicationContext())
+                    .build();
+            mVerification = SendOtpVerification.createSmsVerification(config, mobile.getText().toString(), this, "91");
+            showProgress(true);
+            mVerification.initiate();
+        }else{
+            new ResetPasswordTask().execute(mobile.getText().toString(), password.getText().toString());
+        }
+
     }
 
 

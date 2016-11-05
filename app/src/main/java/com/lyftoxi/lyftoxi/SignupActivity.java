@@ -294,10 +294,6 @@ public class SignupActivity extends BaseActivity implements VerificationListener
 
     public void signUp(View view)
     {
-
-
-
-
        if(!isValidInputs())
        {
            Log.d("lyftoxi.debug","error in field validation");
