@@ -19,4 +19,5 @@ public class Constants {
     public static final String HTTP_HEADER_USER_ID="userId";
     public static final String APP_PACAKGE = "net.one97.paytm";
     public static final String APP_LINK = "https://paytm.com/";
+    public static final String CURRENT_PROMO_CODE = "PAYTM01";
 }

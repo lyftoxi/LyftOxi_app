@@ -40,6 +40,9 @@ public class SessionManager {
 
     // SEX (make variable public to access from outside)
     public static final String KEY_SEX = "sex";
+
+    //USED to see if user has seen notification or NOT
+    public static final String KEY_PROMO_DIALOG_CODE = "prompDialogCode";
      
     // Constructor
     public SessionManager(Context context){
@@ -149,6 +152,17 @@ public class SessionManager {
         return pref.getBoolean(IS_LOGIN, false);
     }
 
+
+    public String getPromoDialogCode()
+    {
+        return pref.getString(KEY_PROMO_DIALOG_CODE, null);
+    }
+
+    public void setPromoDialogCode(String promoDialogCode)
+    {
+        editor.putString(KEY_PROMO_DIALOG_CODE, promoDialogCode);
+        editor.commit();
+    }
 
 
 }

@@ -22,6 +22,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -85,6 +86,7 @@ public class BaseActivity extends AppCompatActivity {
             showAlertDialog(this, getString(R.string.no_internet_connection),
                     getString(R.string.no_internet_connection_please_try_again), false);
         }
+
     }
     public void showAlertDialog(Context context, String title, String message, Boolean status) {
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
@@ -101,6 +103,34 @@ public class BaseActivity extends AppCompatActivity {
             }
         });
         alertDialog.show();
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        if(session != null &&(
+                session.getPromoDialogCode()==null ||
+                !session.getPromoDialogCode().equals(Constants.CURRENT_PROMO_CODE))){
+            Log.d("lyftoxi.debug","CURRENT PROMO CODE "+session.getPromoDialogCode());
+            showPromoDialog();
+        }
+    }
+
+
+
+    private void showPromoDialog()
+    {
+        AlertDialog.Builder promoDialog = new AlertDialog.Builder(this);
+        LayoutInflater factory = LayoutInflater.from(this);
+        final View view = factory.inflate(R.layout.promo_dialog_layout, null);
+        promoDialog.setView(view);
+        promoDialog.setNeutralButton("Got it!", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dlg, int sumthin) {
+                    session.setPromoDialogCode(Constants.CURRENT_PROMO_CODE);
+            }
+        });
+        promoDialog.show();
     }
 
     @Override
