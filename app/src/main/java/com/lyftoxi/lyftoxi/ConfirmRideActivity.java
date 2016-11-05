@@ -204,6 +204,7 @@ public class ConfirmRideActivity extends BaseActivity {
 
         Gson gson = new GsonBuilder().setDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).create();
         String errorMessage;
+        String successMessage;
         @Override
         protected void onPreExecute() {
             showProgress(true);
@@ -260,6 +261,7 @@ public class ConfirmRideActivity extends BaseActivity {
                 }
                 if(null!=response)
                 {
+                    successMessage = response;
                     return true;
                 }
 
@@ -288,7 +290,7 @@ public class ConfirmRideActivity extends BaseActivity {
             showProgress(false);
             Toast toast;
             if (success) {
-                toast = Toast.makeText(getApplicationContext(), "Ride saved successfully", Toast.LENGTH_LONG);
+                toast = Toast.makeText(getApplicationContext(), "Ride saved successfully "+successMessage, Toast.LENGTH_LONG);
                 toast.show();
                 finish();
                 startMySharedRideActivity();

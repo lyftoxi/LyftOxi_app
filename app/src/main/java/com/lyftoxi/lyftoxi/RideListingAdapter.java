@@ -167,7 +167,8 @@ public class RideListingAdapter extends ArrayAdapter<RideListingInfo>{
 
 
             if (null != holder.interestedButton) {
-                if (!session.isLoggedIn() || null == i.isInterested()) {
+                if (!session.isLoggedIn() || null == i.isInterested()
+                        || i.getRideOf().getUID().equals(CurrentUserInfo.getInstance().getId())) {
                     holder.interestedButton.setVisibility(View.INVISIBLE);
                 } else {
                     if (i.isInterested()) {

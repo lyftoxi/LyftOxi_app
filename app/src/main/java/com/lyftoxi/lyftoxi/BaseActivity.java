@@ -125,12 +125,8 @@ public class BaseActivity extends AppCompatActivity {
         LayoutInflater factory = LayoutInflater.from(this);
         final View view = factory.inflate(R.layout.promo_dialog_layout, null);
         promoDialog.setView(view);
-        promoDialog.setNeutralButton("Got it!", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dlg, int sumthin) {
-                    session.setPromoDialogCode(Constants.CURRENT_PROMO_CODE);
-            }
-        });
         promoDialog.show();
+        session.setPromoDialogCode(Constants.CURRENT_PROMO_CODE);
     }
 
     @Override

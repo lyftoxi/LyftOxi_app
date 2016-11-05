@@ -109,6 +109,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
         takeRideDetailSms = (ImageButton) findViewById(R.id.takeRideDetailsSms);
         takeRideDetailsPaytm = (ImageButton) findViewById(R.id.takeRideDetailsPaytm);
 
+
         // takeRideInterested = (Button) findViewById(R.id.takeRideInterested);
 
         Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.sample_profile_pic);
@@ -117,6 +118,11 @@ public class TakeRideDetailsActivity extends BaseActivity {
         seletctedRide = RideInfo.getInstance();
         if (null != seletctedRide) {
 
+            if(CurrentUserInfo.getInstance().getId().equals(seletctedRide.getRideOf().getUID()))
+            {
+                //Can not pay your own self
+                takeRideDetailsPaytm.setVisibility(View.GONE);
+            }
             downloadUserProfilePic(seletctedRide.getRideOf().getUID());
             getSupportActionBar().setTitle(seletctedRide.getRideOf().getName());
             takeRideDetailsPrice.setText(seletctedRide.getFare() + "");
@@ -209,7 +215,6 @@ public class TakeRideDetailsActivity extends BaseActivity {
 
                         ClipboardManager  lyftoxiClipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
                         ClipData rideOwnerPhoneNumber;
-                        String text = "hello world";
                         rideOwnerPhoneNumber = ClipData.newPlainText("text", seletctedRide.getRideOf().getPhNo());
                         lyftoxiClipboard.setPrimaryClip(rideOwnerPhoneNumber);
                         Toast toast = Toast.makeText(view.getContext(),
@@ -317,7 +322,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
             try {
                 HttpRestUtil httpRestUtil = new HttpRestUtil(getApplicationContext());
                 String response;
-                response = httpRestUtil.httpPost("promoService/promo", promoJson);
+                response = httpRestUtil.httpPost("promoService/take-ride-promo", promoJson);
                 if(null!=response)
                 {
                     return true;
