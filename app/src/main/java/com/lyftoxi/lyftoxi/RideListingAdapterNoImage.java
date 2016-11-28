@@ -177,6 +177,7 @@ public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
         View progressBar;
         TextView cancelledText;
         ImageButton cancelBtn, editBtn;
+        String rideId;
 
         @Override
         protected void onPreExecute() {
@@ -187,7 +188,7 @@ public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
 
         @Override
         protected Boolean doInBackground(String... params) {
-            String rideId = params[0];
+            rideId = params[0];
             try {
 
                 HttpRestUtil httpRestUtil = new HttpRestUtil(getContext());
@@ -228,8 +229,15 @@ public class RideListingAdapterNoImage extends ArrayAdapter<RideListingInfo>{
                 cancelledText.setVisibility(View.VISIBLE);
                 editBtn.setVisibility(View.GONE);
                 cancelBtn.setVisibility(View.GONE);
-               // RideListingAdapterNoImage.this.notifyDataSetChanged();
-
+                for(RideListingInfo tmpRide :rides)
+                {
+                   if(rideId.equals(tmpRide.getId()))
+                   {
+                       tmpRide.setStatus("C");
+                       notifyDataSetChanged();
+                       break;
+                   }
+                }
             } else {
                 toast = Toast.makeText(getContext(), "Canceling ride failed. Try Again", Toast.LENGTH_LONG);
                 cancelledText.setVisibility(View.GONE);

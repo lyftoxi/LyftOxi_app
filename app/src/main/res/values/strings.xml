@@ -145,4 +145,5 @@
     <string name="faq">FAQ</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="number_copied_to_clipboard">Phone number copied to Clipboard.</string>
+    <string name="offer_more">For more visit https://www.lyftoxi.com/offers</string>
 </resources>
