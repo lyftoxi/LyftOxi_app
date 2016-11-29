@@ -308,7 +308,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
 
         Gson gson = new GsonBuilder().setDateFormat(Constants.DATE_TIME_FORMAT_WITH_TIME_ZONE).create();
         String errorMessage;
-
+        String successMessage;
 
         @Override
         protected void onPreExecute() {
@@ -325,6 +325,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
                 response = httpRestUtil.httpPost("promoService/take-ride-promo", promoJson);
                 if(null!=response)
                 {
+                    successMessage = response;
                     return true;
                 }
             }catch (IOException ioex) {
@@ -352,7 +353,7 @@ public class TakeRideDetailsActivity extends BaseActivity {
             showProgress(false);
             Toast toast = null;
             if(result){
-                toast = Toast.makeText(getApplicationContext(), "You will receive Promo amount in your PAYTM wallet", Toast.LENGTH_LONG);
+                toast = Toast.makeText(getApplicationContext(), successMessage, Toast.LENGTH_LONG);
             }else{
                 toast = Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG);
             }
