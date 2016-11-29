@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@android:color/white"
     android:layout_margin="16dp">
 
     <ImageView
@@ -9,16 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/promo_image"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/offer_more"
-        android:layout_below="@id/promo_popup_image_view"
+        android:textSize="12sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
         android:gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
         android:autoLink="web"/>
 
-</RelativeLayout>
+</LinearLayout>
